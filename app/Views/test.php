@@ -1,15 +1,15 @@
 <?php
-$dbhost = "localhost";
+$dbhost = "localhost:3306";
 $dbuser = "practica";
 $dbpass = 'v5$GkC77Ry';
-$dbname = "CondGuard";
+$dbname = "Condguard";
 $dbport = 3306;
 $conn =  mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 if ($conn->connect_error) {
     die("Error connecting to database");
 }
-mysqli_select_db($conn, "dbtest");
-$sql_query = "SELECT * FROM employee";
+mysqli_select_db($conn, "Condguard");
+$sql_query = "SELECT * FROM Officer";
 $result = mysqli_query($conn, $sql_query);
 
 $num_rows = mysqli_num_rows($result);

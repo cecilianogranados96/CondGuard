@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'suspicious-banach.87-106-198-119.plesk.page'; //'http://localhost:8080/';
+    public $baseURL = 'https://suspicious-banach.87-106-198-119.plesk.page/'; //'http://localhost:8080/';
 
     /**
      * --------------------------------------------------------------------------

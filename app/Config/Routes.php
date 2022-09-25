@@ -26,7 +26,6 @@ $routes->set404Override();
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
 //$routes->setAutoRoute(false);
-
 /*
  * --------------------------------------------------------------------
  * Route Definitions
@@ -36,13 +35,14 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/user/list', 'UserController::list');
-$routes->post('/user/save', 'UserController::save');
-$routes->get('/user/new', 'UserController::new');
-$routes->get('/user/edit', 'UserController::edit');
-$routes->get('/user/delete', 'UserController::delete');
+$routes->get('condoowner', 'CondoOwnerController::index');
+$routes->post('condoowner/save', 'CondoOwnerController::save');
+$routes->get('condoowner/new', 'CondoOwnerController::new');
+$routes->get('condoowner/edit', 'CondoOwnerController::edit');
+$routes->get('condoowner/delete', 'CondoOwnerController::delete');
 
 /*
+
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------

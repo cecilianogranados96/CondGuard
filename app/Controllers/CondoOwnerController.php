@@ -2,55 +2,55 @@
 
 namespace App\Controllers;
 
-class UserController extends BaseController
+class CondoOwnerController extends BaseController
 {
-    public function list()
+    public function index()
     {
         $db        = db_connect('default');
-        $UserModel = model('UserModel', true, $db);
-        $data['users'] = $UserModel->findAll();
+        $CondoOwnerModel = model('CondoOwnerModel', true, $db);
+        $data['users'] = $CondoOwnerModel->findAll();
         return
             view('templates/header') .
-            view('templates/nav') .
-            view('user/list', $data) .
+            view('templates/navbar') .
+            view('condoowner/list', $data) .
             view('templates/footer');
     }
     public function new()
     {
         return
             view('templates/header') .
-            view('templates/nav') .
-            view('user/new') .
+            view('templates/navbar') .
+            view('condoowner/new') .
             view('templates/footer');
     }
     public function edit()
     {
 
         $db        = db_connect('default');
-        $UserModel = model('UserModel', true, $db);
+        $CondoOwnerModel = model('CondoOwnerModel', true, $db);
         $request = \Config\Services::request();
-        $id = $request->getPostGet('user_id');
-        $user['user'] = $UserModel->find($id);
+        $id = $request->getPostGet('id');
+        $user['user'] = $CondoOwnerModel->find($id);
         return
             view('templates/header') .
-            view('templates/nav') .
-            view('user/edit', $user) .
+            view('templates/navbar') .
+            view('condoowner/edit', $user) .
             view('templates/footer');
     }
     public function delete()
     {
         $db        = db_connect('default');
-        $UserModel = model('UserModel', true, $db);
+        $CondoOwnerModel = model('CondoOwnerModel', true, $db);
         $request = \Config\Services::request();
         //$id = $request->getPostGet('user_id');
-        $id = $this->request->getPostGet('user_id');
+        $id = $this->request->getPostGet('id');
         //$id = $user_id;
-        $UserModel->delete($id);
-        $data['users'] = $UserModel->findAll();
+        $CondoOwnerModel->delete($id);
+        $data['users'] = $CondoOwnerModel->findAll();
         return
             view('templates/header') .
-            view('templates/nav') .
-            view('user/list', $data) .
+            view('templates/navbar') .
+            view('condoowner/list', $data) .
             view('templates/footer');
     }
     public function save()
@@ -63,23 +63,20 @@ class UserController extends BaseController
             'password' => $request->getPostGet('password'),
             'phone' => $request->getPostGet('phone'),
             'land_number' => 'P11',
-            'payment' => $request->getPostGet('payment'),
-            'user_role' => 'Admin',
-            'status' => 'Active'
+            'payment' => $request->getPostGet('payment')
         );
-        if ($request->getPostGet('id')) {
-            $data['id'] = $request->getPostGet('id');
+        if ($request->getPostGet('condo_owner_id')) {
+            $data['condo_owner_id'] = $request->getPostGet('condo_owner_id');
         }
         $db        = db_connect('default');
-        $UserModel = model('UserModel', true, $db);
+        $CondoOwnerModel = model('CondoOwnerModel', true, $db);
 
-        $UserModel->save($data);
-        var_dump($UserModel->errors());
-        $data['users'] = $UserModel->findAll();
+        $CondoOwnerModel->save($data);
+        $data['users'] = $CondoOwnerModel->findAll();
         return
             view('templates/header') .
-            view('templates/nav') .
-            view('user/list', $data) .
+            view('templates/navbar') .
+            view('condoowner/list', $data) .
             view('templates/footer');
     }
 }

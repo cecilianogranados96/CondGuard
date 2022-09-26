@@ -1,42 +1,62 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-dark py-3" style="
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        margin-bottom: 0px;
-      ">
+<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark py-3"
+    style="--bs-primary: #fec006; --bs-primary-rgb: 254, 192, 6">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex" href="#" style="padding-left: 2%"><span
-                class="bs-icon-sm bs-icon-rounded d-flex justify-content-center align-items-center me-2 bs-icon"
-                style="background: #f28e13"><img style="height: 65px; width: 65px; padding: 0; margin: 0"
-                    src="assets/img/Logo.png" /></span><span
-                style="padding-left: 15px; font-weight: bold; font-size: 22px">Hacienda El Coyol</span></a><button
-            data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3">
+        <a class="navbar-brand d-flex align-items-center" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
+            style="height: 50px"><img class="rounded-circle img-fluid"
+                style="margin-right: 5px; height: 75px; width: 75px" src="assets/img/Logo%20Only.png" width="0"
+                height="0" loading="auto" /><span class="fs-1 text-light"
+                style="font-family: 'IM Fell Great Primer SC', serif">Hacienda el Coyol</span></a><button
+            data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5">
             <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navcol-3" style="padding-left: 0%; padding-right: 0">
-            <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse" id="navcol-5">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Inicio</a>
+                    <a class="nav-link active fw-semibold" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
+                        style="
+              padding-left: 11px;
+              --bs-primary: #fec006;
+              --bs-primary-rgb: 254, 192, 6;
+              color: #fec006;
+            ">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Reservar</a>
+                <li class="nav-item text-warning">
+                    <a class="nav-link fw-semibold" data-bss-hover-animate="pulse" href="#" style="
+              padding-left: 11px;
+              --bs-primary: #fec006;
+              --bs-primary-rgb: 254, 192, 6;
+              color: #fec006;
+            ">Reservar</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Nosotros</a>
+                <li class="nav-item text-warning visually-hidden">
+                    <a class="nav-link fw-semibold" data-bss-hover-animate="pulse" href="#" style="
+              padding-left: 11px;
+              --bs-primary: #fec006;
+              --bs-primary-rgb: 254, 192, 6;
+              color: #fec006;
+            ">Registrarse</a>
+                </li>
+                <li class="nav-item text-warning visually-hidden">
+                    <a class="nav-link fw-bold link-light bg-primary" data-bss-hover-animate="pulse" href="#"
+                        style="border-radius: 8px; padding-left: 11px">Iniciar Sesion</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link fw-semibold" aria-expanded="false" data-bs-toggle="dropdown"
+                        data-bss-hover-animate="pulse" href="#" style="
+              padding-left: 11px;
+              --bs-primary: #fec006;
+              --bs-primary-rgb: 254, 192, 6;
+              color: #fec006;
+            ">Opciones</a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" data-bss-hover-animate="pulse" href="#">Perfil</a><a
+                            class="dropdown-item" data-bss-hover-animate="pulse"
+                            href="<?= base_url('maintenance') ?>">Mantenimientos</a>
+                        <hr />
+                        <a class="dropdown-item" data-bss-hover-animate="pulse" href="#">Cerrar Sesion</a>
+                    </div>
                 </li>
             </ul>
-            <hr style="background: var(--bs-yellow); border-color: #f5cc58" />
-            <div class="btn-group" role="group" style="background: #f5cc58; border: 3px solid #f5cc58">
-                <a class="btn btn-light border rounded border-0" role="button" style="font-weight: bold">Iniciar
-                    Sesion</a><a class="btn btn-primary border rounded border-0" role="button"
-                    style="margin-left: 1px; background: #f5cc58; font-weight: bold">Registrarse</a>
-                <div class="dropdown btn-group bg-light" role="group" style="padding: 6px;"><a class="dropdown-toggle"
-                        aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-weight: bold;"
-                        target="_blank">UserLogged1</a>
-                    <div class="dropdown-menu"><a class="dropdown-item" href="#">Perfil</a><a class="dropdown-item"
-                            href="<?= base_url('condoowner') ?>">Mantenimientos</a><a class="dropdown-item"
-                            href="#">Cerrar Sesion</a></div>
-                </div>
-            </div>
         </div>
     </div>
 </nav>

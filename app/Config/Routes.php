@@ -35,6 +35,15 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+//Maintenance
+$routes->get('maintenance', 'MaintenanceController::index');
+//Administrator
+$routes->get('administrator/new', 'AdministratorController::new');
+$routes->get('administrator/edit', 'AdministratorController::edit');
+$routes->get('administrator/delete', 'AdministratorController::delete');
+$routes->post('administrator/save', 'AdministratorController::save');
+//Condo Owner 
+$routes->get('administrator', 'AdministratorController::index');
 $routes->get('condoowner', 'CondoOwnerController::index');
 $routes->post('condoowner/save', 'CondoOwnerController::save');
 $routes->get('condoowner/new', 'CondoOwnerController::new');

@@ -4,9 +4,7 @@
             <div
                 class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
                 <div>
-                    <h2 class="text-uppercase fw-bold mb-3" style="color:red;">!Logo y estilo se pierde al redireccionar
-                        !
-                    </h2>
+
                     <h2 class="text-uppercase fw-bold mb-3">Biben dum<br />fringi dictum, augue purus</h2>
                     <p class="mb-4">Etiam a rutrum, mauris lectus aptent convallis. Fusce vulputate aliquam, sagittis
                         odio metus. Nulla porttitor vivamus viverra laoreet, aliquam netus.</p><button

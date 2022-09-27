@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
             style="height: 50px"><img class="rounded-circle img-fluid"
-                style="margin-right: 5px; height: 75px; width: 75px" src="/assets/img/LogoOnly.png" width="0" height="0"
-                loading="auto" /><span class="fs-1 text-light"
+                style="margin-right: 5px; height: 75px; width: 75px" src="/assets/img/CondominioLogoOnly.png" width="0"
+                height="0" loading="auto" /><span class="fs-1 text-light"
                 style="font-family: 'IM Fell Great Primer SC', serif">Hacienda el Coyol</span></a><button
             data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5">
             <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>

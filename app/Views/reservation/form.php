@@ -13,7 +13,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly') ?>">Asambleas</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -31,7 +31,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('patrol') ?>">Patrullas</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('reservation') ?>">Reservaciones</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -50,46 +50,45 @@
     <div class="card card-body ">
         <?php
 
-                echo form_open('assembly/save'); ?>
+        echo form_open('reservation/save'); ?>
         <fieldset>
 
             <!-- Form Name -->
-            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Asamblea</legend>
+            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Reservacion</legend>
 
 
-
-            <!--  input-->
+            <!-- input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="name"></label>
+                <label class="col-md-4 control-label" for="entry_at"></label>
                 <div class="col-md-4">
-                    <input id="name" name="name" type="text" placeholder="Nombre" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['name'] : ''; ?>>
+                    <input id="entry_at" name="entry_at" type="datetime-local" placeholder="Fecha de entrada"
+                        class="form-control input-md" required="" value=<?= isset($item) ? $item['entry_at'] : ''; ?>>
+
+                </div>
+            </div>
+            <!-- input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="out_at"></label>
+                <div class="col-md-4">
+                    <input id="out_at" name="out_at" type="datetime-local" placeholder="Fecha de salida"
+                        class="form-control input-md" required="" value=<?= isset($item) ? $item['out_at'] : ''; ?>>
 
                 </div>
             </div>
 
-            <!--  input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="place"></label>
-                <div class="col-md-4">
-                    <input id="place" name="place" type="text" placeholder="Lugar" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['place'] : ''; ?>>
-
-                </div>
-            </div>
 
 
             <br>
             <br>
-            <input name="assembly_id" type="hidden" value=<?= isset($item) ? $item['assembly_id'] : ''; ?>>
+            <input name="reservation_id" type="hidden" value=<?= isset($item) ? $item['reservation_id'] : ''; ?>>
 
-            <a href="<?= base_url('assembly') ?>" class="btn  btn-secondary">atras</a>
+            <a href="<?= base_url('reservation') ?>" class="btn  btn-secondary">atras</a>
             <input type="submit" name="edit" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>"
                 class="btn btn-primary">
 
         </fieldset>
         <?php
-                echo form_close();
-                ?>
+        echo form_close();
+        ?>
     </div>
 </div>

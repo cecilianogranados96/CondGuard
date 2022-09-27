@@ -19,7 +19,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('common_area') ?>">Areas
                             Comunes</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('authorized') ?>">Autorizados</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -37,7 +37,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('relative_vehicle') ?>">Vehiculos</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly_voting') ?>">Votaciones</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -48,7 +48,7 @@
         </div>
     </section>
     <div class="card card-body ">
-        <a href="<?php echo base_url('authorized/new') ?>" class="btn btn-primary" role="button"
+        <a href="<?php echo base_url('assembly_voting/new') ?>" class="btn btn-primary" role="button"
             style="font-size: 30px; margin-bottom: 10px;">Nuevo <i class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
@@ -56,30 +56,28 @@
 
                 <thead>
                     <tr>
-                        <th>Identificacion</th>
-                        <th>Nombre</th>
-                        <th>Placa de vehiculo</th>
-                        <th>Motivo</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>Expiracion</th>
+                        <th>Descripcion</th>
+                        <th>pregunta</th>
+                        <th>Votos Afirmativos</th>
+                        <th>Votos Negativos</th>
+                        <th>Votos Totales</th>
+                        <th>Resultado</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($items as $item) : ?>
                     <tr>
-                        <td><?= $item['identity'] ?></td>
-                        <td><?= $item['name'] ?></td>
-                        <td><?= $item['vehicle_plate'] ?> </td>
-                        <td><?= $item['reason'] ?> </td>
-                        <td><?= $item['entry_at'] ?> </td>
-                        <td><?= $item['out_at'] ?> </td>
-                        <td><?= $item['expiration_at'] ?> </td>
+                        <td><?= $item['description'] ?></td>
+                        <td><?= $item['question'] ?></td>
+                        <td><?= $item['up_votes'] ?> </td>
+                        <td><?= $item['down_votes'] ?> </td>
+                        <td><?= $item['total_votes'] ?> </td>
+                        <td><?= $item['status'] ?> </td>
                         <td>
-                            <a href="<?php echo base_url('authorized/edit?id=' . $item['authorized_id']) ?>"
+                            <a href="<?php echo base_url('assembly_voting/edit?id=' . $item['assembly_voting_id']) ?>"
                                 class="btn btn-warning " role="button">Editar <i class="far fa-edit"></i></a>
-                            <a href="<?php echo base_url('authorized/delete?id=' . $item['authorized_id']) ?>"
+                            <a href="<?php echo base_url('assembly_voting/delete?id=' . $item['assembly_voting_id']) ?>"
                                 class="btn btn-danger " role="button">Eliminar <i class="fas fa-eraser"></i></a>
 
                         </td>
@@ -88,13 +86,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Identificacion</th>
-                        <th>Nombre</th>
-                        <th>Placa de vehiculo</th>
-                        <th>Motivo</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>Expiracion</th>
+                        <th>Descripcion</th>
+                        <th>pregunta</th>
+                        <th>Votos Afirmativos</th>
+                        <th>Votos Negativos</th>
+                        <th>Votos Totales</th>
+                        <th>Resultado</th>
                         <th>Opciones</th>
                     </tr>
                 </tfoot>

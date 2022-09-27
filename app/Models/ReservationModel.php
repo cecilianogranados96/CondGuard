@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class reservationModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'reservation';
@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['common_area_id', 'user_id', 'date_entry', 'date_out', 'status'];
+    protected $allowedFields    = ['common_area_id', 'condo_owner_id', 'relative_id', 'entry_at', 'out_at', 'status'];
 
     // Dates
     protected $useTimestamps = true; //false;

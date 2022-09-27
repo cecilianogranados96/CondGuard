@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class voteModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'vote';
@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['assembly_voting_id', 'user_id', 'answer'];
+    protected $allowedFields    = ['assembly_voting_id', 'condo_owner_id', 'answer'];
 
     // Dates
     protected $useTimestamps = true; //false;

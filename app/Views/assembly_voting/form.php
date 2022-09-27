@@ -13,7 +13,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly') ?>">Asambleas</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -37,7 +37,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('relative_vehicle') ?>">Vehiculos</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly_voting') ?>">Votaciones</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -50,46 +50,50 @@
     <div class="card card-body ">
         <?php
 
-                echo form_open('assembly/save'); ?>
+        echo form_open('assembly_voting/save'); ?>
         <fieldset>
 
             <!-- Form Name -->
-            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Asamblea</legend>
+            <legend><?= isset($item) ? 'Editar' : 'Nuevo'; ?> Votaciones</legend>
 
-
-
-            <!--  input-->
+            <!-- input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="name"></label>
+                <label class="col-md-4 control-label" for="description"></label>
                 <div class="col-md-4">
-                    <input id="name" name="name" type="text" placeholder="Nombre" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['name'] : ''; ?>>
+                    <input id="description" name="description" type="text" placeholder="Descripcion"
+                        class="form-control input-md" required=""
+                        value=<?= isset($item) ? $item['description'] : ''; ?>>
 
-                </div>
-            </div>
-
-            <!--  input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="place"></label>
-                <div class="col-md-4">
-                    <input id="place" name="place" type="text" placeholder="Lugar" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['place'] : ''; ?>>
 
                 </div>
             </div>
 
 
-            <br>
-            <br>
-            <input name="assembly_id" type="hidden" value=<?= isset($item) ? $item['assembly_id'] : ''; ?>>
 
-            <a href="<?= base_url('assembly') ?>" class="btn  btn-secondary">atras</a>
+            <!-- input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="question"></label>
+                <div class="col-md-4">
+                    <input id="question" name="question" type="text" placeholder="Pregunta"
+                        class="form-control input-md" required="" value=<?= isset($item) ? $item['question'] : ''; ?>>
+
+                </div>
+            </div>
+
+
+
+            <br>
+            <br>
+            <input name="assembly_voting_id" type="hidden"
+                value=<?= isset($item) ? $item['assembly_voting_id'] : ''; ?>>
+
+            <a href="<?= base_url('assembly_voting') ?>" class="btn  btn-secondary">atras</a>
             <input type="submit" name="edit" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>"
                 class="btn btn-primary">
 
         </fieldset>
         <?php
-                echo form_close();
-                ?>
+        echo form_close();
+        ?>
     </div>
 </div>

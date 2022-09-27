@@ -13,7 +13,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly') ?>">Asambleas</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -34,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('reservation') ?>">Reservaciones</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('relative_vehicle') ?>">Vehiculos</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -50,30 +50,32 @@
     <div class="card card-body ">
         <?php
 
-                echo form_open('assembly/save'); ?>
+                echo form_open('relative_vehicle/save'); ?>
         <fieldset>
 
             <!-- Form Name -->
-            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Asamblea</legend>
+            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Vehiculo de Acreditado</legend>
 
 
 
             <!--  input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="name"></label>
+                <label class="col-md-4 control-label" for="vehicle_plate"></label>
                 <div class="col-md-4">
-                    <input id="name" name="name" type="text" placeholder="Nombre" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['name'] : ''; ?>>
+                    <input id="vehicle_plate" name="vehicle_plate" type="text" placeholder="Placa de vehiculo"
+                        class="form-control input-md" required=""
+                        value=<?= isset($item) ? $item['vehicle_plate'] : ''; ?>>
 
                 </div>
             </div>
 
             <!--  input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="place"></label>
+                <label class="col-md-4 control-label" for="description"></label>
                 <div class="col-md-4">
-                    <input id="place" name="place" type="text" placeholder="Lugar" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['place'] : ''; ?>>
+                    <input id="description" name="description" type="text" placeholder="Descripcion"
+                        class="form-control input-md" required=""
+                        value=<?= isset($item) ? $item['description'] : ''; ?>>
 
                 </div>
             </div>
@@ -81,9 +83,10 @@
 
             <br>
             <br>
-            <input name="assembly_id" type="hidden" value=<?= isset($item) ? $item['assembly_id'] : ''; ?>>
+            <input name="relative_vehicle_id" type="hidden"
+                value=<?= isset($item) ? $item['relative_vehicle_id'] : ''; ?>>
 
-            <a href="<?= base_url('assembly') ?>" class="btn  btn-secondary">atras</a>
+            <a href="<?= base_url('relative_vehicle') ?>" class="btn  btn-secondary">atras</a>
             <input type="submit" name="edit" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>"
                 class="btn btn-primary">
 

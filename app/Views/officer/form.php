@@ -13,7 +13,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly') ?>">Asambleas</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -25,7 +25,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('condo_owner') ?>">Condonominos</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('officer') ?>">Oficiales</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -50,15 +50,26 @@
     <div class="card card-body ">
         <?php
 
-                echo form_open('assembly/save'); ?>
+        echo form_open('officer/save'); ?>
         <fieldset>
 
             <!-- Form Name -->
-            <legend><?= isset($item) ? 'Editar' : 'Nueva'; ?> Asamblea</legend>
+            <legend><?= isset($item) ? 'Editar' : 'Nuevo'; ?> Oficial</legend>
+
+            <!-- input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="identity"></label>
+                <div class="col-md-4">
+                    <input id="identity" name="identity" type="number" placeholder="Identificación"
+                        class="form-control input-md" required="" value=<?= isset($item) ? $item['identity'] : ''; ?>>
+
+
+                </div>
+            </div>
 
 
 
-            <!--  input-->
+            <!-- input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="name"></label>
                 <div class="col-md-4">
@@ -68,12 +79,16 @@
                 </div>
             </div>
 
-            <!--  input-->
+
+
+
+
+            <!-- input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="place"></label>
+                <label class="col-md-4 control-label" for="phone"></label>
                 <div class="col-md-4">
-                    <input id="place" name="place" type="text" placeholder="Lugar" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['place'] : ''; ?>>
+                    <input id="phone" name="phone" type="tel" placeholder="Telefono Movil" class="form-control input-md"
+                        required="" value=<?= isset($item) ? $item['phone'] : ''; ?>>
 
                 </div>
             </div>
@@ -81,15 +96,15 @@
 
             <br>
             <br>
-            <input name="assembly_id" type="hidden" value=<?= isset($item) ? $item['assembly_id'] : ''; ?>>
+            <input name="officer_id" type="hidden" value=<?= isset($item) ? $item['officer_id'] : ''; ?>>
 
-            <a href="<?= base_url('assembly') ?>" class="btn  btn-secondary">atras</a>
+            <a href="<?= base_url('officer') ?>" class="btn  btn-secondary">atras</a>
             <input type="submit" name="edit" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>"
                 class="btn btn-primary">
 
         </fieldset>
         <?php
-                echo form_close();
-                ?>
+        echo form_close();
+        ?>
     </div>
 </div>

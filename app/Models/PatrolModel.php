@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class patrolModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'patrol';
@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'latitude', 'longitude', 'code', 'status'];
+    protected $allowedFields    = ['latitude', 'longitude', 'code'];
 
     // Dates
     protected $useTimestamps = true; //false;

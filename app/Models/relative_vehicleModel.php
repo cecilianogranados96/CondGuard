@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class relative_vehicleModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'assembly_voting';
-    protected $primaryKey       = 'assembly_voting_id';
+    protected $table            = 'relative_vehicle';
+    protected $primaryKey       = 'relative_vehicle_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['assembly_id', 'description', 'question', 'up_votes', 'down_votes', 'total_votes', 'status'];
+    protected $allowedFields    = ['relative_id', 'vehicle_plate', 'description'];
 
     // Dates
     protected $useTimestamps = true; //false;

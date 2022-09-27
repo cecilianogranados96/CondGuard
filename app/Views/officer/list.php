@@ -19,13 +19,13 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('common_area') ?>">Areas
                             Comunes</a></li>
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('authorized') ?>">Autorizados</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('condo_owner') ?>">Condonominos</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('officer') ?>">Oficiales</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -48,7 +48,7 @@
         </div>
     </section>
     <div class="card card-body ">
-        <a href="<?php echo base_url('authorized/new') ?>" class="btn btn-primary" role="button"
+        <a href="<?php echo base_url('officer/new') ?>" class="btn btn-primary" role="button"
             style="font-size: 30px; margin-bottom: 10px;">Nuevo <i class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
@@ -58,11 +58,7 @@
                     <tr>
                         <th>Identificacion</th>
                         <th>Nombre</th>
-                        <th>Placa de vehiculo</th>
-                        <th>Motivo</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>Expiracion</th>
+                        <th>Telefono</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -71,15 +67,11 @@
                     <tr>
                         <td><?= $item['identity'] ?></td>
                         <td><?= $item['name'] ?></td>
-                        <td><?= $item['vehicle_plate'] ?> </td>
-                        <td><?= $item['reason'] ?> </td>
-                        <td><?= $item['entry_at'] ?> </td>
-                        <td><?= $item['out_at'] ?> </td>
-                        <td><?= $item['expiration_at'] ?> </td>
+                        <td><?= $item['phone'] ?> </td>
                         <td>
-                            <a href="<?php echo base_url('authorized/edit?id=' . $item['authorized_id']) ?>"
+                            <a href="<?php echo base_url('officer/edit?id=' . $item['officer_id']) ?>"
                                 class="btn btn-warning " role="button">Editar <i class="far fa-edit"></i></a>
-                            <a href="<?php echo base_url('authorized/delete?id=' . $item['authorized_id']) ?>"
+                            <a href="<?php echo base_url('officer/delete?id=' . $item['officer_id']) ?>"
                                 class="btn btn-danger " role="button">Eliminar <i class="fas fa-eraser"></i></a>
 
                         </td>
@@ -90,11 +82,7 @@
                     <tr>
                         <th>Identificacion</th>
                         <th>Nombre</th>
-                        <th>Placa de vehiculo</th>
-                        <th>Motivo</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>Expiracion</th>
+                        <th>Telefono</th>
                         <th>Opciones</th>
                     </tr>
                 </tfoot>

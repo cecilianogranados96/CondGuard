@@ -73,6 +73,42 @@ $routes->post('condo_owner/save', 'condo_ownerController::save');
 $routes->get('condo_owner/new', 'condo_ownerController::new');
 $routes->get('condo_owner/edit', 'condo_ownerController::edit');
 $routes->get('condo_owner/delete', 'condo_ownerController::delete');
+//assembly_voting
+$routes->get('assembly_voting', 'assembly_votingController::index');
+$routes->post('assembly_voting/save', 'assembly_votingController::save');
+$routes->get('assembly_voting/new', 'assembly_votingController::new');
+$routes->get('assembly_voting/edit', 'assembly_votingController::edit');
+$routes->get('assembly_voting/delete', 'assembly_votingController::delete');
+//officer
+$routes->get('officer', 'officerController::index');
+$routes->post('officer/save', 'officerController::save');
+$routes->get('officer/new', 'officerController::new');
+$routes->get('officer/edit', 'officerController::edit');
+$routes->get('officer/delete', 'officerController::delete');
+//patrol
+$routes->get('patrol', 'patrolController::index');
+$routes->post('patrol/save', 'patrolController::save');
+$routes->get('patrol/new', 'patrolController::new');
+$routes->get('patrol/edit', 'patrolController::edit');
+$routes->get('patrol/delete', 'patrolController::delete');
+//relative_vehicle
+$routes->get('relative_vehicle', 'relative_vehicleController::index');
+$routes->post('relative_vehicle/save', 'relative_vehicleController::save');
+$routes->get('relative_vehicle/new', 'relative_vehicleController::new');
+$routes->get('relative_vehicle/edit', 'relative_vehicleController::edit');
+$routes->get('relative_vehicle/delete', 'relative_vehicleController::delete');
+//vote
+$routes->get('vote', 'voteController::index');
+$routes->post('vote/save', 'voteController::save');
+$routes->get('vote/new', 'voteController::new');
+$routes->get('vote/edit', 'voteController::edit');
+$routes->get('vote/delete', 'voteController::delete');
+//reservation
+$routes->get('reservation', 'reservationController::index');
+$routes->post('reservation/save', 'reservationController::save');
+$routes->get('reservation/new', 'reservationController::new');
+$routes->get('reservation/edit', 'reservationController::edit');
+$routes->get('reservation/delete', 'reservationController::delete');
 
 /*
 

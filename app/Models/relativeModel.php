@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class assemblyModel extends Model
+class relativeModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'assembly';
-    protected $primaryKey       = 'assembly_id';
+    protected $table            = 'relative';
+    protected $primaryKey       = 'relative_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'place'];
+    protected $allowedFields    = ['identity', 'name', 'email', 'password', 'phone', 'entry_at', 'out_at', 'can_reserve'];
 
     // Dates
     protected $useTimestamps = true; //false;

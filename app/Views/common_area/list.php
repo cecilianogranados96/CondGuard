@@ -1,14 +1,14 @@
 <div class="container" style="padding-bottom: 160px;">
 
     <section class="py-5">
-    <div
+        <div
             class="text-white bg-secondary border rounded border-0 border-primary d-block flex-column justify-content-between flex-lg-row bounce animated p-4 p-md-3">
             <div class="pb-2 pb-lg-1">
                 <h2 class="fw-bold mb-2">Mantenimientos</h2>
             </div>
             <div class="my-0">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('assembly') ?>">Asambleas</a>
@@ -16,7 +16,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('relative') ?>">Acreditados</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('common_area') ?>">Areas
                             Comunes</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -45,7 +45,7 @@
         </div>
     </section>
     <div class="card card-body ">
-        <a href="<?php echo base_url('administrator/new') ?>" class="btn btn-primary" role="button"
+        <a href="<?php echo base_url('common_area/new') ?>" class="btn btn-primary" role="button"
             style="font-size: 30px; margin-bottom: 10px;">Nuevo <i class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
@@ -53,24 +53,24 @@
 
                 <thead>
                     <tr>
-                        <th>Identificacion</th>
                         <th>Nombre</th>
-                        <th>Correo Electronico</th>
-                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Capacidad de filiales</th>
+                        <th>Capacidad de personas</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($items as $item) : ?>
                     <tr>
-                        <td><?= $item['identity'] ?> </td>
                         <td><?= $item['name'] ?></td>
-                        <td><?= $item['email'] ?> </td>
-                        <td><?= $item['phone'] ?></td>
+                        <td><?= $item['address'] ?> </td>
+                        <td><?= $item['condo_capacity'] ?> </td>
+                        <td><?= $item['people_capacity'] ?> </td>
                         <td>
-                            <a href="<?php echo base_url('administrator/edit?id=' . $item['administrator_id']) ?>"
+                            <a href="<?php echo base_url('common_area/edit?id=' . $item['common_area_id']) ?>"
                                 class="btn btn-warning " role="button">Editar <i class="far fa-edit"></i></a>
-                            <a href="<?php echo base_url('administrator/delete?id=' . $item['administrator_id']) ?>"
+                            <a href="<?php echo base_url('common_area/delete?id=' . $item['common_area_id']) ?>"
                                 class="btn btn-danger " role="button">Eliminar <i class="fas fa-eraser"></i></a>
 
                         </td>
@@ -79,10 +79,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Identificacion</th>
                         <th>Nombre</th>
-                        <th>Correo Electronico</th>
-                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Capacidad de filiales</th>
+                        <th>Capacidad</th>
                         <th>Opciones</th>
                     </tr>
                 </tfoot>

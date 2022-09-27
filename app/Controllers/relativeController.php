@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
-class administratorController extends BaseController
+class relativeController extends BaseController
 {
     public function index()
     {
         $db        = db_connect('default');
-        $administratorModel = model('administratorModel', true, $db);
-        $items['items'] = $administratorModel->findAll();
+        $relativeModel = model('relativeModel', true, $db);
+        $items['items'] = $relativeModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('administrator/list', $items) .
+            view('relative/list', $items) .
             view('templates/footer');
     }
     public function new()
@@ -20,25 +20,25 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('administrator/form') .
+            view('relative/form') .
             view('templates/footer');
     }
     public function edit()
     {
         $db        = db_connect('default');
-        $administratorModel = model('administratorModel', true, $db);
+        $relativeModel = model('relativeModel', true, $db);
         $id = $this->request->getPostGet('id');
-        $item['item'] = $administratorModel->find($id);
+        $item['item'] = $relativeModel->find($id);
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('administrator/form', $item) .
+            view('relative/form', $item) .
             view('templates/footer');
     }
     public function save()
     {
         $db        = db_connect('default');
-        $administratorModel = model('administratorModel', true, $db);
+        $relativeModel = model('relativeModel', true, $db);
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
             'name' => $this->request->getPostGet('name'),
@@ -46,25 +46,25 @@ class administratorController extends BaseController
             'password' => $this->request->getPostGet('password'),
             'phone' => $this->request->getPostGet('phone')
         );
-        if ($this->request->getPostGet('administrator_id')) {
-            $data['administrator_id'] = $this->request->getPostGet('administrator_id');
+        if ($this->request->getPostGet('relative_id')) {
+            $data['relative_id'] = $this->request->getPostGet('relative_id');
         }
 
-        $administratorModel->save($data);
-        $items['items'] = $administratorModel->findAll();
-        return $this->response->redirect(base_url('administrator'));
+        $relativeModel->save($data);
+        $items['items'] = $relativeModel->findAll();
+        return $this->response->redirect(base_url('relative'));
     }
     public function delete()
     {
         $db        = db_connect('default');
-        $administratorModel = model('administratorModel', true, $db);
+        $relativeModel = model('relativeModel', true, $db);
         $id = $this->request->getPostGet('id');
-        $administratorModel->delete($id);
-        $items['items'] = $administratorModel->findAll();
+        $relativeModel->delete($id);
+        $items['items'] = $relativeModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('administrator/list', $items) .
+            view('relative/list', $items) .
             view('templates/footer');
     }
 }

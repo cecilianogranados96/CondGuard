@@ -1,17 +1,17 @@
 <div class="container" style="padding-bottom: 160px;">
 
     <section class="py-5">
-    <div
+        <div
             class="text-white bg-secondary border rounded border-0 border-primary d-block flex-column justify-content-between flex-lg-row bounce animated p-4 p-md-3">
             <div class="pb-2 pb-lg-1">
                 <h2 class="fw-bold mb-2">Mantenimientos</h2>
             </div>
             <div class="my-0">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('administrator') ?>">Administradores</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
-                            href="<?= base_url('assembly') ?>">Asambleas</a>
+                            href="<?= base_url('assembly') ?>">Asamblea</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('relative') ?>">Acreditados</a>
@@ -22,7 +22,7 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
                             href="<?= base_url('authorized') ?>">Autorizados</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
+                    <li class="nav-item"><a class="nav-link active" data-bss-hover-animate="pulse"
                             href="<?= base_url('condo_owner') ?>">Condonominos</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse"
@@ -45,7 +45,7 @@
         </div>
     </section>
     <div class="card card-body ">
-        <a href="<?php echo base_url('administrator/new') ?>" class="btn btn-primary" role="button"
+        <a href="<?php echo base_url('condo_owner/new') ?>" class="btn btn-primary" role="button"
             style="font-size: 30px; margin-bottom: 10px;">Nuevo <i class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
@@ -57,20 +57,25 @@
                         <th>Nombre</th>
                         <th>Correo Electronico</th>
                         <th>Telefono</th>
+                        <th>Filial</th>
+                        <th>Pago</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($items as $item) : ?>
                     <tr>
-                        <td><?= $item['identity'] ?> </td>
+                        <td><?= $item['identity'] ?></td>
                         <td><?= $item['name'] ?></td>
-                        <td><?= $item['email'] ?> </td>
-                        <td><?= $item['phone'] ?></td>
+                        <td><?= $item['vehicle_plate'] ?> </td>
+                        <td><?= $item['reason'] ?> </td>
+                        <td><?= $item['entry_at'] ?> </td>
+                        <td><?= $item['out_at'] ?> </td>
+                        <td><?= $item['expiration_at'] ?> </td>
                         <td>
-                            <a href="<?php echo base_url('administrator/edit?id=' . $item['administrator_id']) ?>"
+                            <a href="<?php echo base_url('condo_owner/edit?id=' . $item['condo_owner_id']) ?>"
                                 class="btn btn-warning " role="button">Editar <i class="far fa-edit"></i></a>
-                            <a href="<?php echo base_url('administrator/delete?id=' . $item['administrator_id']) ?>"
+                            <a href="<?php echo base_url('condo_owner/delete?id=' . $item['condo_owner_id']) ?>"
                                 class="btn btn-danger " role="button">Eliminar <i class="fas fa-eraser"></i></a>
 
                         </td>
@@ -79,10 +84,13 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Identificacion</th>
+                        <th>identificacion</th>
                         <th>Nombre</th>
-                        <th>Correo Electronico</th>
-                        <th>Telefono</th>
+                        <th>Placa de vehiculo</th>
+                        <th>Motivo</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Expiracion</th>
                         <th>Opciones</th>
                     </tr>
                 </tfoot>

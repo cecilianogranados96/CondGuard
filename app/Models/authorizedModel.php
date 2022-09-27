@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class authorizedModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'common_area';
-    protected $primaryKey       = 'common_area_id';
+    protected $table            = 'authorized';
+    protected $primaryKey       = 'authorized_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'address', 'condo_capacity', 'people_capacity', 'status'];
+    protected $allowedFields    = ['identity', 'name', 'vehicle_plate', 'reason', 'entry_at', 'out_at', 'expiration_at'];
 
     // Dates
     protected $useTimestamps = true; //false;

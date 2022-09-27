@@ -36,19 +36,43 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 //Maintenance
-$routes->get('maintenance', 'MaintenanceController::index');
-//Administrator
-$routes->get('administrator/new', 'AdministratorController::new');
-$routes->get('administrator/edit', 'AdministratorController::edit');
-$routes->get('administrator/delete', 'AdministratorController::delete');
-$routes->post('administrator/save', 'AdministratorController::save');
-//Condo Owner 
-$routes->get('administrator', 'AdministratorController::index');
-$routes->get('condoowner', 'CondoOwnerController::index');
-$routes->post('condoowner/save', 'CondoOwnerController::save');
-$routes->get('condoowner/new', 'CondoOwnerController::new');
-$routes->get('condoowner/edit', 'CondoOwnerController::edit');
-$routes->get('condoowner/delete', 'CondoOwnerController::delete');
+$routes->get('maintenance', 'maintenanceController::index');
+//administrator
+$routes->get('administrator', 'administratorController::index');
+$routes->get('administrator/new', 'administratorController::new');
+$routes->get('administrator/edit', 'administratorController::edit');
+$routes->get('administrator/delete', 'administratorController::delete');
+$routes->post('administrator/save', 'administratorController::save');
+//assembly
+$routes->get('assembly', 'assemblyController::index');
+$routes->get('assembly/new', 'assemblyController::new');
+$routes->get('assembly/edit', 'assemblyController::edit');
+$routes->get('assembly/delete', 'assemblyController::delete');
+$routes->post('assembly/save', 'assemblyController::save');
+//relative
+$routes->get('relative', 'relativeController::index');
+$routes->get('relative/new', 'relativeController::new');
+$routes->get('relative/edit', 'relativeController::edit');
+$routes->get('relative/delete', 'relativeController::delete');
+$routes->post('relative/save', 'relativeController::save');
+//common_area
+$routes->get('common_area', 'common_areaController::index');
+$routes->get('common_area/new', 'common_areaController::new');
+$routes->get('common_area/edit', 'common_areaController::edit');
+$routes->get('common_area/delete', 'common_areaController::delete');
+$routes->post('common_area/save', 'common_areaController::save');
+//authorized
+$routes->get('authorized', 'authorizedController::index');
+$routes->get('authorized/new', 'authorizedController::new');
+$routes->get('authorized/edit', 'authorizedController::edit');
+$routes->get('authorized/delete', 'authorizedController::delete');
+$routes->post('authorized/save', 'authorizedController::save');
+//condo_owner
+$routes->get('condo_owner', 'condo_ownerController::index');
+$routes->post('condo_owner/save', 'condo_ownerController::save');
+$routes->get('condo_owner/new', 'condo_ownerController::new');
+$routes->get('condo_owner/edit', 'condo_ownerController::edit');
+$routes->get('condo_owner/delete', 'condo_ownerController::delete');
 
 /*
 

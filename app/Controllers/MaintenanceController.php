@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\HTTP\Response;
 
-class MaintenanceController extends BaseController
+class maintenanceController extends BaseController
 {
     public function index()
     {

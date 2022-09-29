@@ -1,14 +1,10 @@
-<?php
-echo "hola";
-var_dump($test);
-?>
 <div class="container" style="padding-bottom: 160px;">
 
     <section class="py-5">
         <div
             class="text-white bg-secondary border rounded border-0 border-primary d-block flex-column justify-content-between flex-lg-row  p-4 p-md-3">
             <div class="pb-2 pb-lg-1">
-                <h2 class="fw-bold mb-2">Mantenimientos123</h2>
+                <h2 class="fw-bold mb-2">Mantenimientos</h2>
             </div>
             <div class="my-0">
                 <ul class="nav nav-pills">

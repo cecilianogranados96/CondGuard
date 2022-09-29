@@ -1,4 +1,4 @@
-<section class="py-4 py-xl-5">
+<section class="py-4 py-xl-5" style="height: 700px;">
     <div class="container h-100">
         <div class="row h-100">
             <div

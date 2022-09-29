@@ -1,4 +1,5 @@
-<footer class="text-center bg-dark" style="position: fixed;bottom: 0px;width: 100%;left:0px">
+<footer class="text-center bg-dark">
+    <!--style="position: fixed;bottom: 0px;width: 100%;left:0px"-->
     <div class="container text-white py-4 py-lg-5">
         <ul class="list-inline">
             <li class="list-inline-item me-4"><a class="link-light" href="<?= base_url() ?>">Inicio</a></li>

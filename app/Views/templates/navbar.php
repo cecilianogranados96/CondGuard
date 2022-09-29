@@ -1,5 +1,6 @@
-<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark py-3"
+<nav class="navbar navbar-dark navbar-expand-md  bg-dark py-3"
     style="--bs-primary: #fec006; --bs-primary-rgb: 254, 192, 6">
+    <!--class='sticky-top'-->
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
             style="height: 50px"><img class="rounded-circle img-fluid"

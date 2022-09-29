@@ -9,6 +9,7 @@ class relativeController extends BaseController
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
         $items['items'] = $relativeModel->findAll();
+        $items['test'] = $relativeModel->find(6);
         return
             view('templates/header') .
             view('templates/navbar') .

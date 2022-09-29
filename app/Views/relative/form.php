@@ -60,7 +60,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="identity"></label>
                 <div class="col-md-4">
-                    <input id="identity" name="identity" type="number" placeholder="Identificación"
+                    <input id="identity" name="identity" type="number" placeholder="Identificación" pattern=""
                         class="form-control input-md" required="" value=<?= isset($item) ? $item['identity'] : ''; ?>>
 
 
@@ -85,7 +85,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="email"></label>
                 <div class="col-md-4">
-                    <input id="email" name="email" type="text" placeholder="Correo Electronico"
+                    <input id="email" name="email" type="email" placeholder="Correo Electronico"
                         class="form-control input-md" required="" value=<?= isset($item) ? $item['email'] : ''; ?>>
 
                 </div>
@@ -94,7 +94,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password"></label>
                 <div class="col-md-4">
-                    <input id="password" name="password" type="text" placeholder="Contraseña"
+                    <input id="password" name="password" type="password" placeholder="Contraseña"
                         class="form-control input-md" required="" value=<?= isset($item) ? $item['password'] : ''; ?>>
 
                 </div>
@@ -103,8 +103,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="phone"></label>
                 <div class="col-md-4">
-                    <input id="phone" name="phone" type="tel" placeholder="Telefono Movil" class="form-control input-md"
-                        required="" value=<?= isset($item) ? $item['phone'] : ''; ?>>
+                    <input id="phone" name="phone" type="number" placeholder="Telefono Movil"
+                        class="form-control input-md" required="" value=<?= isset($item) ? $item['phone'] : ''; ?>>
 
                 </div>
             </div>

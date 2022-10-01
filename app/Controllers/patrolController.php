@@ -12,7 +12,9 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('patrol/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('patrol/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('patrol/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -49,7 +55,6 @@ class patrolController extends BaseController
         }
 
         $patrolModel->save($data);
-        $items['items'] = $patrolModel->findAll();
         return $this->response->redirect(base_url('patrol'));
     }
     public function delete()
@@ -58,11 +63,6 @@ class patrolController extends BaseController
         $patrolModel = model('patrolModel', true, $db);
         $id = $this->request->getPostGet('id');
         $patrolModel->delete($id);
-        $items['items'] = $patrolModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('patrol/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('patrol'));
     }
 }

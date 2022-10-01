@@ -12,7 +12,9 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly_voting/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly_voting/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly_voting/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -48,7 +54,6 @@ class assembly_votingController extends BaseController
         }
 
         $assembly_votingModel->save($data);
-        $items['items'] = $assembly_votingModel->findAll();
         return $this->response->redirect(base_url('assembly_voting'));
     }
     public function delete()
@@ -57,11 +62,6 @@ class assembly_votingController extends BaseController
         $assembly_votingModel = model('assembly_votingModel', true, $db);
         $id = $this->request->getPostGet('id');
         $assembly_votingModel->delete($id);
-        $items['items'] = $assembly_votingModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('assembly_voting/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('assembly_voting'));
     }
 }

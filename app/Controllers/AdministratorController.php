@@ -12,7 +12,9 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('administrator/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('administrator/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('administrator/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -49,9 +55,7 @@ class administratorController extends BaseController
         if ($this->request->getPostGet('administrator_id')) {
             $data['administrator_id'] = $this->request->getPostGet('administrator_id');
         }
-
         $administratorModel->save($data);
-        $items['items'] = $administratorModel->findAll();
         return $this->response->redirect(base_url('administrator'));
     }
     public function delete()
@@ -60,11 +64,6 @@ class administratorController extends BaseController
         $administratorModel = model('administratorModel', true, $db);
         $id = $this->request->getPostGet('id');
         $administratorModel->delete($id);
-        $items['items'] = $administratorModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('administrator/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('administrator'));
     }
 }

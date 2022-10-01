@@ -9,18 +9,26 @@ class authorizedController extends BaseController
         $db        = db_connect('default');
         $authorizedModel = model('authorizedModel', true, $db);
         $items['items'] = $authorizedModel->findAll();
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $items['relations'] =  $condo_ownerModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('authorized/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
     {
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $items['relations'] =  $condo_ownerModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('authorized/form') .
+            view('templates/maintenance_begin') .
+            view('authorized/form', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -29,10 +37,14 @@ class authorizedController extends BaseController
         $authorizedModel = model('authorizedModel', true, $db);
         $id = $this->request->getPostGet('id');
         $item['item'] = $authorizedModel->find($id);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $item['relations'] =  $condo_ownerModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('authorized/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -40,6 +52,7 @@ class authorizedController extends BaseController
         $db        = db_connect('default');
         $authorizedModel = model('authorizedModel', true, $db);
         $data = array(
+            'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
             'identity' => $this->request->getPostGet('identity'),
             'name' => $this->request->getPostGet('name'),
             'vehicle_plate' => $this->request->getPostGet('vehicle_plate'),
@@ -53,7 +66,6 @@ class authorizedController extends BaseController
         }
 
         $authorizedModel->save($data);
-        $items['items'] = $authorizedModel->findAll();
         return $this->response->redirect(base_url('authorized'));
     }
     public function delete()
@@ -62,11 +74,6 @@ class authorizedController extends BaseController
         $authorizedModel = model('authorizedModel', true, $db);
         $id = $this->request->getPostGet('id');
         $authorizedModel->delete($id);
-        $items['items'] = $authorizedModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('authorized/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('authorized'));
     }
 }

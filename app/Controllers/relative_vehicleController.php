@@ -12,7 +12,9 @@ class relative_vehicleController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('relative_vehicle/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class relative_vehicleController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('relative_vehicle/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class relative_vehicleController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('relative_vehicle/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -48,7 +54,6 @@ class relative_vehicleController extends BaseController
         }
 
         $relative_vehicleModel->save($data);
-        $items['items'] = $relative_vehicleModel->findAll();
         return $this->response->redirect(base_url('relative_vehicle'));
     }
     public function delete()
@@ -57,11 +62,6 @@ class relative_vehicleController extends BaseController
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
         $id = $this->request->getPostGet('id');
         $relative_vehicleModel->delete($id);
-        $items['items'] = $relative_vehicleModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('relative_vehicle/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('relative_vehicle'));
     }
 }

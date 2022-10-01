@@ -9,10 +9,12 @@ class officerController extends BaseController
         $db        = db_connect('default');
         $officerModel = model('officerModel', true, $db);
         $items['items'] = $officerModel->findAll();
-        return
-            view('templates/header') .
+        echo
+        view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('officer/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('officer/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('officer/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -49,7 +55,6 @@ class officerController extends BaseController
         }
 
         $officerModel->save($data);
-        $items['items'] = $officerModel->findAll();
         return $this->response->redirect(base_url('officer'));
     }
     public function delete()
@@ -58,11 +63,6 @@ class officerController extends BaseController
         $officerModel = model('officerModel', true, $db);
         $id = $this->request->getPostGet('id');
         $officerModel->delete($id);
-        $items['items'] = $officerModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('officer/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('officer'));
     }
 }

@@ -12,7 +12,9 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('common_area/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('common_area/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('common_area/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -50,7 +56,6 @@ class common_areaController extends BaseController
         }
 
         $common_areaModel->save($data);
-        $items['items'] = $common_areaModel->findAll();
         return $this->response->redirect(base_url('common_area'));
     }
     public function delete()
@@ -59,11 +64,6 @@ class common_areaController extends BaseController
         $common_areaModel = model('common_areaModel', true, $db);
         $id = $this->request->getPostGet('id');
         $common_areaModel->delete($id);
-        $items['items'] = $common_areaModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('common_area/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('common_area'));
     }
 }

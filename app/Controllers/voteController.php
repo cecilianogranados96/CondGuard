@@ -12,7 +12,9 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('vote/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('vote/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('vote/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -47,7 +53,6 @@ class voteController extends BaseController
         }
 
         $voteModel->save($data);
-        $items['items'] = $voteModel->findAll();
         return $this->response->redirect(base_url('vote'));
     }
     public function delete()
@@ -56,11 +61,6 @@ class voteController extends BaseController
         $voteModel = model('voteModel', true, $db);
         $id = $this->request->getPostGet('id');
         $voteModel->delete($id);
-        $items['items'] = $voteModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('vote/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('vote'));
     }
 }

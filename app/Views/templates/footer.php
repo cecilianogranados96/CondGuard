@@ -9,6 +9,7 @@
         <p class="text-muted mb-0">Copyright © 2022 CondGuard</p>
     </div>
 </footer>
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/bs-init.js"></script>
 </body>

@@ -12,7 +12,9 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('assembly/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -48,7 +54,6 @@ class assemblyController extends BaseController
         }
 
         $assemblyModel->save($data);
-        $items['items'] = $assemblyModel->findAll();
         return $this->response->redirect(base_url('assembly'));
     }
     public function delete()
@@ -57,11 +62,6 @@ class assemblyController extends BaseController
         $assemblyModel = model('assemblyModel', true, $db);
         $id = $this->request->getPostGet('id');
         $assemblyModel->delete($id);
-        $items['items'] = $assemblyModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('assembly/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('assembly'));
     }
 }

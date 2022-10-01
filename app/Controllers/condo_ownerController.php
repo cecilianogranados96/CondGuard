@@ -12,7 +12,9 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('condo_owner/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('condo_owner/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('condo_owner/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -52,7 +58,6 @@ class condo_ownerController extends BaseController
         }
 
         $condo_ownerModel->save($data);
-        $items['items'] = $condo_ownerModel->findAll();
         return $this->response->redirect(base_url('condo_owner'));
     }
     public function delete()
@@ -61,11 +66,6 @@ class condo_ownerController extends BaseController
         $condo_ownerModel = model('condo_ownerModel', true, $db);
         $id = $this->request->getPostGet('id');
         $condo_ownerModel->delete($id);
-        $items['items'] = $condo_ownerModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('condo_owner/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('condo_owner'));
     }
 }

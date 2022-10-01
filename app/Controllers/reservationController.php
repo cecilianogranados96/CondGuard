@@ -12,7 +12,9 @@ class reservationController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('reservation/list', $items) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -20,7 +22,9 @@ class reservationController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('reservation/form') .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -32,7 +36,9 @@ class reservationController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
+            view('templates/maintenance_begin') .
             view('reservation/form', $item) .
+            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -48,7 +54,6 @@ class reservationController extends BaseController
         }
 
         $reservationModel->save($data);
-        $items['items'] = $reservationModel->findAll();
         return $this->response->redirect(base_url('reservation'));
     }
     public function delete()
@@ -57,11 +62,6 @@ class reservationController extends BaseController
         $reservationModel = model('reservationModel', true, $db);
         $id = $this->request->getPostGet('id');
         $reservationModel->delete($id);
-        $items['items'] = $reservationModel->findAll();
-        return
-            view('templates/header') .
-            view('templates/navbar') .
-            view('reservation/list', $items) .
-            view('templates/footer');
+        return $this->response->redirect(base_url('reservation'));
     }
 }

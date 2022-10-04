@@ -19,6 +19,22 @@ class relativeController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+    public function detail()
+    {
+        $db        = db_connect('default');
+        $relativeModel = model('relativeModel', true, $db);
+        $id = $this->request->getPostGet('id');
+        $item['item'] = $relativeModel->find($id);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $item['relations'] =  $condo_ownerModel->findAll();
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('templates/maintenance_begin') .
+            view('relative/detail', $item) .
+            view('templates/maintenance_end') .
+            view('templates/footer');
+    }
     public function new()
     {
         $condo_ownerModel = model('condo_ownerModel', true, $db);
@@ -56,7 +72,7 @@ class relativeController extends BaseController
             'identity' => $this->request->getPostGet('identity'),
             'name' => $this->request->getPostGet('name'),
             'email' => $this->request->getPostGet('email'),
-            'password' => $this->request->getPostGet('password'),
+            'password' => md5($this->request->getPostGet('password')),
             'phone' => $this->request->getPostGet('phone')
         );
         if ($this->request->getPostGet('relative_id')) {

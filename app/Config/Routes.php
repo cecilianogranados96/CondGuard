@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-//$routes->setAutoRoute(false);
+//$routes->setAutoRoute(true);
 /*
  * --------------------------------------------------------------------
  * Route Definitions
@@ -35,28 +35,39 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+//Login
+$routes->get('login', 'loginController::index');
+$routes->post('login/signin', 'loginController::signin');
+$routes->get('login/ver_usuario', 'loginController::ver_usuario');
+$routes->get('login/signout', 'loginController::signout');
+
 //Maintenance
 $routes->get('maintenance', 'maintenanceController::index');
 //administrator
 $routes->get('administrator', 'administratorController::index');
+$routes->get('administrator/detail', 'administratorController::detail');
 $routes->get('administrator/new', 'administratorController::new');
 $routes->get('administrator/edit', 'administratorController::edit');
 $routes->get('administrator/delete', 'administratorController::delete');
 $routes->post('administrator/save', 'administratorController::save');
 //assembly
 $routes->get('assembly', 'assemblyController::index');
+$routes->get('assembly/detail', 'assemblyController::detail');
 $routes->get('assembly/new', 'assemblyController::new');
 $routes->get('assembly/edit', 'assemblyController::edit');
 $routes->get('assembly/delete', 'assemblyController::delete');
 $routes->post('assembly/save', 'assemblyController::save');
 //relative
 $routes->get('relative', 'relativeController::index');
+$routes->get('relative/detail', 'relativeController::detail');
 $routes->get('relative/new', 'relativeController::new');
 $routes->get('relative/edit', 'relativeController::edit');
 $routes->get('relative/delete', 'relativeController::delete');
 $routes->post('relative/save', 'relativeController::save');
 //common_area
 $routes->get('common_area', 'common_areaController::index');
+$routes->get('common_area/detail', 'common_areaController::detail');
 $routes->get('common_area/new', 'common_areaController::new');
 $routes->get('common_area/edit', 'common_areaController::edit');
 $routes->get('common_area/delete', 'common_areaController::delete');

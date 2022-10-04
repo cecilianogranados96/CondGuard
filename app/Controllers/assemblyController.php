@@ -17,6 +17,20 @@ class assemblyController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+    public function detail()
+    {
+        $db        = db_connect('default');
+        $assemblyModel = model('assemblyModel', true, $db);
+        $id = $this->request->getPostGet('id');
+        $item['item'] = $assemblyModel->find($id);
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('templates/maintenance_begin') .
+            view('assembly/detail', $item) .
+            view('templates/maintenance_end') .
+            view('templates/footer');
+    }
     public function new()
     {
         return

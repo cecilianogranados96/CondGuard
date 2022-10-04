@@ -17,6 +17,20 @@ class common_areaController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+    public function detail()
+    {
+        $db        = db_connect('default');
+        $common_areaModel = model('common_areaModel', true, $db);
+        $id = $this->request->getPostGet('id');
+        $item['item'] = $common_areaModel->find($id);
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('templates/maintenance_begin') .
+            view('common_area/detail', $item) .
+            view('templates/maintenance_end') .
+            view('templates/footer');
+    }
     public function new()
     {
         return
@@ -49,7 +63,8 @@ class common_areaController extends BaseController
             'name' => $this->request->getPostGet('name'),
             'address' => $this->request->getPostGet('address'),
             'condo_capacity' => $this->request->getPostGet('condo_capacity'),
-            'people_capacity' => $this->request->getPostGet('people_capacity')
+            'people_capacity' => $this->request->getPostGet('people_capacity'),
+            'status' => $this->request->getPostGet('status')
         );
         if ($this->request->getPostGet('common_area_id')) {
             $data['common_area_id'] = $this->request->getPostGet('common_area_id');

@@ -1,12 +1,10 @@
-<div class="container" style="padding-bottom: 160px;">
 
-    <section class="py-5">
-        <div
-            class="text-white bg-secondary  border rounded border-0 border-primary d-block flex-column justify-content-between flex-lg-row  p-4 p-md-3">
-            <div class="pb-2 pb-lg-1">
-                <h2 class="fw-bold mb-2">Mantenimientos</h2>
-            </div>
-            <div class="my-0">
+<div class="container" style="margin-top: 2%; margin-bottom: 2%; padding-bottom: 60px;padding-top: 20px">
+    <div class="row">
+        <div class="col">
+            <div
+                class="card card-body text-white bg-secondary d-block flex-column justify-content-between flex-lg-row  p-4 p-md-3">
+                <h1 class="card-title">Mantenimientos</h1>
                 <ul class="nav nav-pills" style="font-size:18px;font-weight: bold;">
                     <li class="nav-item "><a
                             class="nav-link link-light <?= current_url(true)->getSegment(1) == 'relative' ? 'active' : '' ?>"
@@ -59,5 +57,6 @@
                 </ul>
             </div>
         </div>
-    </section>
-    <div class="card card-body">
+    </div>
+    <hr />
+    <div class="row d-block d-lg-flex d-xl-flex d-xxl-flex">

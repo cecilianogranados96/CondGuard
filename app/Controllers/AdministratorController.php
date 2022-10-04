@@ -17,6 +17,20 @@ class administratorController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+    public function detail()
+    {
+        $db        = db_connect('default');
+        $administratorModel = model('administratorModel', true, $db);
+        $id = $this->request->getPostGet('id');
+        $item['item'] = $administratorModel->find($id);
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('templates/maintenance_begin') .
+            view('administrator/detail', $item) .
+            view('templates/maintenance_end') .
+            view('templates/footer');
+    }
     public function new()
     {
         return

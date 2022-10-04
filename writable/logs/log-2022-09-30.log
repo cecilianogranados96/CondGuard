@@ -1,0 +1,77 @@
+CRITICAL - 2022-09-30 21:39:32 --> Undefined variable $items
+in APPPATH/Views/relative/form.php on line 28.
+ 1 APPPATH/Views/relative/form.php(28): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(28): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->new()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 21:40:44 --> Undefined array key "relative_id"
+in APPPATH/Views/relative/form.php on line 77.
+ 1 APPPATH/Views/relative/form.php(77): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(28): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->new()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 22:32:18 --> Array to string conversion
+in APPPATH/Views/relative/form.php on line 32.
+ 1 APPPATH/Views/relative/form.php(32): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(45): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->edit()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 22:32:31 --> Undefined array key "name"
+in APPPATH/Views/relative/form.php on line 32.
+ 1 APPPATH/Views/relative/form.php(32): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(45): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->edit()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 22:32:33 --> Undefined array key "name"
+in APPPATH/Views/relative/form.php on line 32.
+ 1 APPPATH/Views/relative/form.php(32): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(45): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->edit()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 23:16:36 --> Undefined variable $item
+in APPPATH/Views/relative/form.php on line 40.
+ 1 APPPATH/Views/relative/form.php(40): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(28): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->new()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-30 23:23:09 --> Undefined variable $selected
+in APPPATH/Views/relative/form.php on line 39.
+ 1 APPPATH/Views/relative/form.php(39): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/relative/form.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/relativeController.php(28): view()
+ 6 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\relativeController->new()
+ 7 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()

@@ -6,11 +6,14 @@ class relativeController extends BaseController
 {
     public function index()
     {
+        //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
-        $items['items'] = $relativeModel->findAll();
         $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data
+        $items['items'] = $relativeModel->findAll();
         $items['relations'] =  $condo_ownerModel->findAll();
+        //Views
         return
             view('templates/header') .
             view('templates/navbar') .
@@ -21,12 +24,15 @@ class relativeController extends BaseController
     }
     public function detail()
     {
+        //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data
         $id = $this->request->getPostGet('id');
         $items['item'] = $relativeModel->find($id);
-        $condo_ownerModel = model('condo_ownerModel', true, $db);
         $items['relations'] =  $condo_ownerModel->findAll();
+        //Views
         return
             view('templates/header') .
             view('templates/navbar') .
@@ -37,12 +43,15 @@ class relativeController extends BaseController
     }
     public function new($error = null, $data = null)
     {
+        //Connect / models
         $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data 
         $items['relations'] =  $condo_ownerModel->findAll();
         if ($data != null) {
             $items['error'] =  $error;
             $items['item'] = $data;
         }
+        //Views
         return
             view('templates/header') .
             view('templates/navbar') .
@@ -53,24 +62,25 @@ class relativeController extends BaseController
     }
     public function edit($error = null, $data = null)
     {
+        //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
-        //Se carga el formulario con los datos de la base de datos si no existen datos del formulario activo
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data 
         if ($data == null) {
             $id = $this->request->getPostGet('id');
             $items['item'] = $relativeModel->find($id);
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
         } else {
-            //En caso contrario se cargan con los datos que el usuario ingreso en el formulario activo
             $items['item'] = $data;
-        }
-        $condo_ownerModel = model('condo_ownerModel', true, $db);
-        //Relaciones
-        $items['relations'] =  $condo_ownerModel->findAll();
-        if ($error != null) {
+            $items['item']['password'] = '';
             $items['error'] =  $error;
         }
-        //Activar modo editar en el formulario
+        $items['relations'] =  $condo_ownerModel->findAll();
+        //Enable edit
         $items['edit_enabled'] = true;
+        //Views
         return
             view('templates/header') .
             view('templates/navbar') .
@@ -81,8 +91,10 @@ class relativeController extends BaseController
     }
     public function save()
     {
+        //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
+        //Get-fill data
         $data = array(
             'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
             'identity' => $this->request->getPostGet('identity'),
@@ -92,32 +104,35 @@ class relativeController extends BaseController
             'phone' => $this->request->getPostGet('phone')
         );
 
-        //Variable para consultas
+        //Query variable
         $query = null;
-        //Validar si se va editar o crear y consultar  campos repetidos correspondientes en registros 
+        //Validate to edit or create and lookup for existing fields on the data base
         if ($this->request->getPostGet('relative_id')) {
             $data['relative_id'] = $this->request->getPostGet('relative_id');
-            //Se consulta si existen dichos campos en la base de datos en diferentes registros y en redirecciona al usuario al formulario de edicion con el correspondiente error 
-            $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "') AND `relative_id` NOT LIKE '" . $data['relative_id'] . "'");
+            $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "') AND `relative_id` NOT LIKE '" . $data['relative_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                return $this->edit('Identificación o correo electrónico ya utilizados por otro usuario.', $data);
+                return $this->edit('Identificación,teléfono y correo electrónico ya registrado.', $data);
             }
         } else {
-            //En caso contrario solo se consulta por la existencia de los campos y en redirecciona al usuario al formulario de creacion con el correspondiente error 
-            $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "')");
+            $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "')");
             if ($query->resultID->num_rows != 0) {
-                return $this->new('Identificación o correo electrónico ya utilizados por otro usuario.', $data);
+                return $this->new('Identificación,teléfono y correo electrónico ya registrados.', $data);
             }
         }
+        //Save
         $relativeModel->save($data);
+        //Redirect
         return $this->response->redirect(base_url('relative'));
     }
     public function delete()
     {
+        //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
+        //Deactivate data
         $id = $this->request->getPostGet('id');
         $relativeModel->delete($id);
+        //Redirect
         return $this->response->redirect(base_url('relative'));
     }
 }

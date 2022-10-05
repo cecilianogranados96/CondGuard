@@ -58,7 +58,7 @@
                         placeholder="Nombre completo del acreditado" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Nombre completo" value="<?= isset($item) ? $item['name'] : ''; ?>" required
                         pattern="^[\w\s'\-,.](?=.*[\s][\w])[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
-                    <label for="name">Nombre Completo <b class="required-feedback">*</b></label>
+                    <label for="name">Nombre completo <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
                         Invalido, debe ingresar el nombre completo.
@@ -70,7 +70,7 @@
                         data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Correo electrónico ej: nombre@mail.com"
                         value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
-                    <label for="email">Correo Electrónico <b class="required-feedback">*</b></label>
+                    <label for="email">Correo electrónico <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
                         Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
@@ -82,7 +82,7 @@
                         data-bs-toggle="tooltip" data-bs-placement="right"
                         title="La contraseña debe contener almenos 9 caracteres, una mayúscula, una minúscula, un número y un caracter especial."
                         value="<?= isset($item) ? $item['password'] : ''; ?>" required=""
-                        pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})" />
+                        pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{9,64})" />
                     <label for="password">Contraseña <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
@@ -92,13 +92,13 @@
                 </div>
                 <!-- Input -->
                 <div class="form-floating">
-                    <input class="form-control only-number" type="text" name="phone" placeholder="Teléfono"
+                    <input class="form-control only-number" type="text" name="phone" placeholder="Teléfono móvil"
                         data-bs-toggle="tooltip" data-bs-placement="right" title="Teléfono ej: 88888888"
                         value="<?= isset($item) ? $item['phone'] : ''; ?>" required="" pattern="[0-9]{8,11}" />
-                    <label for="phone">Teléfono <b class="required-feedback">*</b></label>
+                    <label for="phone">Teléfono móvil <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Invalido, debe ingresar un teléfono de entre 8 y 11 dígitos ej:80008000.
+                        Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
                     </div>
                 </div>
                 <!-- Error -->
@@ -107,6 +107,11 @@
                 <?php } ?>
                 <!-- required message -->
                 <div class="required-feedback">Campos requeridos*.</div>
+                <!-- reenter password message -->
+                <?php if (isset($item)) { ?>
+                <div class="required-feedback">Reingrese la contraseña*.
+                    <?php } ?>
+                </div>
                 <!-- hidden input -->
                 <input name="relative_id" type="hidden" value=<?= isset($edit_enabled) ? $item['relative_id'] : ''; ?>>
                 <!-- submit -->

@@ -25,7 +25,7 @@ class relativeModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'identity' => 'is_unique[relative.identity]'
+        //'identity' => 'is_unique[relative.identity]'
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

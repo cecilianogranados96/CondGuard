@@ -29,17 +29,17 @@
                 <!-- input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="text" id="name" value="<?= $item['name'] ?>" readonly />
-                    <label for="name">Nombre Completo</label>
+                    <label for="name">Nombre completo</label>
                 </div>
                 <!-- input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" id="email" value="<?= $item['email'] ?>" readonly />
-                    <label for="email">Correo Electrónico</label>
+                    <label for="email">Correo electrónico</label>
                 </div>
                 <!-- Input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="number" id="phone" value=<?= $item['phone'] ?> readonly />
-                    <label for="phone">Teléfono Móvil</label>
+                    <label for="phone">Teléfono móvil</label>
                 </div>
                 <!-- Input -->
                 <div class="form-floating mb-1">

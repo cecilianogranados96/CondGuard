@@ -3,24 +3,29 @@
         <div class="card-body">
             <form action="<?= base_url('relative/save') ?>" method="post" class="row g-3 form-floating needs-validation"
                 novalidate>
+
+
                 <!-- title -->
                 <h1>
-                    <?= isset($item) ? 'Editar' : 'Nuevo'; ?>
+                    <?= isset($edit_enabled) ? 'Editar' : 'Nuevo'; ?>
                     Acreditado
                 </h1>
                 <!-- input -->
                 <div class="form-floating">
-                    <input class="form-control only-number" type="text" id="identity" name="identity"
+                    <input class="form-control only-alphanumeric" type="text" id="identity" name="identity"
                         placeholder="Identificación" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="Identificación en formato 9 dígitos ej:101110111"
-                        value="<?= isset($item) ? $item['identity'] : ''; ?>" required="" pattern="[0-9]{9,11}" />
+                        title="Identificación nacional ej:101110111 o extranjero en el formato correspondiente, sin caracteres especiales o espacios."
+                        value="<?= isset($item) ? $item['identity'] : ''; ?>" required=""
+                        pattern="^[a-zA-Z0-9]{0,50}$" />
                     <label for="identity">Identificación <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Invalido, debe ingresar identificación valida en formato de 9 a 11 dígitos,
-                        ej:101110111.
+                        Invalido, debe ingresar identificación valida nacional ej:101110111, o extranjera en el formato
+                        correspondiente, sin caracteres especiales o espacios.
                     </div>
+
                 </div>
+
                 <!-- select -->
                 <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condomino que lo acredita">
                     <select class="form-select " name="condo_owner_id" id="single-select-clear-field"
@@ -52,7 +57,7 @@
                     <input class="form-control" type="text" id="name" name="name"
                         placeholder="Nombre completo del acreditado" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Nombre completo" value="<?= isset($item) ? $item['name'] : ''; ?>" required
-                        pattern="^(\w\w+[\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]?)\s(\w+[\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]?)\s?(\w+[\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]?)?\s?(\w+[\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]?)?$" />
+                        pattern="^[\w\s'\-,.](?=.*[\s][\w])[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
                     <label for="name">Nombre Completo <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
@@ -87,27 +92,32 @@
                 </div>
                 <!-- Input -->
                 <div class="form-floating">
-                    <input class="form-control only-number" type="text" name="phone" placeholder="Teléfono Móvil"
-                        data-bs-toggle="tooltip" data-bs-placement="right" title="Teléfono móvil ej: 88888888"
+                    <input class="form-control only-number" type="text" name="phone" placeholder="Teléfono"
+                        data-bs-toggle="tooltip" data-bs-placement="right" title="Teléfono ej: 88888888"
                         value="<?= isset($item) ? $item['phone'] : ''; ?>" required="" pattern="[0-9]{8,11}" />
-                    <label for="phone">Teléfono Móvil <b class="required-feedback">*</b></label>
+                    <label for="phone">Teléfono <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
+                        Invalido, debe ingresar un teléfono de entre 8 y 11 dígitos ej:80008000.
                     </div>
                 </div>
+                <!-- Error -->
+                <?php if (isset($error)) { ?>
+                <div class="required-feedback"><?= $error ?></div>
+                <?php } ?>
                 <!-- required message -->
                 <div class="required-feedback">Campos requeridos*.</div>
                 <!-- hidden input -->
-                <input name="relative_id" type="hidden" value=<?= isset($item) ? $item['relative_id'] : ''; ?>>
+                <input name="relative_id" type="hidden" value=<?= isset($edit_enabled) ? $item['relative_id'] : ''; ?>>
                 <!-- submit -->
                 <div style="margin-top: 20px">
                     <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
                         href="<?= base_url('relative') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
                         title="Atrás">
                         Atrás </a><input class="btn btn-primary btn-lg" style="width: 59%; margin-left: 2%"
-                        type="submit" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>" data-bs-toggle="tooltip"
-                        data-bs-placement="right" title="<?= isset($item) ? 'Editar' : 'Guardar'; ?>" />
+                        type="submit" value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" />
                 </div>
             </form>
         </div>

@@ -24,7 +24,9 @@ class relativeModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'identity' => 'is_unique[relative.identity]'
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     #protected $cleanValidationRules = true;

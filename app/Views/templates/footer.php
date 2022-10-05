@@ -38,10 +38,21 @@ $('input').change(function() {
     }
 });
 
-//Avoid letters typing on certain inputs
+//only numbers typing on certain inputs
 $('.only-number').on('change keyup', function() {
     // Remove invalid characters
     var sanitized = $(this).val().replace(/[^-.0-9]/g, '');
+    // Remove non-leading minus signs
+    sanitized = sanitized.replace(/(.)-+/g, '$1');
+    // Remove the first point if there is more than one
+    sanitized = sanitized.replace(/\.(?=.*\.)/g, '');
+    // Update value
+    $(this).val(sanitized);
+});
+//only alpha-numberic typing on certain inputs
+$('.only-alphanumeric').on('change keyup', function() {
+    // Remove invalid characters
+    var sanitized = $(this).val().replace(/[^-A-z0-9]/g, '');
     // Remove non-leading minus signs
     sanitized = sanitized.replace(/(.)-+/g, '$1');
     // Remove the first point if there is more than one

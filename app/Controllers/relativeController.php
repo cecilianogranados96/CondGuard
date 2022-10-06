@@ -101,7 +101,9 @@ class relativeController extends BaseController
             'name' => $this->request->getPostGet('name'),
             'email' => $this->request->getPostGet('email'),
             'password' => md5($this->request->getPostGet('password')),
-            'phone' => $this->request->getPostGet('phone')
+            'phone' => $this->request->getPostGet('phone'),
+            'entry_at' => $this->request->getPostGet('entry_at'),
+            'out_at' => $this->request->getPostGet('out_at')
         );
 
         //Query variable

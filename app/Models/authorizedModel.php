@@ -14,7 +14,7 @@ class authorizedModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['condo_owner_id', 'identity', 'name', 'vehicle_plate', 'reason', 'entry_at', 'out_at', 'expiration_at'];
+    protected $allowedFields    = ['condo_owner_id', 'identity', 'name', 'vehicle_plate', 'reason', 'phone', 'entry_at', 'out_at', 'expiration_at'];
 
     // Dates
     protected $useTimestamps = true; //false;

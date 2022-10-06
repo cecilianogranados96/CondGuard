@@ -5,7 +5,7 @@
             <form action="<?= base_url('common_area/save') ?>" method="post"
                 class="row g-3 form-floating needs-validation" novalidate>
                 <!-- title -->
-                <h1><?= isset($edit_enabled) ? 'Editar' : 'Nuevo'; ?> Área común</h1>
+                <h1><?= isset($edit_enabled) ? 'Editar' : 'Nueva'; ?> Área común</h1>
                 <!-- input -->
                 <div class="form-floating">
                     <input class="form-control" type="text" id="name" name="name" placeholder="Nombre"

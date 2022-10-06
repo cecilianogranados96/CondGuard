@@ -37,7 +37,7 @@
                 </div>
                 <!-- input -->
                 <div class="form-floating">
-                    <input class="form-control" type="email" name="email" placeholder="Correo electrónico"
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
                         data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Correo electrónico ej: nombre@mail.com"
                         value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
@@ -49,7 +49,7 @@
                 </div>
                 <!-- input -->
                 <div class="form-floating">
-                    <input class="form-control" type="password" name="password" name="password" placeholder="Contraseña"
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
                         data-bs-toggle="tooltip" data-bs-placement="right"
                         title="La contraseña debe contener almenos 9 caracteres, una mayúscula, una minúscula, un número y un caracter especial."
                         value="<?= isset($item) ? $item['password'] : ''; ?>" required=""
@@ -63,9 +63,10 @@
                 </div>
                 <!-- Input -->
                 <div class="form-floating">
-                    <input class="form-control only-number" type="text" name="phone" placeholder="Teléfono móvil"
-                        data-bs-toggle="tooltip" data-bs-placement="right" title="Teléfono ej: 88888888"
-                        value="<?= isset($item) ? $item['phone'] : ''; ?>" required="" pattern="[0-9]{8,11}" />
+                    <input class="form-control only-number" type="text" id="phone" name="phone"
+                        placeholder="Teléfono móvil" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Teléfono ej: 88888888" value="<?= isset($item) ? $item['phone'] : ''; ?>" required=""
+                        pattern="[0-9]{8,11}" />
                     <label for="phone">Teléfono móvil <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
@@ -80,9 +81,8 @@
                 <div class="required-feedback">Campos requeridos*.</div>
                 <!-- reenter password message -->
                 <?php if (isset($item)) { ?>
-                <div class="required-feedback">Reingrese la contraseña*.
-                    <?php } ?>
-                </div>
+                <div class="required-feedback">Reingrese la contraseña*.</div>
+                <?php } ?>
                 <!-- hidden input -->
                 <input name="administrator_id" type="hidden"
                     value=<?= isset($edit_enabled) ? $item['administrator_id'] : ''; ?>>

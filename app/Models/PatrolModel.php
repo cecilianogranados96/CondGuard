@@ -14,7 +14,7 @@ class patrolModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['latitude', 'longitude', 'code'];
+    protected $allowedFields    = ['officer_id', 'latitude', 'longitude', 'code'];
 
     // Dates
     protected $useTimestamps = true; //false;

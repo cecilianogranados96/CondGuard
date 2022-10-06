@@ -1,77 +1,128 @@
-<!-- Form  -->
-<?php echo form_open('condo_owner/save'); ?>
-<fieldset>
-    <!-- Form Name -->
-    <h1><?= isset($item) ? 'Editar' : 'Nueva'; ?> Condomino</h1>
-    <!-- Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="identity"></label>
-        <div class="col-md-4">
-            <input id="identity" name="identity" type="number" data-bs-toggle="tooltip" title="Identificación"
-                placeholder="Identificación" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['identity'] : ''; ?>>
+<div class="col-auto" style="width: 440px">
+    <div class="card">
+        <div class="card-body">
+            <form action="<?= base_url('condo_owner/save') ?>" method="post"
+                class="row g-3 form-floating needs-validation" novalidate>
+                <!-- timezone-->
+                <?php date_default_timezone_set('America/Costa_Rica');
+                ?>
+
+                <!-- title -->
+                <h1>
+                    <?= isset($edit_enabled) ? 'Editar' : 'Nuevo'; ?>
+                    Condomino
+                </h1>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control only-alphanumeric" type="text" id="identity" name="identity"
+                        placeholder="Identificación" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Identificación nacional ej:101110111 o extranjero en el formato correspondiente, sin caracteres especiales o espacios."
+                        value="<?= isset($item) ? $item['identity'] : ''; ?>" required=""
+                        pattern="^[a-zA-Z0-9]{0,50}$" />
+                    <label for="identity">Identificación <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar identificación valida nacional ej:101110111, o extranjera en el formato
+                        correspondiente, sin caracteres especiales o espacios.
+                    </div>
+
+                </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="text" id="name" name="name"
+                        placeholder="Nombre completo del acreditado" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Nombre completo" value="<?= isset($item) ? $item['name'] : ''; ?>" required
+                        pattern="^[\w\s'\-,.](?=.*[\s][\w])[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+                    <label for="name">Nombre completo <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar el nombre completo.
+                    </div>
+                </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Correo electrónico ej: nombre@mail.com"
+                        value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
+                    <label for="email">Correo electrónico <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
+                    </div>
+                </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="La contraseña debe contener almenos 9 caracteres, una mayúscula, una minúscula, un número y un caracter especial."
+                        value="<?= isset($item) ? $item['password'] : ''; ?>" required=""
+                        pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{9,64})" />
+                    <label for="password">Contraseña <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar una contraseña de almenos 9 caracteres, una mayúscula, una minúscula, un
+                        número y un caracter especial.
+                    </div>
+                </div>
+                <!-- Input -->
+                <div class="form-floating">
+                    <input class="form-control only-number" type="text" id="phone" name="phone"
+                        placeholder="Teléfono móvil" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Teléfono ej: 88888888" value="<?= isset($item) ? $item['phone'] : ''; ?>" required=""
+                        pattern="[0-9]{8,11}" />
+                    <label for="phone">Teléfono móvil <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
+                    </div>
+                </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control only-alphanumeric" type="text" id="land_number" name="land_number"
+                        placeholder="Filial" data-bs-toggle="tooltip" data-bs-placement="right" title="Filial."
+                        value="<?= isset($item) ? $item['land_number'] : ''; ?>" required=""
+                        pattern="^[a-zA-Z0-9]{0,50}$" />
+                    <label for="land_number">Filial <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar filial con solo numeros y letras, no se admite espacios ni caracteres
+                        especiales.
+                    </div>
+
+                </div>
+                <!-- Error -->
+                <?php if (isset($error)) { ?>
+                <div class="required-feedback"><?= $error ?></div>
+                <?php } ?>
+                <!-- required message -->
+                <div class="required-feedback">Campos requeridos*.</div>
+                <!-- reenter password message -->
+                <?php if (isset($item)) { ?>
+                <div class="required-feedback">Reingrese la contraseña*.</div>
+                <?php } ?>
+                <!-- hidden input -->
+                <input name="condo_owner_id" type="hidden"
+                    value=<?= isset($edit_enabled) ? $item['condo_owner_id'] : ''; ?>>
+                <!-- submit -->
+                <div style="margin-top: 20px">
+                    <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
+                        href="<?= base_url('condo_owner') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
+                        title="Atrás">
+                        Atrás </a><input class="btn btn-primary btn-lg" style="width: 59%; margin-left: 2%"
+                        type="submit" value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" />
+                </div>
+            </form>
         </div>
     </div>
-    <!--Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="name"></label>
-        <div class="col-md-4">
-            <input id="name" name="name" type="text" data-bs-toggle="tooltip" title="Nombre Completo"
-                placeholder="Nombre Completo" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['name'] : ''; ?>>
+</div>
+<div class="w-100 d-xl-none d-xxl-none" style="margin: 4%"></div>
+<div class="col visually-hidden">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Title</h4>
         </div>
     </div>
-    <!--Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="email"></label>
-        <div class="col-md-4">
-            <input id="email" name="email" type="text" data-bs-toggle="tooltip" title="Correo Electrónico"
-                placeholder="Correo Electrónico" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['email'] : ''; ?>>
-        </div>
-    </div>
-    <!--Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="password"></label>
-        <div class="col-md-4">
-            <input id="password" name="password" data-bs-toggle="tooltip" title="Contraseña" type="text"
-                placeholder="Contraseña" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['password'] : ''; ?>>
-        </div>
-    </div>
-    <!--Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="phone"></label>
-        <div class="col-md-4">
-            <input id="phone" name="phone" type="number" data-bs-toggle="tooltip" title="Teléfono Móvil"
-                placeholder="Teléfono Móvil" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['phone'] : ''; ?>>
-        </div>
-    </div>
-    <!--Input-->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="land_number"></label>
-        <div class="col-md-4">
-            <input id="land_number" name="land_number" type="text" data-bs-toggle="tooltip" title="Filial"
-                placeholder="Filial" class="form-control input-md" required=""
-                value=<?= isset($item) ? $item['land_number'] : ''; ?>>
-        </div>
-    </div>
-    <!--Hidden Input-->
-    <input name="condo_owner_id" type="hidden" value=<?= isset($item) ? $item['condo_owner_id'] : ''; ?>>
-    <!--Submit-->
-    <br>
-    <br>
-    <div class="form-group">
-        <div class="col-md-4">
-            <a href="<?= base_url('condo_owner') ?>" class="btn  btn-secondary" style="font-size: 25px"
-                data-bs-toggle="tooltip" title="Atrás">Atrás</a>
-            <input type="submit" name="edit" data-bs-toggle="tooltip"
-                title="<?= isset($item) ? 'Editar' : 'Guardar'; ?>" value="<?= isset($item) ? 'Editar' : 'Guardar'; ?>"
-                class="btn btn-primary" style="font-size: 25px; width:75%">
-        </div>
-    </div>
-</fieldset>
-<?php
-echo form_close();
-?>
+</div>

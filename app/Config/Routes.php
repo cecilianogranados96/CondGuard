@@ -74,16 +74,18 @@ $routes->get('common_area/delete', 'common_areaController::delete');
 $routes->post('common_area/save', 'common_areaController::save');
 //authorized
 $routes->get('authorized', 'authorizedController::index');
+$routes->get('authorized/detail', 'authorizedController::detail');
 $routes->get('authorized/new', 'authorizedController::new');
 $routes->get('authorized/edit', 'authorizedController::edit');
 $routes->get('authorized/delete', 'authorizedController::delete');
 $routes->post('authorized/save', 'authorizedController::save');
 //condo_owner
 $routes->get('condo_owner', 'condo_ownerController::index');
-$routes->post('condo_owner/save', 'condo_ownerController::save');
+$routes->get('condo_owner/detail', 'condo_ownerController::detail');
 $routes->get('condo_owner/new', 'condo_ownerController::new');
 $routes->get('condo_owner/edit', 'condo_ownerController::edit');
 $routes->get('condo_owner/delete', 'condo_ownerController::delete');
+$routes->post('condo_owner/save', 'condo_ownerController::save');
 //assembly_voting
 $routes->get('assembly_voting', 'assembly_votingController::index');
 $routes->post('assembly_voting/save', 'assembly_votingController::save');
@@ -92,16 +94,18 @@ $routes->get('assembly_voting/edit', 'assembly_votingController::edit');
 $routes->get('assembly_voting/delete', 'assembly_votingController::delete');
 //officer
 $routes->get('officer', 'officerController::index');
-$routes->post('officer/save', 'officerController::save');
+$routes->get('officer/detail', 'officerController::detail');
 $routes->get('officer/new', 'officerController::new');
 $routes->get('officer/edit', 'officerController::edit');
 $routes->get('officer/delete', 'officerController::delete');
+$routes->post('officer/save', 'officerController::save');
 //patrol
 $routes->get('patrol', 'patrolController::index');
-$routes->post('patrol/save', 'patrolController::save');
+$routes->get('patrol/detail', 'patrolController::detail');
 $routes->get('patrol/new', 'patrolController::new');
 $routes->get('patrol/edit', 'patrolController::edit');
 $routes->get('patrol/delete', 'patrolController::delete');
+$routes->post('patrol/save', 'patrolController::save');
 //relative_vehicle
 $routes->get('relative_vehicle', 'relative_vehicleController::index');
 $routes->post('relative_vehicle/save', 'relative_vehicleController::save');

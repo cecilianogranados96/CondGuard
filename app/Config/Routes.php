@@ -116,10 +116,11 @@ $routes->get('relative_vehicle/delete', 'relative_vehicleController::delete');
 $routes->post('relative_vehicle/save', 'relative_vehicleController::save');
 //vote
 $routes->get('vote', 'voteController::index');
-$routes->post('vote/save', 'voteController::save');
+$routes->get('vote/detail', 'voteController::detail');
 $routes->get('vote/new', 'voteController::new');
 $routes->get('vote/edit', 'voteController::edit');
 $routes->get('vote/delete', 'voteController::delete');
+$routes->post('vote/save', 'voteController::save');
 //reservation
 $routes->get('reservation', 'reservationController::index');
 $routes->get('reservation/detail', 'reservationController::detail');

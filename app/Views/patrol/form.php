@@ -8,7 +8,7 @@
                 <h1><?= isset($edit_enabled) ? 'Editar' : 'Nueva'; ?> Patrulla</h1>
                 <!-- select -->
                 <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el oficial.">
-                    <select class="form-select " name="officer_id" id="single-select-clear-field"
+                    <select class="form-select single-select-clear-field" name="officer_id" id="officer_id"
                         data-placeholder="Oficial*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations as $relation) :

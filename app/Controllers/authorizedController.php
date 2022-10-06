@@ -112,14 +112,14 @@ class authorizedController extends BaseController
         //Validate to edit or create and lookup for existing fields on the data base
         if ($this->request->getPostGet('authorized_id')) {
             $data['authorized_id'] = $this->request->getPostGet('authorized_id');
-            $query = $db->Query("SELECT * FROM `authorized` WHERE (`identity` LIKE '" . $data['identity'] . "'  OR `phone` LIKE '" . $data['phone'] . "') AND `authorized_id` NOT LIKE '" . $data['authorized_id'] . "'");
+            $query = $db->Query("SELECT * FROM `authorized` WHERE (`identity` LIKE '" . $data['identity'] . "'  OR `phone` LIKE '" . $data['phone'] . "' OR `vehicle_plate` LIKE '" . $data['vehicle_plate'] . "') AND `authorized_id` NOT LIKE '" . $data['authorized_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                return $this->edit('Identificación o teléfono  ya registrado.', $data);
+                return $this->edit('Identificación,teléfono o placa de vehículo  ya registrado.', $data);
             }
         } else {
-            $query = $db->Query("SELECT * FROM `authorized` WHERE (`identity` LIKE '" . $data['identity'] . "'  OR `phone` LIKE '" . $data['phone'] . "')");
+            $query = $db->Query("SELECT * FROM `authorized` WHERE (`identity` LIKE '" . $data['identity'] . "'  OR `phone` LIKE '" . $data['phone'] . "' OR `vehicle_plate` LIKE '" . $data['vehicle_plate'] . "')");
             if ($query->resultID->num_rows != 0) {
-                return $this->new('Identificación o teléfono  ya registrados.', $data);
+                return $this->new('Identificación, teléfono o placa de vehículo ya registrados.', $data);
             }
         }
         //Save

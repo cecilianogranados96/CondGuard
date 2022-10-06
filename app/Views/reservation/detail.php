@@ -3,62 +3,63 @@
         <div class="card-body">
             <form class="form-floating">
                 <!-- title -->
-                <h1>Detalle Acreditado</h1>
+                <h1>Detalle Reservación</h1>
                 <!-- input -->
                 <div class="form-floating mb-1">
-                    <input class="form-control" type="text" id="relative_id" value="<?= $item['relative_id'] ?>"
+                    <input class="form-control" type="text" id="reservation_id" value="<?= $item['reservation_id'] ?>"
                         readonly />
-                    <label for="relative_id">Código</label>
+                    <label for="reservation_id">Código</label>
                 </div>
                 <!-- input -->
                 <div class="form-floating mb-1">
-                    <input class="form-control" type="number" id="identity" value="<?= $item['identity'] ?>" readonly />
-                    <label for="identity">Identificación</label>
+                    <input class="form-control" type="text" id="common_area_id" value="<?php
+                                                                                        if ($item['common_area_id'] != null) {
+                                                                                            $found_key = array_search($item['common_area_id'], array_column($relations, 'common_area_id'));
+
+                                                                                            echo $relations[$found_key]['name'] . '-' . $relations[$found_key]['status'];
+                                                                                        }
+
+                                                                                        ?>" readonly />
+                    <label for="common_area_id">Área común</label>
                 </div>
                 <!-- input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="text" id="condo_owner_id" value="<?php
                                                                                         if ($item['condo_owner_id'] != null) {
-                                                                                            $found_key = array_search($item['condo_owner_id'], array_column($relations, 'condo_owner_id'));
+                                                                                            $found_key = array_search($item['condo_owner_id'], array_column($relations2, 'condo_owner_id'));
 
-                                                                                            echo $relations[$found_key]['land_number'] . '-' . $relations[$found_key]['name'];
+                                                                                            echo $relations2[$found_key]['land_number'] . '-' . $relations2[$found_key]['name'];
                                                                                         }
                                                                                         ?>" readonly />
                     <label for="condo_owner_id">Condomino</label>
                 </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="relative_id" value="<?php
+                                                                                    if ($item['relative_id'] != null) {
+                                                                                        $found_key = array_search($item['relative_id'], array_column($relations3, 'relative_id'));
 
-                <!-- input -->
-                <div class="form-floating mb-1">
-                    <input class="form-control" type="text" id="name" value="<?= $item['name'] ?>" readonly />
-                    <label for="name">Nombre completo</label>
-                </div>
-                <!-- input -->
-                <div class="form-floating mb-1">
-                    <input class="form-control" id="email" value="<?= $item['email'] ?>" readonly />
-                    <label for="email">Correo electrónico</label>
-                </div>
-                <!-- Input -->
-                <div class="form-floating mb-1">
-                    <input class="form-control" type="number" id="phone" value=<?= $item['phone'] ?> readonly />
-                    <label for="phone">Teléfono móvil</label>
-                </div>
-                <!-- Input -->
-                <div class="form-floating mb-1">
-                    <input class="form-control" type="text" id="can_reserve"
-                        value="<?= $item['can_reserve'] == 0 ? "No tiene permiso" : "Tiene permiso"; ?>" readonly />
-                    <label for="can_reserve">Permiso para reservar</label>
+                                                                                        echo $relations3[$found_key]['identity'] . '-' . $relations3[$found_key]['name'];
+                                                                                    }
+                                                                                    ?>" readonly />
+                    <label for="relative_id">Acreditado</label>
                 </div>
                 <!-- Input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="datetime-local" id="entry_at" value="<?= $item['entry_at'] ?>"
                         readonly />
-                    <label for="entry_at">Entrada actual</label>
+                    <label for="entry_at">Entrada</label>
                 </div>
                 <!-- Input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="datetime-local" id="out_at" value="<?= $item['out_at'] ?>"
                         readonly />
-                    <label for="out_at">Salida actual</label>
+                    <label for="out_at">Salida</label>
+                </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="status" value="<?= $item['status'] ?>" readonly />
+                    <label for="status">Estado</label>
                 </div>
                 <!-- Input -->
                 <div class="form-floating mb-1">
@@ -85,8 +86,8 @@
                     data-bs-toggle="tooltip" data-bs-placement="left" title="Atrás">
                     Atrás
                 </a><a class="btn btn-warning btn-lg" role="button" style="width: 59%; margin-left: 2%"
-                    href="<?php echo base_url('relative/edit?id=' . $item['relative_id']) ?>" data-bs-toggle="tooltip"
-                    data-bs-placement="right" title="Editar">
+                    href="<?php echo base_url('reservation/edit?id=' . $item['reservation_id']) ?>"
+                    data-bs-toggle="tooltip" data-bs-placement="right" title="Editar">
                     Editar <i class="far fa-edit"></i>
                 </a>
             </div>

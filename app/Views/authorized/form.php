@@ -30,7 +30,7 @@
 
                 <!-- select -->
                 <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condomino que lo autoriza">
-                    <select class="form-select " name="condo_owner_id" id="single-select-clear-field"
+                    <select class="form-select single-select-clear-field" name="condo_owner_id" id="condo_owner_id"
                         data-placeholder="Condomino*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations as $relation) :
@@ -107,7 +107,7 @@
                     <?php
                     $date_entry = null;
                     if (isset($item)) {
-                        if ($item['out_at'] != null) {
+                        if ($item['entry_at'] != null) {
                             $time_input = strtotime($item['entry_at']);
                             $date_input = getDate($time_input);
                             if ($date_input['year'] != '-1') {

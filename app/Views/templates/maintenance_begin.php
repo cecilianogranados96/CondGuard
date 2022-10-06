@@ -1,4 +1,3 @@
-
 <div class="container" style="margin-top: 2%; margin-bottom: 2%; padding-bottom: 60px;padding-top: 20px">
     <div class="row">
         <div class="col">
@@ -20,7 +19,7 @@
                     </li>
                     <li class="nav-item"><a
                             class="nav-link  link-light <?= current_url(true)->getSegment(1) == 'common_area' ? 'active' : '' ?>"
-                            data-bss-hover-animate="pulse" href="<?= base_url('common_area') ?>">Areas
+                            data-bss-hover-animate="pulse" href="<?= base_url('common_area') ?>">Áreas
                             Comunes</a></li>
                     <li class="nav-item"><a
                             class="nav-link  link-light <?= current_url(true)->getSegment(1) == 'authorized' ? 'active' : '' ?>"

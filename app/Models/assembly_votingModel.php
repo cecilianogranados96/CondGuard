@@ -14,7 +14,7 @@ class assembly_votingModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['description', 'question', 'up_votes', 'down_votes', 'total_votes', 'status'];
+    protected $allowedFields    = ['assembly_id', 'description', 'question', 'up_votes', 'down_votes', 'total_votes', 'status'];
 
     // Dates
     protected $useTimestamps = true; //false;

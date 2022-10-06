@@ -18,10 +18,11 @@
                 <!-- input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="text" id="condo_owner_id" value="<?php
-                                                                                        $found_key = array_search($item['condo_owner_id'], array_column($relations, 'condo_owner_id'));
+                                                                                        if ($item['condo_owner_id'] != null) {
+                                                                                            $found_key = array_search($item['condo_owner_id'], array_column($relations, 'condo_owner_id'));
 
-                                                                                        echo $relations[$found_key]['land_number'] . '-' . $relations[$found_key]['name'];
-
+                                                                                            echo $relations[$found_key]['land_number'] . '-' . $relations[$found_key]['name'];
+                                                                                        }
                                                                                         ?>" readonly />
                     <label for="condo_owner_id">Condomino</label>
                 </div>

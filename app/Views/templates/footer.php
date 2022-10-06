@@ -85,7 +85,7 @@ $('.only-alphanumeric').on('change keyup', function() {
     });
 })();
 //Enable Select2 with bootstrap 5 
-$('#single-select-clear-field').select2({
+$('.single-select-clear-field').select2({
     theme: "bootstrap-5",
     width: '100%',
     placeholder: $(this).data('placeholder'),

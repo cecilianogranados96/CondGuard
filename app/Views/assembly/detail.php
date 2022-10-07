@@ -36,7 +36,7 @@
                 <div class="form-floating mb-1">
                     <input class="form-control" type="datetime-local" id="deleted_at" value="<?= $item['deleted_at'] ?>"
                         readonly />
-                    <label for="deleted_at">Fecha de elimincación</label>
+                    <label for="deleted_at">Fecha de eliminación</label>
                 </div>
             </div>
             <!-- option -->

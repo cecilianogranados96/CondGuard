@@ -27,7 +27,7 @@
                     </li>
                     <li class="nav-item"><a
                             class="nav-link  link-light <?= current_url(true)->getSegment(1) == 'condo_owner' ? 'active' : '' ?>"
-                            data-bss-hover-animate="pulse" href="<?= base_url('condo_owner') ?>">Condominos</a>
+                            data-bss-hover-animate="pulse" href="<?= base_url('condo_owner') ?>">Condóminos</a>
                     </li>
                     <li class="nav-item"><a
                             class="nav-link  link-light <?= current_url(true)->getSegment(1) == 'officer' ? 'active' : '' ?>"

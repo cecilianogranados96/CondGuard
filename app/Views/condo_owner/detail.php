@@ -3,7 +3,7 @@
         <div class="card-body">
             <form class="form-floating">
                 <!-- title -->
-                <h1>Detalle Condomino</h1>
+                <h1>Detalle Condómino</h1>
                 <!-- input -->
                 <div class="form-floating mb-1">
                     <input class="form-control" type="text" id="condo_owner_id" value="<?= $item['condo_owner_id'] ?>"

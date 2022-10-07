@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 2%; margin-bottom: 2%; padding-bottom: 60px;padding-top: 20px">
+<div class="container" style="margin-top: 2%; margin-bottom: 2%; padding-bottom:60px;padding-top: 20px">
     <div class="row">
         <div class="col">
             <div

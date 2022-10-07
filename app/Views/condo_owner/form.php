@@ -10,7 +10,7 @@
                 <!-- title -->
                 <h1>
                     <?= isset($edit_enabled) ? 'Editar' : 'Nuevo'; ?>
-                    Condomino
+                    Condómino
                 </h1>
                 <!-- input -->
                 <div class="form-floating">

@@ -24,7 +24,7 @@
                                                                                             echo $relations[$found_key]['land_number'] . '-' . $relations[$found_key]['name'];
                                                                                         }
                                                                                         ?>" readonly />
-                    <label for="condo_owner_id">Condomino</label>
+                    <label for="condo_owner_id">Condómino</label>
                 </div>
 
                 <!-- input -->

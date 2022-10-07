@@ -27,7 +27,12 @@
     <!-- Styles custom -->
     <link rel="stylesheet" href="\assets\css\styles.css">
 
+    <!-- Borrador-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+
 </head>
 
-<body
+<body class="d-flex flex-column min-vh-100"
     style="padding-bottom: 81px;min-height: calc(100% - 81px);position: relative;margin: 0px;padding: 0px;height: 100%;">

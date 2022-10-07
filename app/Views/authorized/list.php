@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>Identificación</th>
-                        <th>Condomino</th>
+                        <th>Condómino</th>
                         <th>Nombre</th>
                         <th>Placa de vehículo</th>
                         <th>Motivo</th>
@@ -50,7 +50,7 @@
                 <tfoot>
                     <tr>
                         <th>Identificación</th>
-                        <th>Condomino</th>
+                        <th>Condómino</th>
                         <th>Nombre</th>
                         <th>Placa de vehículo</th>
                         <th>Motivo</th>

@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>Identificación</th>
-                        <th>Condomino</th>
+                        <th>Condómino</th>
                         <th>Nombre</th>
                         <th>Correo Electrónico</th>
                         <th>Teléfono</th>
@@ -50,7 +50,7 @@
                 <tfoot>
                     <tr>
                         <th>Identificación</th>
-                        <th>Condomino</th>
+                        <th>Condómino</th>
                         <th>Nombre</th>
                         <th>Correo Electrónico</th>
                         <th>Teléfono</th>

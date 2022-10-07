@@ -29,9 +29,9 @@
                 </div>
 
                 <!-- select -->
-                <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condomino que lo acredita">
+                <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condómino que lo acredita">
                     <select class="form-select single-select-clear-field" name="condo_owner_id" id="condo_owner_id"
-                        data-placeholder="Condomino*" required="" style="font-size: 1px;">
+                        data-placeholder="Condómino*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations as $relation) :
                             $selected = '';
@@ -50,7 +50,7 @@
                     </select>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Debe seleccionar un condomino.
+                        Debe seleccionar un condómino.
                     </div>
                 </div>
                 <br />

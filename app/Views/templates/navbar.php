@@ -1,6 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-dark navbar-expand-md  bg-dark py-3"
-    style="--bs-primary: #fec006; --bs-primary-rgb: 254, 192, 6">
+<nav class="navbar navbar-dark navbar-expand-md  bg-dark py-3">
     <!--class='sticky-top'-->
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
@@ -14,6 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-5">
             <ul class="navbar-nav ms-auto">
+
                 <li class="nav-item">
                     <a class="nav-link active fw-semibold" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
                         style="
@@ -23,26 +23,33 @@
               color: #fec006;
             ">Inicio</a>
                 </li>
+
                 <li class="nav-item text-warning">
-                    <a class="nav-link fw-semibold" data-bss-hover-animate="pulse" href="#" style="
+                    <a class="nav-link fw-semibold " data-bss-hover-animate="pulse" href="#" style="
               padding-left: 11px;
               --bs-primary: #fec006;
               --bs-primary-rgb: 254, 192, 6;
               color: #fec006;
             ">Reservar</a>
                 </li>
+
                 <li class="nav-item text-warning visually-hidden">
-                    <a class="nav-link fw-semibold" data-bss-hover-animate="pulse" href="#" style="
+                    <a class="nav-link fw-semibold " data-bss-hover-animate="pulse" href="#" style="
               padding-left: 11px;
               --bs-primary: #fec006;
               --bs-primary-rgb: 254, 192, 6;
               color: #fec006;
             ">Registrarse</a>
                 </li>
-                <li class="nav-item text-warning visually-hidden">
-                    <a class="nav-link fw-bold link-light bg-primary" data-bss-hover-animate="pulse" href="#"
-                        style="border-radius: 8px; padding-left: 11px">Iniciar Sesión</a>
+                <?php if (!isset($_SESSION['usuario'])) {
+                ?>
+                <li class="nav-item text-warning ">
+                    <a class="nav-link fw-bold link-light bg-primary" data-bss-hover-animate="pulse"
+                        href="<?= base_url('login') ?>" style="border-radius: 8px; padding-left: 11px">Iniciar
+                        Sesión</a>
                 </li>
+                <?php
+                } else { ?>
                 <li class="nav-item dropdown ">
                     <a class="dropdown-toggle nav-link fw-semibold" aria-expanded="false" data-bs-toggle="dropdown"
                         data-bss-hover-animate="pulse" href="#" style="
@@ -56,9 +63,13 @@
                             class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('maintenance') ?>">Mantenimientos</a>
                         <hr />
-                        <a class="dropdown-item" data-bss-hover-animate="pulse" href="#">Cerrar Sesión</a>
+                        <a class="dropdown-item" data-bss-hover-animate="pulse"
+                            href="<?= base_url('login/signout') ?>">Cerrar Sesión</a>
                     </div>
                 </li>
+                <?php
+                } ?>
+
             </ul>
         </div>
     </div>

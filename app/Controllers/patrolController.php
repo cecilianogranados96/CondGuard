@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 class patrolController extends BaseController
 {
+    public function __construct()
+    {
+        session_start();
+    }
     public function index()
     {
         //Connect / models

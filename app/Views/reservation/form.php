@@ -5,7 +5,7 @@
                 class="row g-3 form-floating needs-validation" novalidate>
                 <!-- timezone-->
                 <?php date_default_timezone_set('America/Costa_Rica');
-                                ?>
+                ?>
 
                 <!-- title -->
                 <h1>
@@ -18,15 +18,15 @@
                         data-placeholder="Área común*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations as $relation) :
-                                                        $selected = '';
-                                                        if (isset($item)) {
-                                                                if ($relation['common_area_id'] == $item['common_area_id']) {
-                                                                        $selected = 'selected';
-                                                                } else {
-                                                                        $selected = '';
-                                                                }
-                                                        }
-                                                ?>
+                            $selected = '';
+                            if (isset($item)) {
+                                if ($relation['common_area_id'] == $item['common_area_id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                            }
+                        ?>
                         <option <?= "$selected" ?> value="<?= $relation['common_area_id'] ?>">
                             <?= $relation['name'] . ' - ' . $relation['status']  ?>
                         </option>
@@ -39,20 +39,20 @@
                 </div>
                 <br />
                 <!-- select -->
-                <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condomino que va reservar">
+                <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condómino que va reservar">
                     <select class="form-select single-select-clear-field" name="condo_owner_id" id="condo_owner_id"
-                        data-placeholder="Condomino*" required="" style="font-size: 1px;">
+                        data-placeholder="Condómino*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations2 as $relation) :
-                                                        $selected = '';
-                                                        if (isset($item)) {
-                                                                if ($relation['condo_owner_id'] == $item['condo_owner_id']) {
-                                                                        $selected = 'selected';
-                                                                } else {
-                                                                        $selected = '';
-                                                                }
-                                                        }
-                                                ?>
+                            $selected = '';
+                            if (isset($item)) {
+                                if ($relation['condo_owner_id'] == $item['condo_owner_id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                            }
+                        ?>
                         <option <?= "$selected" ?> value="<?= $relation['condo_owner_id'] ?>">
                             <?= $relation['identity'] . ' - ' . $relation['name']  ?>
                         </option>
@@ -60,7 +60,7 @@
                     </select>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Debe seleccionar un condomino.
+                        Debe seleccionar un condómino.
                     </div>
                 </div>
                 <br />
@@ -70,15 +70,15 @@
                         data-placeholder="Acreditado*" required="" style="font-size: 1px;">
                         <option></option>
                         <?php foreach ($relations3 as $relation) :
-                                                        $selected = '';
-                                                        if (isset($item)) {
-                                                                if ($relation['relative_id'] == $item['relative_id']) {
-                                                                        $selected = 'selected';
-                                                                } else {
-                                                                        $selected = '';
-                                                                }
-                                                        }
-                                                ?>
+                            $selected = '';
+                            if (isset($item)) {
+                                if ($relation['relative_id'] == $item['relative_id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                            }
+                        ?>
                         <option <?= "$selected" ?> value="<?= $relation['relative_id'] ?>">
                             <?= $relation['identity'] . ' - ' . $relation['name'] ?>
                         </option>
@@ -93,19 +93,19 @@
                 <!-- Input -->
                 <div class="form-floating">
                     <?php
-                                        $date_entry = null;
-                                        if (isset($item)) {
-                                                if ($item['entry_at'] != null) {
-                                                        $time_input = strtotime($item['entry_at']);
-                                                        $date_input = getDate($time_input);
-                                                        if ($date_input['year'] != '-1') {
-                                                                $date_entry = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
-                                                        } else {
-                                                                $date_entry = date('Y-m-d');
-                                                        }
-                                                }
-                                        }
-                                        ?>
+                    $date_entry = null;
+                    if (isset($item)) {
+                        if ($item['entry_at'] != null) {
+                            $time_input = strtotime($item['entry_at']);
+                            $date_input = getDate($time_input);
+                            if ($date_input['year'] != '-1') {
+                                $date_entry = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
+                            } else {
+                                $date_entry = date('Y-m-d');
+                            }
+                        }
+                    }
+                    ?>
                     <input class="form-control" type="datetime-local" id="entry_at" name="entry_at"
                         placeholder="Fecha de entrada" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Fecha de entrada ej: <?= date('Y-m-d H:i:s') ?>"
@@ -122,19 +122,19 @@
                 <!-- Input -->
                 <div class="form-floating">
                     <?php
-                                        $date_out = null;
-                                        if (isset($item)) {
-                                                if ($item['out_at'] != null) {
-                                                        $time_input = strtotime($item['out_at']);
-                                                        $date_input = getDate($time_input);
-                                                        if ($date_input['year'] != '-1') {
-                                                                $date_out = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
-                                                        } else {
-                                                                $date_out = date('Y-m-d');
-                                                        }
-                                                }
-                                        }
-                                        ?>
+                    $date_out = null;
+                    if (isset($item)) {
+                        if ($item['out_at'] != null) {
+                            $time_input = strtotime($item['out_at']);
+                            $date_input = getDate($time_input);
+                            if ($date_input['year'] != '-1') {
+                                $date_out = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
+                            } else {
+                                $date_out = date('Y-m-d');
+                            }
+                        }
+                    }
+                    ?>
                     <input class="form-control" type="datetime-local" id="out_at" name="out_at"
                         placeholder="Fecha de salida" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Fecha de salida ej: <?= date('Y-m-d H:i:s') ?>"

@@ -1,5 +1,5 @@
 <!--Footer-->
-<footer class="text-center bg-dark" style="padding-bottom: 14%;">
+<footer class="text-center bg-dark mt-auto" style="padding-bottom: 5%;">
     <!--style="position: fixed;bottom: 0px;width: 100%;left:0px"-->
     <div class="container text-white py-4 py-lg-5">
         <ul class="list-inline">
@@ -11,6 +11,9 @@
         <p class="text-muted mb-0">Copyright © 2022 CondGuard</p>
     </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+<script src="assets/js/script.min.js"></script>
 
 <!-- Scripts import-->
 <script type="text/javascript"

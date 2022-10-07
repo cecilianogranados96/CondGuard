@@ -19,13 +19,19 @@
       'type' => 'email',
       'name' => 'email',
       'class' => 'form-control form-control-user',
-      'placeholder' => 'Digite su email'
+      'placeholder' => 'Digite su correo electrónico',
+      'required'  => '',
+      'oninvalid' => 'this.setCustomValidity(`Ingrese su correo electrónico`)',
+      'oninput' => 'this.setCustomValidity(``)'
     ),
     array(
       'type' => 'password',
       'name' => 'password',
       'class' => 'form-control form-control-user',
-      'placeholder' => 'Digite su contraseña'
+      'placeholder' => 'Digite su contraseña',
+      'required'  => '',
+      'oninvalid' => 'this.setCustomValidity(`Ingrese su contraseña`)',
+      'oninput' => 'this.setCustomValidity(``)'
     )
   );
   ?>
@@ -54,12 +60,15 @@
                       ?>
                                         </div>
                                         <?= form_open('login/signin', 'class="user" '); ?>
+
                                         <div class="form-group">
                                             <?= form_input($data_email[0]); ?>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <?= form_input($data_email[1]); ?>
                                         </div>
+                                        <br>
                                         <?= form_submit("Ingresar", 'Ingresar', "class = 'btn btn-primary btn-user btn-block' "); ?>
                                         <hr>
                                         <!--<a href="<?php echo base_url(); ?>index.php/login/registro" class="btn btn-success btn-user btn-block">

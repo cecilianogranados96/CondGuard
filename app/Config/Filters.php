@@ -23,6 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'adminaccess' => \App\Filters\AdminAccess::class,
+        'useraccess' => \App\Filters\UserAccess::class
     ];
 
     /**
@@ -68,5 +70,47 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'adminaccess' => [
+            'before' => [
+                'relative',
+                'relative/new',
+                'relative/detail',
+                'relative/delete',
+                'relative/save',
+                'administrator',
+                'administrator/*',
+                'condo_owner',
+                'condo_owner/new',
+                'condo_owner/detail',
+                'condo_owner/delete',
+                'condo_owner/save',
+                'vote',
+                'vote/*',
+                'officer',
+                'officer/*',
+                'authorized',
+                'authorized/*',
+                'assembly',
+                'assembly/*',
+                'assembly_voting',
+                'assembly_voting/*',
+                'reservation',
+                'reservation/*',
+                'common_area',
+                'common_area/*',
+                'patrol',
+                'patrol/*',
+                'relative_vehicle',
+                'relative_vehicle/*'
+            ]
+        ],
+        'useraccess' => [
+            'before' => [
+                'relative/profile',
+                'administrator/profile',
+                'condo_owner/profile'
+            ]
+        ]
+    ];
 }

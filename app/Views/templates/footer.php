@@ -12,8 +12,7 @@
     </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-<script src="assets/js/script.min.js"></script>
+
 
 <!-- Scripts import-->
 <script type="text/javascript"

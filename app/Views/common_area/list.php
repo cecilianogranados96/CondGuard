@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('common_area/new') ?>" class="btn btn-primary" role="button"
-            data-bs-toggle="tooltip" title="Nuevo" style="font-size: 30px; margin-bottom: 10px;">Nuevo <i
+            data-bs-toggle="tooltip" title="Nuevo" style="font-size: 30px; margin-bottom: 10px;">Nueva área común <i
                 class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">

@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 class assembly_votingController extends BaseController
 {
-    public function __construct()
-    {
-        session_start();
-    }
     public function index()
     {
         //Connect / models

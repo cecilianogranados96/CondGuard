@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function __construct()
-    {
-        session_start();
-    }
 
     public function Index()
     {

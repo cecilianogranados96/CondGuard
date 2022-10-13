@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 class relativeController extends BaseController
 {
-    public function __construct()
-    {
-        session_start();
-    }
     public function index()
     {
         //Connect / models
@@ -24,6 +20,33 @@ class relativeController extends BaseController
             view('templates/maintenance_begin') .
             view('relative/list', $items) .
             view('templates/maintenance_end') .
+            view('templates/footer');
+    }
+    public function profile($error = null, $data = null)
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $relativeModel = model('relativeModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data 
+        if ($data == null) {
+            $id = $this->request->getPostGet('id');
+            $items['item'] = $relativeModel->find($id);
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        } else {
+            $items['item'] = $data;
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        }
+        $items['relations'] =  $condo_ownerModel->findAll();
+        //Enable edit
+        $items['edit_enabled'] = true;
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('relative/profile', $items) .
             view('templates/footer');
     }
     public function detail()
@@ -99,16 +122,26 @@ class relativeController extends BaseController
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
         //Get-fill data
-        $data = array(
-            'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
-            'identity' => $this->request->getPostGet('identity'),
-            'name' => $this->request->getPostGet('name'),
-            'email' => $this->request->getPostGet('email'),
-            'password' => md5($this->request->getPostGet('password')),
-            'phone' => $this->request->getPostGet('phone'),
-            'entry_at' => $this->request->getPostGet('entry_at'),
-            'out_at' => $this->request->getPostGet('out_at')
-        );
+        if (session()->get('isLoggedIn') != true) {
+            $data = array(
+                'identity' => $this->request->getPostGet('identity'),
+                'name' => $this->request->getPostGet('name'),
+                'email' => $this->request->getPostGet('email'),
+                'password' => md5($this->request->getPostGet('password')),
+                'phone' => $this->request->getPostGet('phone'),
+                'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
+                'entry_at' => $this->request->getPostGet('entry_at'),
+                'out_at' => $this->request->getPostGet('out_at')
+            );
+        } else {
+            $data = array(
+                'identity' => $this->request->getPostGet('identity'),
+                'name' => $this->request->getPostGet('name'),
+                'email' => $this->request->getPostGet('email'),
+                'password' => md5($this->request->getPostGet('password')),
+                'phone' => $this->request->getPostGet('phone'),
+            );
+        }
 
         //Query variable
         $query = null;
@@ -117,17 +150,23 @@ class relativeController extends BaseController
             $data['relative_id'] = $this->request->getPostGet('relative_id');
             $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "') AND `relative_id` NOT LIKE '" . $data['relative_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                return $this->edit('Identificación,teléfono y correo electrónico ya registrado.', $data);
+                if (session('type') == 'relative') {
+                    return $this->profile('Identificación,teléfono o correo electrónico ya registrado.', $data);
+                }
+                return $this->edit('Identificación,teléfono o correo electrónico ya registrado.', $data);
             }
         } else {
             $query = $db->Query("SELECT * FROM `relative` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "')");
             if ($query->resultID->num_rows != 0) {
-                return $this->new('Identificación,teléfono y correo electrónico ya registrados.', $data);
+                return $this->new('Identificación,teléfono o correo electrónico ya registrados.', $data);
             }
         }
         //Save
         $relativeModel->save($data);
         //Redirect
+        if (session('type') == 'relative') {
+            return $this->response->redirect(base_url(''));
+        }
         return $this->response->redirect(base_url('relative'));
     }
     public function delete()

@@ -1,8 +1,8 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('administrator/new') ?>" data-bs-toggle="tooltip" title="Nuevo"
-            class="btn btn-primary" role="button" style="font-size: 30px; margin-bottom: 10px;">Nuevo <i
-                class="fa fa-plus fs-2"></i></a>
+            class="btn btn-primary" role="button" style="font-size: 30px; margin-bottom: 10px;">Nuevo administrador
+            <i class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered" style="width: 100%">

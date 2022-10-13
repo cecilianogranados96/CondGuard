@@ -1,12 +1,11 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('relative/new') ?>" class="btn btn-primary" role="button"
-            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nuevo Acreditado <i
-                class="fa fa-plus fs-3"></i></a>
+            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nuevo
+            acreditado <i class="fa fa-plus fs-3"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
-
                 <thead>
                     <tr>
                         <th>Identificación</th>

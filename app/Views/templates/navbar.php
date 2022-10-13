@@ -5,8 +5,8 @@
         <a class="navbar-brand d-flex align-items-center" data-bss-hover-animate="pulse" href="<?= base_url() ?>"
             style="height: 50px">
             <img class="rounded-circle img-fluid" style="margin-right: 5px; height: 75px; width: 75px"
-                src="/assets/img/CondominioLogoOnly.png" width="0" height="0" loading="auto" /><span
-                class="fs-1 text-light" style="font-family: 'IM Fell Great Primer SC', serif">Hacienda el Coyol</span>
+                src="/assets/img/CondominioLogoCustomOnly.png" width="0" height="0" loading="auto" /><span
+                class="fs-3 text-light" style="font-family: 'IM Fell Great Primer SC', serif">Hacienda el Coyol</span>
         </a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5">
             <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
               color: #fec006;
             ">Registrarse</a>
                 </li>
-                <?php if (!isset($_SESSION['usuario'])) {
+                <?php if (session()->get('isLoggedIn') != true) {
                 ?>
                 <li class="nav-item text-warning ">
                     <a class="nav-link fw-bold link-light bg-primary" data-bss-hover-animate="pulse"
@@ -59,10 +59,12 @@
               color: #fec006;
             ">Opciones</a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" data-bss-hover-animate="pulse" href="#">Perfil</a><a
-                            class="dropdown-item" data-bss-hover-animate="pulse"
+                        <a class="dropdown-item" data-bss-hover-animate="pulse"
+                            href="<?= base_url() . '/' . session()->get('type') . '/profile?id=' . session()->get(session()->get('type') . '_id') ?>">Perfil</a>
+                        <?php if (session()->get('type') == 'administrator') { ?>
+                        <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('maintenance') ?>">Mantenimientos</a>
-                        <hr />
+                        <?php } ?>
                         <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('login/signout') ?>">Cerrar Sesión</a>
                     </div>

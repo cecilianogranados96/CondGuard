@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 class condo_ownerController extends BaseController
 {
-    public function __construct()
-    {
-        session_start();
-    }
     public function index()
     {
         //Connect / models
@@ -22,6 +18,29 @@ class condo_ownerController extends BaseController
             view('templates/maintenance_begin') .
             view('condo_owner/list', $items) .
             view('templates/maintenance_end') .
+            view('templates/footer');
+    }
+    public function profile($error = null, $data = null)
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data 
+        if ($data == null) {
+            $id = $this->request->getPostGet('id');
+            $items['item'] = $condo_ownerModel->find($id);
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        } else {
+            $items['item'] = $data;
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        }
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('condo_owner/profile', $items) .
             view('templates/footer');
     }
     public function detail()
@@ -110,17 +129,23 @@ class condo_ownerController extends BaseController
             $data['condo_owner_id'] = $this->request->getPostGet('condo_owner_id');
             $query = $db->Query("SELECT * FROM `condo_owner` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "') AND `condo_owner_id` NOT LIKE '" . $data['condo_owner_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                return $this->edit('Identificación,teléfono y correo electrónico ya registrado.', $data);
+                if (session('type') == 'condo_owner') {
+                    return $this->profile('Identificación,teléfono o correo electrónico ya registrado.', $data);
+                }
+                return $this->edit('Identificación,teléfono o correo electrónico ya registrado.', $data);
             }
         } else {
             $query = $db->Query("SELECT * FROM `condo_owner` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "')");
             if ($query->resultID->num_rows != 0) {
-                return $this->new('Identificación,teléfono y correo electrónico ya registrados.', $data);
+                return $this->new('Identificación,teléfono o correo electrónico ya registrados.', $data);
             }
         }
         //Save
         $condo_ownerModel->save($data);
         //Redirect
+        if (session('type') == 'condo_owner') {
+            return $this->response->redirect(base_url(''));
+        }
         return $this->response->redirect(base_url('condo_owner'));
     }
     public function delete()

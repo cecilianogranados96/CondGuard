@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 class administratorController extends BaseController
 {
-    public function __construct()
-    {
-        session_start();
-    }
     public function index()
     {
         //Connect / models
@@ -22,6 +18,31 @@ class administratorController extends BaseController
             view('templates/maintenance_begin') .
             view('administrator/list', $items) .
             view('templates/maintenance_end') .
+            view('templates/footer');
+    }
+    public function profile($error = null, $data = null)
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $administratorModel = model('administratorModel', true, $db);
+        //Get-fill data 
+        if ($data == null) {
+            $id = $this->request->getPostGet('id');
+            $items['item'] = $administratorModel->find($id);
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        } else {
+            $items['item'] = $data;
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        }
+        //Enable edit
+        $items['edit_enabled'] = true;
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('administrator/profile', $items) .
             view('templates/footer');
     }
     public function detail()
@@ -58,6 +79,7 @@ class administratorController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+
     public function edit($error = null, $data = null)
     {
         //Connect / models
@@ -107,17 +129,23 @@ class administratorController extends BaseController
             $data['administrator_id'] = $this->request->getPostGet('administrator_id');
             $query = $db->Query("SELECT * FROM `administrator` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "') AND `administrator_id` NOT LIKE '" . $data['administrator_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                return $this->edit('Identificación,teléfono y correo electrónico ya registrado.', $data);
+                if (session('type') == 'administrator') {
+                    return $this->profile('Identificación,teléfono o correo electrónico ya registrado.', $data);
+                }
+                return $this->edit('Identificación,teléfono o correo electrónico ya registrado.', $data);
             }
         } else {
             $query = $db->Query("SELECT * FROM `administrator` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "')");
             if ($query->resultID->num_rows != 0) {
-                return $this->new('Identificación,teléfono y correo electrónico ya registrados.', $data);
+                return $this->new('Identificación,teléfono o correo electrónico ya registrados.', $data);
             }
         }
         //Save
         $administratorModel->save($data);
         //Redirect
+        if (session('type') == 'administrator') {
+            return $this->response->redirect(base_url(''));
+        }
         return $this->response->redirect(base_url('administrator'));
     }
     public function delete()

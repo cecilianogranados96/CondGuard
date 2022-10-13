@@ -1,93 +1,51 @@
-<html lang="es">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sistema Ingreso</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-</head>
-
-<body id="page-top">
-
-    <?php
-  $data_email = array(
-    array(
-      'type' => 'email',
-      'name' => 'email',
-      'class' => 'form-control form-control-user',
-      'placeholder' => 'Digite su correo electrónico',
-      'required'  => '',
-      'oninvalid' => 'this.setCustomValidity(`Ingrese su correo electrónico`)',
-      'oninput' => 'this.setCustomValidity(``)'
-    ),
-    array(
-      'type' => 'password',
-      'name' => 'password',
-      'class' => 'form-control form-control-user',
-      'placeholder' => 'Digite su contraseña',
-      'required'  => '',
-      'oninvalid' => 'this.setCustomValidity(`Ingrese su contraseña`)',
-      'oninput' => 'this.setCustomValidity(``)'
-    )
-  );
-  ?>
-
-    <body class="bg-gradient-primary">
-        <div class="container">
-            <!-- Outer Row -->
-            <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-
-                                <div class="col-lg-12">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Sistema de Control de Acceso</h1>
-                                            <?php if (isset($_GET['error_login'])) {
-                        if ($_GET['error_login'] == 1) {
-                          echo "Email Incorrecto";
-                        } else {
-                          echo "Password Incorrecto";
-                        }
-                      }
-                      ?>
-                                        </div>
-                                        <?= form_open('login/signin', 'class="user" '); ?>
-
-                                        <div class="form-group">
-                                            <?= form_input($data_email[0]); ?>
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <?= form_input($data_email[1]); ?>
-                                        </div>
-                                        <br>
-                                        <?= form_submit("Ingresar", 'Ingresar', "class = 'btn btn-primary btn-user btn-block' "); ?>
-                                        <hr>
-                                        <!--<a href="<?php echo base_url(); ?>index.php/login/registro" class="btn btn-success btn-user btn-block">
-                      Crear una cuenta
-                    </a>
-                    <a href="<?php echo base_url(); ?>index.php/login/pass_olvidado" class="btn btn-warning btn-user btn-block">
-                      Olvide mi contraseña
-                    </a>-->
-                                        <?= form_close(); ?>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="container d-flex justify-content-center"
+    style="margin-top: 4%; margin-bottom: 4%; padding-bottom:60px;padding-top: 20px">
+    <div class="col-md-5 col-xl-3">
+        <div class="card mb-5 card-body d-flex flex-column align-items-center">
+            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg class="bi bi-person"
+                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
+                    </path>
+                </svg></div>
+            <form action="<?= base_url('login/signin') ?>" method="post"
+                class="row g-3 text-center form-floating needs-validation" novalidate>
+                <!-- title -->
+                <h2>
+                    Inicio de sesión
+                </h2>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Correo electrónico ej: nombre@mail.com"
+                        value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
+                    <label for="email">Correo electrónico </label>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
                     </div>
                 </div>
-            </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
+                        data-bs-toggle="tooltip" data-bs-placement="right" title="Ingrese su contraseña."
+                        value="<?= isset($item) ? $item['password'] : ''; ?>" required="" />
+                    <label for="password">Contraseña </label>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar su contraseña.
+                    </div>
+                </div>
+                <div class="required-feedback" role="alert">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+                <!-- submit -->
+                <div style="margin-top: 10%"><input class="btn btn-primary btn-lg bg-primary" style="width:100%"
+                        type="submit" value="Iniciar Sesión" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Iniciar Sesión" />
+                    <br><br>
+                    <a class="card-link" href="#">Olvido su contraseña?</a>
+                </div>
+            </form>
         </div>
-
-    </body>
-
-</html>
+    </div>
+</div>

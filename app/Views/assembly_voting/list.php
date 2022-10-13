@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('assembly_voting/new') ?>" class="btn btn-primary" data-bs-toggle="tooltip"
-            title="Nuevo" role="button" style="font-size: 30px; margin-bottom: 10px;">Nuevo <i
+            title="Nuevo" role="button" style="font-size: 30px; margin-bottom: 10px;">Nueva votación <i
                 class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">

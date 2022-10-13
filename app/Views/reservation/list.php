@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('reservation/new') ?>" class="btn btn-primary" role="button"
-            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nuevo <i
+            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nueva reservación <i
                 class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">

@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card card-body">
         <a href="<?php echo base_url('relative_vehicle/new') ?>" class="btn btn-primary" role="button"
-            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nuevo <i
+            style="font-size: 30px; margin-bottom: 10px;" data-bs-toggle="tooltip" title="Nuevo">Nuevo vehículo <i
                 class="fa fa-plus fs-2"></i></a>
         <!--DATA TABLE-->
         <div class="table-responsive">
@@ -38,7 +38,6 @@
                             <a href="<?php echo base_url('relative_vehicle/delete?id=' . $item['relative_vehicle_id']) ?>"
                                 class="btn btn-danger " role="button" data-bs-toggle="tooltip" title="Eliminar">Eliminar
                                 <i class="fas fa-eraser"></i></a>
-
                         </td>
                     </tr>
                     <?php endforeach ?>

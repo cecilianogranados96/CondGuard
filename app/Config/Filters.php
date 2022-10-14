@@ -77,14 +77,12 @@ class Filters extends BaseConfig
                 'relative/new',
                 'relative/detail',
                 'relative/delete',
-                'relative/save',
                 'administrator',
                 'administrator/*',
                 'condo_owner',
                 'condo_owner/new',
                 'condo_owner/detail',
                 'condo_owner/delete',
-                'condo_owner/save',
                 'vote',
                 'vote/*',
                 'officer',
@@ -108,8 +106,10 @@ class Filters extends BaseConfig
         'useraccess' => [
             'before' => [
                 'relative/profile',
+                'relative/save',
                 'administrator/profile',
-                'condo_owner/profile'
+                'condo_owner/profile',
+                'condo_owner/save'
             ]
         ]
     ];

@@ -120,6 +120,14 @@ class administratorController extends BaseController
             'password' => md5($this->request->getPostGet('password')),
             'phone' => $this->request->getPostGet('phone')
         );
+
+        //Save password only if we are inserting or if user type new one 
+        if ($this->request->getPostGet('administrator_id')) {
+            if ($this->request->getPostGet('password') == "") {
+                unset($data['password']);
+            }
+        }
+
         //Query variable
         $query = null;
         //Validate to edit or create and lookup for existing fields on the data base
@@ -143,7 +151,7 @@ class administratorController extends BaseController
         //Save
         $administratorModel->save($data);
         //Redirect
-        if (session('type') == 'administrator') {
+        if ($this->request->getPostGet('profile')) {
             return $this->response->redirect(base_url(''));
         }
         return $this->response->redirect(base_url('administrator'));

@@ -122,25 +122,24 @@ class relativeController extends BaseController
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
         //Get-fill data
-        if (session()->get('isLoggedIn') != true) {
-            $data = array(
-                'identity' => $this->request->getPostGet('identity'),
-                'name' => $this->request->getPostGet('name'),
-                'email' => $this->request->getPostGet('email'),
-                'password' => md5($this->request->getPostGet('password')),
-                'phone' => $this->request->getPostGet('phone'),
-                'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
-                'entry_at' => $this->request->getPostGet('entry_at'),
-                'out_at' => $this->request->getPostGet('out_at')
-            );
-        } else {
-            $data = array(
-                'identity' => $this->request->getPostGet('identity'),
-                'name' => $this->request->getPostGet('name'),
-                'email' => $this->request->getPostGet('email'),
-                'password' => md5($this->request->getPostGet('password')),
-                'phone' => $this->request->getPostGet('phone'),
-            );
+        $data = array(
+            'identity' => $this->request->getPostGet('identity'),
+            'name' => $this->request->getPostGet('name'),
+            'email' => $this->request->getPostGet('email'),
+            'password' => md5($this->request->getPostGet('password')),
+            'phone' => $this->request->getPostGet('phone'),
+            'entry_at' => $this->request->getPostGet('entry_at'),
+            'out_at' => $this->request->getPostGet('out_at')
+        );
+        //Save fk 
+        if (session()->get('type') != 'relative') {
+            $data['condo_owner_id'] = $this->request->getPostGet('condo_owner_id');
+        }
+        //Save password only if we are inserting or if user type new one 
+        if ($this->request->getPostGet('relative_id')) {
+            if ($this->request->getPostGet('password') == "") {
+                unset($data['password']);
+            }
         }
 
         //Query variable

@@ -49,7 +49,8 @@
                 <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
                     data-bs-toggle="tooltip" data-bs-placement="right"
                     title="La contraseña debe contener almenos 9 caracteres, una mayúscula, una minúscula, un número y un caracter especial."
-                    value="<?= isset($item) ? $item['password'] : ''; ?>" required=""
+                    value="<?= isset($item) ? $item['password'] : ''; ?>"
+                    <?= isset($edit_enabled) ? "" : "required=''" ?>
                     pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{9,64})" />
                 <label for="password">Contraseña <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>
@@ -77,7 +78,8 @@
             <div class="required-feedback">Campos requeridos*.</div>
             <!-- reenter password message -->
             <?php if (isset($item)) { ?>
-            <div class="required-feedback">Reingrese la contraseña*.</div>
+            <div class="required-feedback">Ingrese una contraseña nueva o deje el campo vacío para mantener la
+                anterior*.</div>
             <?php } ?>
             <!-- hidden input -->
             <input name="administrator_id" type="hidden"

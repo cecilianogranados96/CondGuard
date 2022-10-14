@@ -36,6 +36,8 @@ class condo_ownerController extends BaseController
             $items['item']['password'] = '';
             $items['error'] =  $error;
         }
+        //Enable edit
+        $items['edit_enabled'] = true;
         //Views
         return
             view('templates/header') .
@@ -121,6 +123,13 @@ class condo_ownerController extends BaseController
             'land_number' => $this->request->getPostGet('land_number'),
             'payment' => $this->request->getPostGet('payment'),
         );
+
+        //Save password only if we are inserting or if user type new one 
+        if ($this->request->getPostGet('condo_owner_id')) {
+            if ($this->request->getPostGet('password') == "") {
+                unset($data['password']);
+            }
+        }
 
         //Query variable
         $query = null;

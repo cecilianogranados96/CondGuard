@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Files\File;
+
 class common_areaController extends BaseController
 {
     public function index()
@@ -86,6 +88,7 @@ class common_areaController extends BaseController
         if ($this->request->getPostGet('common_area_id')) {
             $data['common_area_id'] = $this->request->getPostGet('common_area_id');
         }
+
         //Save
         $common_areaModel->save($data);
         //Redirect

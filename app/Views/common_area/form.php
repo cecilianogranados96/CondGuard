@@ -2,7 +2,7 @@
     <div class="card card-body">
         <!-- form -->
         <form action="<?= base_url('common_area/save') ?>" method="post" class="row g-3 form-floating needs-validation"
-            novalidate>
+            enctype="multipart/form-data" novalidate>
             <!-- title -->
             <h1><?= isset($edit_enabled) ? 'Editar' : 'Nueva'; ?> Área Común</h1>
             <!-- input -->
@@ -17,6 +17,12 @@
                     Invalido, debe ingresar el nombre del área común de menos de 50 caracteres.
                 </div>
             </div>
+            <!-- Input -->
+            <div class="mb-3">
+                <label for="images" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="images" name="images">
+            </div>
+
             <!-- input -->
             <div class="form-floating">
                 <input class="form-control" type="text" id="address" name="address"
@@ -91,3 +97,11 @@
         </div>
     </div>
 </div>
+
+<?= form_open_multipart('user/upload_logo'); ?>
+<input type="file" name="userfile" />
+<br>
+<p class="text-right">
+    <input type="submit" class="btn btn-primary" value="upload">
+</p>
+<?= form_close(); ?>

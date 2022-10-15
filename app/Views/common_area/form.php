@@ -19,8 +19,8 @@
             </div>
             <!-- Input -->
             <div class="mb-3">
-                <label for="images" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="images" name="images">
+                <label for="image" class="form-label">Imagen</label>
+                <input class="form-control" type="file" id="image" name="image">
             </div>
 
             <!-- input -->
@@ -70,7 +70,10 @@
                 <div class="invalid-feedback">
                     Invalido, debe ingresar estado correspondiente.
                 </div>
-            </div>
+            </div><!-- Error -->
+            <?php if (isset($error)) { ?>
+            <div class="required-feedback"><?= $error ?></div>
+            <?php } ?>
             <!-- required message -->
             <div class="required-feedback">Campos requeridos*.</div>
             <!-- hidden input -->

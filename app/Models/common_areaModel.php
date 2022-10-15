@@ -14,7 +14,7 @@ class common_areaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'address', 'condo_capacity', 'people_capacity', 'status'];
+    protected $allowedFields    = ['name', 'image', 'address', 'condo_capacity', 'people_capacity', 'status'];
 
     // Dates
     protected $useTimestamps = true; //false;

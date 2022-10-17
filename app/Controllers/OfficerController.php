@@ -39,7 +39,7 @@ class officerController extends BaseController
     }
     public function new($error = null, $data = null)
     {
-        //Var fix
+        //Var fix 
         $items['null'] = null;
         //Get-fill data 
         if ($data != null) {

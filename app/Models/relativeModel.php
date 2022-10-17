@@ -33,7 +33,7 @@ class relativeModel extends Model
 
     // Callbacks
     /*
-    protected $allowCallbacks = true;
+    protected $allowCallbacks = true; 
     protected $beforeInsert   = [];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];

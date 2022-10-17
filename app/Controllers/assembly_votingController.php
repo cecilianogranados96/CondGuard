@@ -28,7 +28,7 @@ class assembly_votingController extends BaseController
         $db        = db_connect('default');
         $assembly_votingModel = model('assembly_votingModel', true, $db);
         $assemblyModel = model('assemblyModel', true, $db);
-        //Get-fill data
+        //Get-fill data 
         $id = $this->request->getPostGet('id');
         $items['item'] = $assembly_votingModel->find($id);
         $items['relations'] =  $assemblyModel->findAll();

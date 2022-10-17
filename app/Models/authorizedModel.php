@@ -34,7 +34,7 @@ class authorizedModel extends Model
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = []; 
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];

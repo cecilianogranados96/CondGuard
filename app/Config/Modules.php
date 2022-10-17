@@ -37,7 +37,7 @@ class Modules extends BaseModules
      * --------------------------------------------------------------------------
      *
      * Aliases list of all discovery classes that will be active and used during
-     * the current application request.
+     * the current application request. 
      *
      * If it is not listed, only the base application elements will be used.
      *

@@ -32,7 +32,7 @@ class condo_ownerModel extends Model
     // Callbacks
     /*
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = []; 
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];

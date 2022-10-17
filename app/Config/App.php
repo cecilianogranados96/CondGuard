@@ -249,7 +249,7 @@ class App extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * Cookie Domain
+     * Cookie Domain 
      * --------------------------------------------------------------------------
      *
      * Set to `.your-domain.com` for site-wide cookies.

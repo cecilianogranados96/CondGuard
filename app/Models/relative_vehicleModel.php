@@ -38,7 +38,7 @@ class relative_vehicleModel extends Model
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
-    protected $beforeDelete   = [];
+    protected $beforeDelete   = []; 
     protected $afterDelete    = [];
     */
 }

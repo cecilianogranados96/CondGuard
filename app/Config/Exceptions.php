@@ -38,7 +38,7 @@ class Exceptions extends BaseConfig
      * Error Views Path
      * --------------------------------------------------------------------------
      * This is the path to the directory that contains the 'cli' and 'html'
-     * directories that hold the views used to generate errors.
+     * directories that hold the views used to generate errors. 
      *
      * Default: APPPATH.'Views/errors'
      *

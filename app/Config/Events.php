@@ -37,11 +37,11 @@ Events::on('pre_system', static function () {
 
     /*
      * --------------------------------------------------------------------
-     * Debug Toolbar Listeners.
+     * Debug Toolbar Listeners. 
      * --------------------------------------------------------------------
      * If you delete, they will no longer be collected.
      */
-    if (CI_DEBUG && ! is_cli()) {
+    if (CI_DEBUG && !is_cli()) {
         Events::on('DBQuery', 'CodeIgniter\Debug\Toolbar\Collectors\Database::collect');
         Services::toolbar()->respond();
     }

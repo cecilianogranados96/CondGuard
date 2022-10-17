@@ -32,7 +32,7 @@ class Format extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * Formatters
+     * Formatters 
      * --------------------------------------------------------------------------
      *
      * Lists the class to use to format responses with of a particular type.

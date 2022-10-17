@@ -26,7 +26,7 @@ class Services extends BaseService
      *         return static::getSharedInstance('example');
      *     }
      *
-     *     return new \CodeIgniter\Example();
+     *     return new \CodeIgniter\Example(); 
      * }
      */
 }

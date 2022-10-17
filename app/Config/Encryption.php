@@ -36,7 +36,7 @@ class Encryption extends BaseConfig
      * - OpenSSL
      * - Sodium
      *
-     * @var string
+     * @var string 
      */
     public $driver = 'OpenSSL';
 

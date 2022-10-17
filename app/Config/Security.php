@@ -101,7 +101,7 @@ class Security extends BaseConfig
      * CSRF SameSite
      * --------------------------------------------------------------------------
      *
-     * Setting for CSRF SameSite cookie token.
+     * Setting for CSRF SameSite cookie token. 
      *
      * Allowed values are: None - Lax - Strict - ''.
      *

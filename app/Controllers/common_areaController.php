@@ -39,13 +39,13 @@ class common_areaController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
-    public function new($error = null, $data = null)
+    public function new($data = null)
     {
         //Var fix
         $items['null'] = null;
         if ($data != null) {
             $items['item'] =  $data;
-            $items['error'] =  $error;
+            $items['validation'] = $data['validation'];
         }
         //Views
         return
@@ -56,17 +56,23 @@ class common_areaController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
-    public function edit()
+    public function edit($data = null)
     {
         //Connect / models
         $db        = db_connect('default');
         $common_areaModel = model('common_areaModel', true, $db);
         //Get-fill data 
-        $id = $this->request->getPostGet('id');
-        $items['item'] = $common_areaModel->find($id);
+        if ($data == null) {
+            $id = $this->request->getPostGet('id');
+            $items['item'] = $common_areaModel->find($id);
+        } else {
+            $items['item'] = $data;
+            $items['validation'] = $data['validation'];
+        }
+
         //Enable edit
         $items['edit_enabled'] = true;
-        //Views
+        //Views 
         return
             view('templates/header') .
             view('templates/navbar') .
@@ -83,14 +89,6 @@ class common_areaController extends BaseController
         $common_areaModel = model('common_areaModel', true, $db);
 
 
-        //Rules for image
-        $rules = [
-            'image' => [
-                'uploaded[image]',
-                'mime_in[image,image/jpg,image/jpeg,image/gif,image/png]',
-                'max_size[image,4096]',
-            ],
-        ];
         //Get-fill data
         $data = array(
             'name' => $this->request->getPostGet('name'),
@@ -100,26 +98,55 @@ class common_areaController extends BaseController
             'status' => $this->request->getPostGet('status')
         );
 
-
-        //Validate to edit or create
+        //Validate to edit or create for send id for update process
         if ($this->request->getPostGet('common_area_id')) {
             $data['common_area_id'] = $this->request->getPostGet('common_area_id');
-
-            //validate image
-            if (!$this->validate($rules)) {
-                return $this->edit($this->validator, $data);
-            }
-        } else {
-            //validate image
-            if (!$this->validate($rules)) {
-                return $this->new($this->validator, $data);
-            }
         }
-        //Add image name to data to save and move the image inside the project directory
-        $image = $this->request->getFile('image');
-        $image->move(WRITEPATH . 'uploads');
-        $data['image'] = $image->getClientName();
 
+
+        //Save image only if user are inserting OR if user send image 
+        if (!$this->request->getPostGet('common_area_id') || !empty($_FILES['image']['name'])) {
+            //Validation rules
+            $rules = [
+                'image' => [
+                    'rules'  => [
+                        'uploaded[image]',
+                        'mime_in[image,image/jpg,image/jpeg,image/png]',
+                        'max_size[image,4096]'
+                    ],
+                    'errors' => [
+                        'uploaded' => 'Inválido, debe ingresar una imagen en formato jpg, jpeg o png (4MB peso maximo).',
+                        'mime_in' => 'Inválido, debe añadir imagen en el formato jpg, jpeg o png.',
+                        'max_size' => 'Inválido, la imagen supera el tamaño permitido.'
+                    ],
+                ],
+            ];
+            //Verify for edit or create process to redirect respective view with error (stop process)
+            if ($this->request->getPostGet('common_area_id')) {
+                //Validation error
+                if (!$this->validate($rules)) {
+                    $item = $common_areaModel->find($this->request->getPostGet('common_area_id'));
+                    $data['image'] = $item['image'];
+                    $data['validation'] = $this->validator;
+                    return $this->edit($data);
+                } else {
+                    //On edit process if validation of image succedded successfully , then delte the old image
+                    $item = $common_areaModel->find($this->request->getPostGet('common_area_id'));
+                    unlink(FCPATH . 'assets/' . 'img/' . 'common_areas/' . $item['image']);
+                }
+            } else {
+                //Validation error
+                if (!$this->validate($rules)) {
+                    $data['validation'] = $this->validator;
+                    return $this->new($data);
+                }
+            }
+            //Save Image 
+            $image = $this->request->getFile('image');
+            $newName = $image->getRandomName();
+            $image->move(FCPATH . 'assets/' . 'img/' . 'common_areas/', $newName);
+            $data['image'] = $newName;
+        }
         //Save
         $common_areaModel->save($data);
         //Redirect

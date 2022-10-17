@@ -38,7 +38,7 @@ class Email extends BaseConfig
     /**
      * The server path to Sendmail.
      *
-     * @var string
+     * @var string 
      */
     public $mailPath = '/usr/sbin/sendmail';
 

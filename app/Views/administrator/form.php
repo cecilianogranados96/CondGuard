@@ -41,7 +41,7 @@
                 <label for="email">Correo electrónico <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>
                 <div class="invalid-feedback">
-                    Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
+                    Inválido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
                 </div>
             </div>
             <!-- input -->

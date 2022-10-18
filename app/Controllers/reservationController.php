@@ -21,7 +21,7 @@ class reservationController extends BaseController
             view('templates/header') .
             view('templates/navbar') .
             view('templates/maintenance_begin') .
-            view('reservation/list', $items) .
+            view('reservation/list', $items) . 
             view('templates/maintenance_end') .
             view('templates/footer');
     }

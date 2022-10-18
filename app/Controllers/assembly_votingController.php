@@ -25,7 +25,7 @@ class assembly_votingController extends BaseController
     public function detail()
     {
         //Connect / models
-        $db        = db_connect('default');
+        $db        = db_connect('default'); 
         $assembly_votingModel = model('assembly_votingModel', true, $db);
         $assemblyModel = model('assemblyModel', true, $db);
         //Get-fill data 

@@ -23,7 +23,7 @@ class patrolController extends BaseController
             view('templates/footer');
     }
     public function detail()
-    {
+    { 
         //Connect / models
         $db        = db_connect('default');
         $patrolModel = model('patrolModel', true, $db);

@@ -17,7 +17,7 @@ class officerController extends BaseController
             view('templates/navbar') .
             view('templates/maintenance_begin') .
             view('officer/list', $items) .
-            view('templates/maintenance_end') .
+            view('templates/maintenance_end') . 
             view('templates/footer');
     }
     public function detail()

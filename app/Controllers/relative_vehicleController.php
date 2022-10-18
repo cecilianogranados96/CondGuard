@@ -21,7 +21,7 @@ class relative_vehicleController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
-    public function detail()
+    public function detail() 
     {
         //Connect / models
         $db        = db_connect('default');

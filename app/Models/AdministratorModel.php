@@ -29,7 +29,7 @@ class administratorModel extends Model
     protected $skipValidation       = false;
     #protected $cleanValidationRules = true;
 
-    // Callbacks
+    // Callbacks  
     /*
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];

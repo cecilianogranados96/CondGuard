@@ -24,7 +24,7 @@ class assemblyController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $assemblyModel = model('assemblyModel', true, $db);
-        //Get-fill data
+        //Get-fill data 
         $id = $this->request->getPostGet('id');
         $items['item'] = $assemblyModel->find($id);
         return

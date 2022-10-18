@@ -31,7 +31,7 @@ class condo_ownerController extends BaseController
             $items['item'] = $condo_ownerModel->find($id);
             $items['item']['password'] = '';
             $items['error'] =  $error;
-        } else { 
+        } else {
             $items['item'] = $data;
             $items['item']['password'] = '';
             $items['error'] =  $error;

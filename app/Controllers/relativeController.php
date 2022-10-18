@@ -20,7 +20,7 @@ class relativeController extends BaseController
             view('templates/maintenance_begin') .
             view('relative/list', $items) .
             view('templates/maintenance_end') .
-            view('templates/footer'); 
+            view('templates/footer');
     }
     public function profile($error = null, $data = null)
     {

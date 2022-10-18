@@ -14,4 +14,4 @@ class Home extends BaseController
             view('home') .
             view('templates/footer');
     }
-} 
+}

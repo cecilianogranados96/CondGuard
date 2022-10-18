@@ -31,7 +31,7 @@ class authorizedController extends BaseController
         //Get-fill data
         $id = $this->request->getPostGet('id');
         $items['item'] = $authorizedModel->find($id);
-        $items['relations'] =  $condo_ownerModel->findAll(); 
+        $items['relations'] =  $condo_ownerModel->findAll();
         //Views
         return
             view('templates/header') .

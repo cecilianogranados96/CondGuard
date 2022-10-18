@@ -23,13 +23,13 @@ abstract class BaseController extends Controller
 {
     /**
      * Instance of the main Request object.
-     * 
+     *
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
 
     /**
-     * An array of helpers to be loaded automatically upon 
+     * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
      * to all other controllers that extend BaseController.
      *

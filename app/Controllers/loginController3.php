@@ -25,7 +25,7 @@ class loginController3 extends BaseController
 		session_start();
 		$db = db_connect('default');
 		$email = $_POST['email'];
-		$pass = md5($_POST['password']); 
+		$pass = md5($_POST['password']);
 		$query = $db->Query("SELECT email FROM condo_owner where email = '" . $email . "' ");
 		if ($query->resultID->num_rows != 0) {
 			$query = $db->query("SELECT condo_owner_id,password,email FROM condo_owner where password = '" . $pass . "' and email = '" . $email . "' ");

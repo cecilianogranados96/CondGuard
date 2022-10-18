@@ -25,7 +25,7 @@ class administratorController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $administratorModel = model('administratorModel', true, $db);
-        //Get-fill data  
+        //Get-fill data 
         if ($data == null) {
             $id = $this->request->getPostGet('id');
             $items['item'] = $administratorModel->find($id);

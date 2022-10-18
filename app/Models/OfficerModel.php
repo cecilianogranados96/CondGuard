@@ -33,7 +33,7 @@ class officerModel extends Model
     /*
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
-    protected $afterInsert    = []; 
+    protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];

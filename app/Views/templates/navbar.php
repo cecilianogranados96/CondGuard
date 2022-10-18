@@ -25,7 +25,8 @@
                 </li>
 
                 <li class="nav-item text-warning">
-                    <a class="nav-link fw-semibold " data-bss-hover-animate="pulse" href="#" style="
+                    <a class="nav-link fw-semibold " data-bss-hover-animate="pulse"
+                        href="<?= base_url('reservation/common_areas') ?>" style="
               padding-left: 11px;
               --bs-primary: #fec006;
               --bs-primary-rgb: 254, 192, 6;

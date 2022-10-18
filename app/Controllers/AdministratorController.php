@@ -109,7 +109,7 @@ class administratorController extends BaseController
     }
     public function save()
     {
-        //Connect / models 
+        //Connect / models
         $db        = db_connect('default');
         $administratorModel = model('administratorModel', true, $db);
         //Get-fill data

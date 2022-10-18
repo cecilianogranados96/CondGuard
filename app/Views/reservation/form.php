@@ -40,7 +40,7 @@
             <!-- select -->
             <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el condómino que va reservar">
                 <select class="form-select single-select-clear-field" name="condo_owner_id" id="condo_owner_id"
-                    data-placeholder="Condómino*" required="" style="font-size: 1px;">
+                    data-placeholder="Condómino*" style="font-size: 1px;">
                     <option></option>
                     <?php foreach ($relations2 as $relation) :
                         $selected = '';
@@ -66,7 +66,7 @@
             <!-- select -->
             <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el acreditado que va reserva">
                 <select class="form-select single-select-clear-field" name="relative_id" id="relative_id"
-                    data-placeholder="Acreditado*" required="" style="font-size: 1px;">
+                    data-placeholder="Acreditado*" style="font-size: 1px;">
                     <option></option>
                     <?php foreach ($relations3 as $relation) :
                         $selected = '';
@@ -110,7 +110,7 @@
                     title="Fecha de entrada ej: <?= date('Y-m-d H:i:s') ?>"
                     value="<?= isset($item) ? $item['entry_at'] : ''; ?>"
                     min="<?= isset($item) ? $date_entry : date('Y-m-d') ?>T00:00"
-                    max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" />
+                    max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" required="" />
 
                 <label for="entry_at">Fecha de entrada </label>
                 <!--<div class="valid-feedback">Correcto.</div>-->
@@ -139,7 +139,7 @@
                     title="Fecha de salida ej: <?= date('Y-m-d H:i:s') ?>"
                     value="<?= isset($item) ? $item['out_at'] : ''; ?>"
                     min="<?= isset($item) ? $date_out : date('Y-m-d') ?>T00:00"
-                    max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" />
+                    max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" required="" />
                 <label for="out_at">Fecha de salida </label>
                 <!--<div class="valid-feedback">Correcto.</div>-->
                 <div class="invalid-feedback">

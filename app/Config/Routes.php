@@ -129,6 +129,9 @@ $routes->get('vote/delete', 'voteController::delete');
 $routes->post('vote/save', 'voteController::save');
 //reservation
 $routes->get('reservation', 'reservationController::index');
+$routes->get('reservation/common_areas', 'reservationController::common_areas');
+$routes->get('reservation/request', 'reservationController::request');
+$routes->post('reservation/reserve', 'reservationController::reserve');
 $routes->get('reservation/detail', 'reservationController::detail');
 $routes->get('reservation/new', 'reservationController::new');
 $routes->get('reservation/edit', 'reservationController::edit');

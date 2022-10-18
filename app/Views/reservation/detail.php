@@ -82,8 +82,9 @@
             </form>
             <!-- option -->
             <div style="margin-top: 20px;">
-                <a class="btn btn-secondary btn-lg" role="button" style="width: 39%" href="<?= base_url('relative') ?>"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="Atrás">
+                <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
+                    href="<?= base_url('reservation') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
+                    title="Atrás">
                     Atrás
                 </a><a class="btn btn-warning btn-lg" role="button" style="width: 59%; margin-left: 2%"
                     href="<?php echo base_url('reservation/edit?id=' . $item['reservation_id']) ?>"

@@ -99,7 +99,7 @@
                         Invalido, debe ingresar una imagen en formato jpg, jpeg o png (4MB peso maximo).
                     </div>
                     <img src=<?= isset($item) ? '/assets/img/common_areas/' . $item['image'] : '' ?>
-                        alt="Vista previa de imagen." id="preview-image" class="img-fluid hideImage" width="55%"
+                        alt="Vista previa de imagen." id="preview-image" class="img-fluid hideImage  " width="55%"
                         style="margin-top: 15px;">
                     <?=
                     "<div class='required-feedback'>" . \Config\Services::validation()->listErrors() . "</div>"

@@ -24,7 +24,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'adminaccess' => \App\Filters\AdminAccess::class,
-        'useraccess' => \App\Filters\UserAccess::class
+        'useraccess' => \App\Filters\UserAccess::class,
+        'reserveaccess' => \App\Filters\ReserveAccess::class
     ];
 
     /**
@@ -94,7 +95,9 @@ class Filters extends BaseConfig
                 'assembly_voting',
                 'assembly_voting/*',
                 'reservation',
-                'reservation/*',
+                'reservation/new',
+                'reservation/edit',
+                'reservation/detail',
                 'common_area',
                 'common_area/*',
                 'patrol',
@@ -109,7 +112,14 @@ class Filters extends BaseConfig
                 'relative/save',
                 'administrator/profile',
                 'condo_owner/profile',
-                'condo_owner/save'
+                'condo_owner/save',
+            ]
+        ],
+        'reserveaccess' => [
+            'before' => [
+                'reservation/common_areas',
+                'reservation/request',
+                'reservation/reserve'
             ]
         ]
     ];

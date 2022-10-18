@@ -67,10 +67,14 @@
     </div>
 </div>
 <div class="w-100 d-xl-none d-xxl-none" style="margin: 4%"></div>
-<div class="col visually-hidden">
+<div class="col ">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Title</h4>
+            <h4 class="card-title">Imagen</h4>
+
+            <img src=<?= isset($item) ? '/assets/img/common_areas/' . $item['image'] : '' ?>
+                alt="Vista previa de imagen." id="preview-image" class="img-fluid hideImage" width="55%"
+                style="margin-top: 15px;">
         </div>
     </div>
 </div>

@@ -39,6 +39,6 @@ class reservationModel extends Model
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
-    protected $afterDelete    = []; 
+    protected $afterDelete    = [];
     */
 }

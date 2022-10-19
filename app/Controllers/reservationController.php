@@ -41,12 +41,14 @@ class reservationController extends BaseController
     public function request()
     {
         //Connect / models
+        $reservationModel = model('reservationModel', true, $db);
         $common_areaModel = model('common_areaModel', true, $db);
         $condo_ownerModel = model('condo_ownerModel', true, $db);
         $relativeModel = model('relativeModel', true, $db);
         //Get-fill data 
         $id = $this->request->getPostGet('id');
         $items['item'] = $common_areaModel->find($id);
+        $items['reservations'] =  $reservationModel->findAll();
         $items['relations'] =  $common_areaModel->findAll();
         $items['relations2'] =  $condo_ownerModel->findAll();
         $items['relations3'] =  $relativeModel->findAll();
@@ -56,6 +58,15 @@ class reservationController extends BaseController
             view('templates/navbar') .
             view('reservation/request', $items) .
             view('templates/footer');
+    }
+    public function ajaxvalidate()
+    {
+        $horarios = array('7-11', '11-3');
+        $id = $_POST['id'];
+        $date = $_POST['date'];
+        $horarios[] = $id;
+        $horarios[] = $date;
+        return json_encode($horarios);
     }
     public function reserve()
     {

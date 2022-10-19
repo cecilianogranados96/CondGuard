@@ -36,6 +36,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->post('ajaxvalidate', 'reservationController::ajaxvalidate');
+
 $routes->get('student', 'Student::index');
 $routes->post('student/store', 'Student::store');
 

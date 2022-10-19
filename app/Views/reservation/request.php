@@ -57,17 +57,18 @@
                             <input class="form-control" placeholder="Fecha de reserva" data-bs-toggle="tooltip"
                                 data-bs-placement="right" title="Fecha de entrada ej: <?= date('Y-m-d') ?>" type="date"
                                 id="entry_at" name="entry_at" min="<?= date('Y-m-d') ?>"
-                                max="<?= date('Y-m-d', strtotime('+1 year')) ?>" required>
+                                max="<?= date('Y-m-d', strtotime('+1 year')) ?>" required
+                                onchange="validate(this.value)">
                             <label for="entry_at">Fecha de entrada </label>
                             <div class="valid-feedback">Correcto.</div>
                             <div class="invalid-feedback">
                                 Invalido, debe ingresar una fecha válida ej:<?= date('Y-m-d') ?>.
                             </div>
                         </div>
+
                         <!-- select -->
-                        <div data-bs-toggle="tooltip" data-bs-placement="right" title="Horario" class="mt-3">
-                            <select class="form-select single-select-clear-field" name="schedule" id="schedule"
-                                data-placeholder="Horario*" required="" style="font-size: 1px;">
+                        <div class="mt-3">
+                            <select class="form-control" name="schedule" id="schedule" required="">
                                 <option></option>
                                 <option value="1">7 am - 11 am</option>
                                 <option value="2">11 am - 3 pm</option>
@@ -101,3 +102,23 @@
         </div>
     </div>
 </section>
+
+<script>
+function validate(fecha) {
+    $.post("../ajaxvalidate", {
+            id: "<?php echo $item['common_area_id'] ?>",
+            date: fecha
+        })
+        .done(function(data) {
+            alert("Data Loaded: " + data);
+            const obj = JSON.parse(data);
+            console.log(obj);
+            for (const key in obj) {
+                $('#schedule').append('< option value = ' + obj[key] + ' > ' + obj[key] + '< /option>');
+                if (obj.hasOwnProperty(key)) {
+                    console.log(`${key} : ${obj[key]}`)
+                }
+            }
+        });
+}
+</script>

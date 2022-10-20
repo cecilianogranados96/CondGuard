@@ -23,7 +23,8 @@
               color: #fec006;
             ">Inicio</a>
                 </li>
-
+                <?php
+                if (session()->get('isLoggedIn')) { ?>
                 <li class="nav-item text-warning">
                     <a class="nav-link fw-semibold " data-bss-hover-animate="pulse"
                         href="<?= base_url('reservation/common_areas') ?>" style="
@@ -33,6 +34,16 @@
               color: #fec006;
             ">Reservar</a>
                 </li>
+                <?php } else { ?>
+                <a type="button" class="nav-link fw-semibold" data-bs-toggle="popover" data-bs-title="Reservar"
+                    data-bs-content="Inicie sesión para poder reservar!" style="
+              padding-left: 11px;
+              --bs-primary: #fec006;
+              --bs-primary-rgb: 254, 192, 6;
+              color: #fec006;
+            ">Reservar</a>
+                <?php } ?>
+
 
                 <li class="nav-item text-warning visually-hidden">
                     <a class="nav-link fw-semibold " data-bss-hover-animate="pulse" href="#" style="
@@ -66,6 +77,7 @@
                         <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('maintenance') ?>">Mantenimientos</a>
                         <?php } ?>
+                        <hr class="dropdown-divider">
                         <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('login/signout') ?>">Cerrar Sesión</a>
                     </div>

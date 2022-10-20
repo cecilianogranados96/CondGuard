@@ -67,12 +67,10 @@
                         </div>
 
                         <!-- select -->
-                        <div class="mt-3">
-                            <select class="form-control" name="schedule" id="schedule" required="">
+                        <div data-bs-toggle="tooltip" data-bs-placement="right" title="Horario" class="mt-3">
+                            <select class="form-select single-select-clear-field" name="schedule" id="schedule"
+                                data-placeholder="Horario*" required="">
                                 <option></option>
-                                <option value="1">7 am - 11 am</option>
-                                <option value="2">11 am - 3 pm</option>
-                                <option value="3">3 pm - 7 pm</option>
                             </select>
                             <div class="valid-feedback">Correcto.</div>
                             <div class="invalid-feedback">
@@ -103,22 +101,29 @@
     </div>
 </section>
 
+
 <script>
 function validate(fecha) {
-    $.post("../ajaxvalidate", {
-            id: "<?php echo $item['common_area_id'] ?>",
-            date: fecha
-        })
-        .done(function(data) {
-            alert("Data Loaded: " + data);
-            const obj = JSON.parse(data);
-            console.log(obj);
-            for (const key in obj) {
-                $('#schedule').append('< option value = ' + obj[key] + ' > ' + obj[key] + '< /option>');
-                if (obj.hasOwnProperty(key)) {
-                    console.log(`${key} : ${obj[key]}`)
+    $('#schedule').children().remove().end()
+    $('#schedule').append("<option></option>");
+    if (fecha) {
+        $.post("ajaxschedule", {
+                id: "<?php echo $item['common_area_id'] ?>",
+                date: fecha
+            })
+            .done(function(data) {
+
+                const obj = JSON.parse(data);
+                //alert("Data Loaded: " + data);
+                //console.log(obj);
+                for (const key in obj) {
+                    $('#schedule').append("<option value='" + obj[key] + "'>" + obj[key] + "</option>");
+
+                    /*if (obj.hasOwnProperty(key)) {
+                        console.log(`${key} : ${obj[key]}`)
+                    }*/
                 }
-            }
-        });
+            });
+    }
 }
 </script>

@@ -59,14 +59,38 @@ class reservationController extends BaseController
             view('reservation/request', $items) .
             view('templates/footer');
     }
-    public function ajaxvalidate()
+    public function ajaxschedule()
     {
-        $horarios = array('7-11', '11-3');
+        //Connect / models
+        $reservationModel = model('reservationModel', true, $db);
+        $reservations =  $reservationModel->findAll();
+        ////GetPost data 
         $id = $_POST['id'];
         $date = $_POST['date'];
-        $horarios[] = $id;
-        $horarios[] = $date;
-        return json_encode($horarios);
+        //Convert date
+        $time_input = strtotime($date);
+        $date_input = getDate($time_input);
+        //schedules to add
+        $schedules = array('7 am - 11 am', '11 am - 3 pm', '3 pm - 7 pm');
+        foreach ($reservations as $reservation) {
+            if ($reservation['common_area_id'] == $id) {
+                $time_entry = strtotime($reservation['entry_at']);
+                $date_entry = getDate($time_entry);
+                //schedules reserved
+                if ($date_entry['year'] == $date_input['year'] && $date_entry['mon'] == $date_input['mon'] && $date_entry['mday'] == $date_input['mday']) {
+                    if ($date_entry['hours'] == '07') {
+                        unset($schedules[0]);
+                    }
+                    if ($date_entry['hours'] == '11') {
+                        unset($schedules[1]);
+                    }
+                    if ($date_entry['hours'] == '15') {
+                        unset($schedules[2]);
+                    }
+                }
+            }
+        }
+        return json_encode($schedules);
     }
     public function reserve()
     {
@@ -80,15 +104,15 @@ class reservationController extends BaseController
         );
         $schedule = $this->request->getPostGet('schedule');
         switch ($schedule) {
-            case '1':
+            case '7 am - 11 am':
                 $data['entry_at'] = $this->request->getPostGet('entry_at') . ' 07:00:00';
                 $data['out_at'] = $this->request->getPostGet('entry_at') . ' 11:00:00';
                 break;
-            case '2':
+            case '11 am - 3 pm':
                 $data['entry_at'] = $this->request->getPostGet('entry_at') . ' 11:00:00';
                 $data['out_at'] = $this->request->getPostGet('entry_at') . ' 15:00:00';
                 break;
-            case '3':
+            case '3 pm - 7 pm':
                 $data['entry_at'] = $this->request->getPostGet('entry_at') . ' 15:00:00';
                 $data['out_at'] = $this->request->getPostGet('entry_at') . ' 19:00:00';
                 break;

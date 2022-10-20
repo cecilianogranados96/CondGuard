@@ -15,16 +15,20 @@
 
 
 <!-- Scripts import-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript"
     src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/r-2.3.0/sc-2.0.7/sb-1.3.4/datatables.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- Scripts custom import-->
 <script type="text/javascript" src="<?= base_url('assets/js/bs-init.js') ?>"></script>
 
 <!-- Scripts custom-->
 <script>
+//Enable BS5 popovers
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
 //Enable BS5 Tooltips
 const tooltipTriggerList = document.querySelectorAll(
     '[data-bs-toggle="tooltip"]'
@@ -32,6 +36,7 @@ const tooltipTriggerList = document.querySelectorAll(
 const tooltipList = [...tooltipTriggerList].map(
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
 );
+
 
 //Hide required message when input
 $('input').change(function() {
@@ -89,12 +94,12 @@ $('.only-alphanumeric').on('change keyup', function() {
     });
 })();
 //Enable Select2 with bootstrap 5 
-/*$('.single-select-clear-field').select2({
+$('.single-select-clear-field').select2({
     theme: "bootstrap-5",
     width: '100%',
     placeholder: $(this).data('placeholder'),
     allowClear: true
-});*/
+});
 //Datatables options
 $(document).ready(function() {
     $('#datatable').DataTable({

@@ -150,7 +150,7 @@
             <div class="form-floating">
                 <input class="form-control only-alphanumeric" type="text" id="status" name="status" placeholder="Estado"
                     data-bs-toggle="tooltip" data-bs-placement="right" title="Estado correspondiente."
-                    value="<?= isset($item) ? $item['status'] : ''; ?>" required
+                    value="<?= isset($item) ? $item['status'] : 'reservado'; ?>" required
                     pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
                 <label for="status">Estado <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>

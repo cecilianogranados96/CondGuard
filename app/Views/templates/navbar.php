@@ -77,6 +77,10 @@
                         <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('maintenance') ?>">Mantenimientos</a>
                         <?php } ?>
+                        <?php if (session()->get('type') == 'condo_owner') { ?>
+                        <a class="dropdown-item" data-bss-hover-animate="pulse"
+                            href="<?= base_url('assembly_voting/preview') ?>">Votación</a>
+                        <?php } ?>
                         <hr class="dropdown-divider">
                         <a class="dropdown-item" data-bss-hover-animate="pulse"
                             href="<?= base_url('login/signout') ?>">Cerrar Sesión</a>

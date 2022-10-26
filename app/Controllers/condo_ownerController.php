@@ -121,7 +121,7 @@ class condo_ownerController extends BaseController
             'password' => md5($this->request->getPostGet('password')),
             'phone' => $this->request->getPostGet('phone'),
             'land_number' => $this->request->getPostGet('land_number'),
-            'payment' => $this->request->getPostGet('payment'),
+            'payment' => '0',
         );
 
         //Save password only if we are inserting or if user type new one 

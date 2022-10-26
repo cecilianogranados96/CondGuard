@@ -38,20 +38,27 @@ class reservationController extends BaseController
             view('reservation/common_areas', $items) .
             view('templates/footer');
     }
-    public function request()
+    public function request($data = null)
     {
         //Connect / models
         $reservationModel = model('reservationModel', true, $db);
         $common_areaModel = model('common_areaModel', true, $db);
         $condo_ownerModel = model('condo_ownerModel', true, $db);
         $relativeModel = model('relativeModel', true, $db);
-        //Get-fill data 
         $id = $this->request->getPostGet('id');
+        //Get-fill data 
+        if ($data != null) {
+            $items['error'] = $data['error'];
+            $id = $data['common_area_id'];
+        } else {
+            $id = $this->request->getPostGet('id');
+        }
         $items['item'] = $common_areaModel->find($id);
         $items['reservations'] =  $reservationModel->findAll();
         $items['relations'] =  $common_areaModel->findAll();
         $items['relations2'] =  $condo_ownerModel->findAll();
         $items['relations3'] =  $relativeModel->findAll();
+
         //Views
         return
             view('templates/header') .
@@ -63,10 +70,11 @@ class reservationController extends BaseController
     {
         //Connect / models
         $reservationModel = model('reservationModel', true, $db);
-        $reservations =  $reservationModel->findAll();
+
         ////GetPost data 
         $id = $_POST['id'];
         $date = $_POST['date'];
+        $reservations =  $reservationModel->findAll();
         //Convert date
         $time_input = strtotime($date);
         $date_input = getDate($time_input);
@@ -97,6 +105,8 @@ class reservationController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $reservationModel = model('reservationModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+
         //Get-fill data
         $data = array(
             'common_area_id' => $this->request->getPostGet('common_area_id'),
@@ -119,9 +129,35 @@ class reservationController extends BaseController
         }
         if (session()->get('type') == 'condo_owner') {
             $data['condo_owner_id'] = session()->get('condo_owner_id');
+            $user = $condo_ownerModel->find($data['condo_owner_id']);
+            if ($user['payment'] == 0) {
+                $data['error'] = "No puede reservar hasta estar al día con los pagos del condominio.";
+                return $this->request($data);
+            }
         } else {
             $data['relative_id'] = session()->get('relative_id');
+            $user = $condo_ownerModel->find(session()->get('condo_owner_id'));
+            if ($user['payment'] == 0) {
+                $data['error'] = "No puede reservar hasta estar al día con los pagos del condominio.";
+                return $this->request($data);
+            }
         }
+        //Email to client
+        $to = 'juanjo20-1998@outlook.com'; //session()->get('email');
+        $subject = "This is subject";
+
+        $message = "<b>This is HTML message.</b>";
+        $message .= "<h1>This is headline.</h1>";
+
+        $header = "From:juanjo20-1998@outlook.com \r\n";
+        $header .= "Cc:afgh@somedomain.com \r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type: text/html\r\n";
+
+        $retval = mail($to, $subject, $message, $header);
+
+
+
         //Save
         $reservationModel->save($data);
         //Redirect

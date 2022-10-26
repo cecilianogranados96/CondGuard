@@ -79,6 +79,7 @@
                         </div>
                         <br>
                         <br />
+
                         <!-- hidden input -->
                         <input name="common_area_id" type="hidden" value="<?php echo $item['common_area_id'] ?>">
                         <br>
@@ -94,6 +95,10 @@
                                 type="submit" data-bs-toggle="tooltip" data-bs-placement="right"
                                 title="Reservar">Reservar <i class="fas fa-check fs-4"></i></button>
                         </div>
+                        <!-- Error -->
+                        <?php if (isset($error)) { ?>
+                        <div class="required-feedback"><?= $error ?></div>
+                        <?php } ?>
                     </form>
                 </div>
             </div>

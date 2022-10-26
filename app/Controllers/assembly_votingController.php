@@ -22,6 +22,19 @@ class assembly_votingController extends BaseController
             view('templates/maintenance_end') .
             view('templates/footer');
     }
+    public function preview()
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $assembly_votingModel = model('assembly_votingModel', true, $db);
+        $items['items'] = $assembly_votingModel->findAll();
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('assembly_voting/preview', $items) .
+            view('templates/footer');
+    }
     public function detail()
     {
         //Connect / models

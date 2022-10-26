@@ -25,7 +25,8 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'adminaccess' => \App\Filters\AdminAccess::class,
         'useraccess' => \App\Filters\UserAccess::class,
-        'reserveaccess' => \App\Filters\ReserveAccess::class
+        'reserveaccess' => \App\Filters\ReserveAccess::class,
+        'votingaccess' => \App\Filters\VotingAccess::class
     ];
 
     /**
@@ -93,7 +94,10 @@ class Filters extends BaseConfig
                 'assembly',
                 'assembly/*',
                 'assembly_voting',
-                'assembly_voting/*',
+                'assembly_voting/new',
+                'assembly_voting/edit',
+                'assembly_voting/save',
+                'assembly_voting/detail',
                 'reservation',
                 'reservation/new',
                 'reservation/edit',
@@ -120,6 +124,11 @@ class Filters extends BaseConfig
                 'reservation/common_areas',
                 'reservation/request',
                 'reservation/reserve'
+            ]
+        ],
+        'votingaccess' => [
+            'before' => [
+                'assembly_voting/preview',
             ]
         ]
     ];

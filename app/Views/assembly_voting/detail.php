@@ -52,7 +52,27 @@
                 </div>
                 <!-- input -->
                 <div class="form-floating mb-1">
-                    <input class="form-control" type="text" id="status" value="<?= $item['status'] ?>" readonly />
+                    <?php
+                    $status = null;
+                    switch ($item['status']) {
+                        case 'pending':
+                            $status = 'Pendiente';
+                            break;
+                        case 'approved':
+                            $status = 'Aprobado';
+                            break;
+                        case 'rejected':
+                            $status = 'Rechazado';
+                            break;
+
+                        default:
+                            $status = 'Pendiente';
+                            break;
+                    }
+
+
+                    ?>
+                    <input class="form-control" type="text" id="status" value="<?= $status ?>" readonly />
                     <label for="status">Estado</label>
                 </div>
                 <!-- Input -->

@@ -22,7 +22,7 @@
                 <input class="form-control" type="text" id="place" name="place" placeholder="Lugar"
                     data-bs-toggle="tooltip" data-bs-placement="right" title="Lugar"
                     value="<?= isset($item) ? $item['place'] : ''; ?>" required
-                    pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+                    pattern="^[\w\s'\-,.][^_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
                 <label for="place">Lugar <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>
                 <div class="invalid-feedback">

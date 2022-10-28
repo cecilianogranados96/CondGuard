@@ -99,6 +99,8 @@ $routes->post('condo_owner/save', 'condo_ownerController::save');
 //assembly_voting
 $routes->get('assembly_voting', 'assembly_votingController::index');
 $routes->get('assembly_voting/preview', 'assembly_votingController::preview');
+$routes->get('assembly_voting/panel', 'assembly_votingController::panel');
+$routes->post('assembly_voting/vote', 'assembly_votingController::vote');
 $routes->get('assembly_voting/detail', 'assembly_votingController::detail');
 $routes->get('assembly_voting/new', 'assembly_votingController::new');
 $routes->get('assembly_voting/edit', 'assembly_votingController::edit');

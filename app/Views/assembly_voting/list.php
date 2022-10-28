@@ -18,9 +18,29 @@
                 <tbody>
                     <?php foreach ($items as $item) : ?>
                     <tr>
-                        <td><?= $item['description'] ?></td>
+                        <td style="width: 25%;"><?= $item['description'] ?></td>
                         <td><?= $item['question'] ?></td>
-                        <td><?= $item['status'] ?> </td>
+                        <?php
+                            $status = null;
+                            switch ($item['status']) {
+                                case 'pending':
+                                    $status = 'Pendiente';
+                                    break;
+                                case 'approved':
+                                    $status = 'Aprobado';
+                                    break;
+                                case 'rejected':
+                                    $status = 'Rechazado';
+                                    break;
+
+                                default:
+                                    $status = 'Pendiente';
+                                    break;
+                            }
+
+
+                            ?>
+                        <td><?= $status ?> </td>
                         <td>
                             <a href="<?php echo base_url('assembly_voting/detail?id=' . $item['assembly_voting_id']) ?>"
                                 class="btn btn-info " data-bs-toggle="tooltip" title="Detalle" role="button">Detalle

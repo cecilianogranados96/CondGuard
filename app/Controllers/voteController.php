@@ -92,21 +92,26 @@ class voteController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $voteModel = model('voteModel', true, $db);
+        $assembly_votingModel = model('assembly_votingModel', true, $db);
         //Get-fill data
+
         $data = array(
             'assembly_voting_id' => $this->request->getPostGet('assembly_voting_id'),
             'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
             'answer' => $this->request->getPostGet('answer')
         );
+        //Update values of the voting
+        $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
+        $assembly_voting['total_votes'] = $assembly_voting['total_votes'] + 1;
+        ($this->request->getPostGet('answer') == 1) ?  $assembly_voting['up_votes'] = $assembly_voting['up_votes'] + 1 : $assembly_voting['down_votes'] = $assembly_voting['down_votes'] + 1;
 
-        //Query variable
-        $query = null;
         //Validate to edit or create and lookup for existing fields on the data base
         if ($this->request->getPostGet('vote_id')) {
             $data['vote_id'] = $this->request->getPostGet('vote_id');
         }
         //Save
         $voteModel->save($data);
+        $assembly_votingModel->save($assembly_voting);
         //Redirect
         return $this->response->redirect(base_url('vote'));
     }

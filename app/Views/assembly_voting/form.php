@@ -33,10 +33,10 @@
             <br />
             <!-- input -->
             <div class="form-floating">
-                <input class="form-control" type="text" id="description" name="description" placeholder="Motivo"
+                <input class="form-control" type="text" id="description" name="description" placeholder="Descripción"
                     data-bs-toggle="tooltip" data-bs-placement="right" title="Descripción"
                     value="<?= isset($item) ? $item['description'] : ''; ?>" required
-                    pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+                    pattern="^[\w\s'\-,.][^_!¡÷/\\+=@#%ˆ&*(){}|~<>;:[\]]{2,}$" />
                 <label for="description">Descripción <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>
                 <div class="invalid-feedback">
@@ -48,7 +48,7 @@
                 <input class="form-control" type="text" id="question" name="question" placeholder="Pregunta"
                     data-bs-toggle="tooltip" data-bs-placement="right" title="Pregunta"
                     value="<?= isset($item) ? $item['question'] : ''; ?>" required
-                    pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+                    pattern="^[\w\s'\-,.][^_!¡÷/\\+=@#%ˆ&*(){}|~<>;:[\]]{2,}$" />
                 <label for="question">Pregunta <b class="required-feedback">*</b></label>
                 <div class="valid-feedback">Correcto.</div>
                 <div class="invalid-feedback">
@@ -88,22 +88,24 @@
                     Invalido, debe ingresar el total de votos ej: 25 , 50.
                 </div>
             </div>
-            <!-- input -->
-            <div class="form-floating">
-                <input class="form-control only-alphanumeric" type="text" id="status" name="status" placeholder="Estado"
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="Estado correspondiente."
-                    value="<?= isset($item) ? $item['status'] : ''; ?>" required
-                    pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
-                <label for="status">Estado <b class="required-feedback">*</b></label>
+
+            <!-- select -->
+            <div data-bs-toggle="tooltip" data-bs-placement="right" title="Estado" class="mt-3">
+                <select class="form-select single-select-clear-field" name="status" id="status"
+                    data-placeholder="Estado*" required="">
+                    <option value="pending">Pendiente</option>
+                    <option value="approved">Aprobado</option>
+                    <option value="rejected">Rechazado</option>
+                </select>
                 <div class="valid-feedback">Correcto.</div>
                 <div class="invalid-feedback">
-                    Invalido, debe ingresar estado correspondiente.
+                    Debe seleccionar una estado correspondiente.
                 </div>
             </div>
             <!-- required message -->
             <div class="required-feedback">Campos requeridos*.</div>
             <!-- hidden input -->
-            <input name="common_area_id" type="hidden"
+            <input name="assembly_voting_id" type="hidden"
                 value=<?= isset($edit_enabled) ? $item['assembly_voting_id'] : ''; ?>>
             <!-- submit -->
             <div style="margin-top: 20px;">

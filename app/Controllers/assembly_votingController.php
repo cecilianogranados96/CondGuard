@@ -36,14 +36,20 @@ class assembly_votingController extends BaseController
             view('assembly_voting/preview', $items) .
             view('templates/footer');
     }
-    public function panel()
+    public function panel($error = null, $data = null)
     {
         //Connect / models
         $db        = db_connect('default');
         $assembly_votingModel = model('assembly_votingModel', true, $db);
         //Get-fill data
-        $id = $this->request->getPostGet('id');
-        $items['item'] = $assembly_votingModel->find($id);
+
+        if ($data != null) {
+            $items['error'] = $error;
+            $items['item'] = $assembly_votingModel->find($data['assembly_voting_id']);
+        } else {
+            $id = $this->request->getPostGet('id');
+            $items['item'] = $assembly_votingModel->find($id);
+        }
         //Views
         return
             view('templates/header') .
@@ -57,20 +63,29 @@ class assembly_votingController extends BaseController
         $db        = db_connect('default');
         $voteModel = model('voteModel', true, $db);
         $assembly_votingModel = model('assembly_votingModel', true, $db);
-        //Get-fill data
 
+        //Get-fill data
         $data = array(
             'assembly_voting_id' => $this->request->getPostGet('assembly_voting_id'),
             'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
             'answer' => $this->request->getPostGet('answer')
         );
+
+        //Verify secure pin
+        $pin_input = md5($this->request->getPostGet('pin'));
+        if ($pin_input != session()->get('pin')) {
+            return $this->panel('Pin de seguridad incorrecto.', $data);
+        }
+
         //Update values of the voting
         $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
         $assembly_voting['total_votes'] = $assembly_voting['total_votes'] + 1;
         ($this->request->getPostGet('answer') == 1) ?  $assembly_voting['up_votes'] = $assembly_voting['up_votes'] + 1 : $assembly_voting['down_votes'] = $assembly_voting['down_votes'] + 1;
+
         //Save
         $voteModel->save($data);
         $assembly_votingModel->save($assembly_voting);
+
         //Redirect
         return $this->response->redirect(base_url('assembly_voting/panel?id=' . $this->request->getPostGet('assembly_voting_id')));
     }

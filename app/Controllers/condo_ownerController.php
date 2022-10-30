@@ -121,8 +121,11 @@ class condo_ownerController extends BaseController
             'password' => md5($this->request->getPostGet('password')),
             'phone' => $this->request->getPostGet('phone'),
             'land_number' => $this->request->getPostGet('land_number'),
-            'payment' => '0',
+            'payment' => '0'
         );
+        //Generate and set random unique pin
+        $rand_num = time() + rand(1, 1000);
+        $data['pin'] = md5($rand_num);
 
         //Save password only if we are inserting or if user type new one 
         if ($this->request->getPostGet('condo_owner_id')) {

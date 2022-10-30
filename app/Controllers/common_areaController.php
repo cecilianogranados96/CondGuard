@@ -72,6 +72,7 @@ class common_areaController extends BaseController
 
         //Enable edit
         $items['edit_enabled'] = true;
+
         //Views 
         return
             view('templates/header') .
@@ -130,7 +131,7 @@ class common_areaController extends BaseController
                     $data['validation'] = $this->validator;
                     return $this->edit($data);
                 } else {
-                    //On edit process if validation of image succedded successfully , then delte the old image
+                    //On edit process if validation of image succedded successfully , then delete the old image
                     $item = $common_areaModel->find($this->request->getPostGet('common_area_id'));
                     unlink(FCPATH . 'assets/' . 'img/' . 'common_areas/' . $item['image']);
                 }

@@ -105,3 +105,23 @@
     </div>
 </section>
 <br><br>
+<?php
+$cont = 0;
+while ($cont < 100) {
+    $cont++;
+    echo (time() + rand(1, 1000)) . '<br>';
+}
+/*$cont = 0;
+$pines = null;
+while ($cont < 100) {
+    $cont++;
+    $num = rand(100000, 999999);
+    $pines[] = $num;
+    if (in_array($num, $pines)) {
+        echo 'duplicado <br>';
+    }
+}
+foreach ($pines as $value) {
+    echo $value . '<br>';
+}*/
+?>

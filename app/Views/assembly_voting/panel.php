@@ -68,17 +68,17 @@
                     <h6 class="text-muted card-subtitle ">De su voto para esta votación:</h6>
                     <br>
                     <form action="<?= base_url('assembly_voting/vote') ?>" method="post"
-                        class="g-3 form-floating needs-validation" novalidate>
+                        class="g-3  form-floating needs-validation" novalidate>
                         <!-- input -->
-                        <div class="form-floating ">
-                            <h5>Respuesta</h5>
-                            <div class="form-check ">
+                        <div class="form-floating">
+                            <h5>Respuesta <b class="required-feedback">*</b></h5>
+                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="answer" id="answer1" value="1">
                                 <label class="form-check-label" for="answer">
                                     A favor.
                                 </label>
                             </div>
-                            <div class="form-check ">
+                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="answer" id="answer2" value="0"
                                     checked>
                                 <label class="form-check-label" for="answer">
@@ -90,6 +90,27 @@
                                 Invalido, debe ingresar respuesta correspondiente.
                             </div>
                         </div>
+                        <br>
+                        <!-- input -->
+                        <h5>Pin de seguridad <b class="required-feedback">*</b></h5>
+                        <div class="form-floating">
+
+                            <input class="form-control only-number " type="password" id="pin" name="pin"
+                                placeholder="Pin" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Ingrese su pin de seguridad para realizar su voto, formato de 10 dígitos."
+                                required='' pattern="[0-9]{8,10}" />
+                            <label for="pin">Pin<b class="required-feedback">*</b></label>
+                            <div class="valid-feedback">Correcto.</div>
+                            <div class="invalid-feedback">
+                                Invalido, debe ingresar su pin de seguridad de 10 dígitos.
+                            </div>
+                        </div>
+                        <!-- Error -->
+                        <?php if (isset($error)) { ?>
+                        <div class="required-feedback"><?= $error ?></div>
+                        <?php } ?>
+                        <!-- required message -->
+                        <div class="required-feedback">Campos requeridos*.</div>
                         <!-- hidden input -->
                         <input name="assembly_voting_id" type="hidden" value=<?= $item['assembly_voting_id'] ?>>
                         <!-- hidden input -->

@@ -30,7 +30,7 @@
                         </td>
                         <td><?= $item['latitude'] ?></td>
                         <td><?= $item['longitude'] ?> </td>
-                        <td><?= $item['code'] ?> </td>
+                        <td style="width:100px;"><?= $item['code'] ?> </td>
                         <td><?= $item['created_at'] ?> </td>
                         <td>
                             <a href="<?php echo base_url('patrol/detail?id=' . $item['patrol_id']) ?>"

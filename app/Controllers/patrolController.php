@@ -82,6 +82,7 @@ class patrolController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $patrolModel = model('patrolModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'officer_id' => $this->request->getPostGet('officer_id'),
@@ -98,6 +99,18 @@ class patrolController extends BaseController
         }
         //Save
         $patrolModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('patrol_id')) {
+                $log['operation'] = 'Edición de patrulla - id: ' . $data['patrol_id'];
+            } else {
+                $log['operation'] = 'Creación de patrulla';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('patrol'));
     }
@@ -106,9 +119,17 @@ class patrolController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $patrolModel = model('patrolModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $patrolModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de patrulla - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('patrol'));
     }

@@ -121,6 +121,7 @@ class relativeController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
@@ -144,6 +145,7 @@ class relativeController extends BaseController
 
         //Query variable
         $query = null;
+
         //Validate to edit or create and lookup for existing fields on the data base
         if ($this->request->getPostGet('relative_id')) {
             $data['relative_id'] = $this->request->getPostGet('relative_id');
@@ -160,8 +162,24 @@ class relativeController extends BaseController
                 return $this->new('Identificación,teléfono o correo electrónico ya registrados.', $data);
             }
         }
+
         //Save
         $relativeModel->save($data);
+
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('relative_id')) {
+                $log['operation'] = 'Edición de acreditado - id: ' . $data['relative_id'];
+            } else {
+                $log['operation'] = 'Creación de acreditado';
+            }
+            //Save log
+            $logModel->save($log);
+        }
+
+
         //Redirect
         if (session('type') == 'relative') {
             return $this->response->redirect(base_url(''));
@@ -173,9 +191,18 @@ class relativeController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relativeModel = model('relativeModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $relativeModel->delete($id);
+
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de acreditado - id: ' . $id;
+            $logModel->save($log);
+        }
+
         //Redirect
         return $this->response->redirect(base_url('relative'));
     }

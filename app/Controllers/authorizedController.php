@@ -94,6 +94,7 @@ class authorizedController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $authorizedModel = model('authorizedModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'condo_owner_id' => $this->request->getPostGet('condo_owner_id'),
@@ -124,6 +125,18 @@ class authorizedController extends BaseController
         }
         //Save
         $authorizedModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('authorized_id')) {
+                $log['operation'] = 'Edición de autorizado - id: ' . $data['authorized_id'];
+            } else {
+                $log['operation'] = 'Creación de autorizado';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('authorized'));
     }
@@ -132,9 +145,17 @@ class authorizedController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $authorizedModel = model('authorizedModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $authorizedModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de autorizado - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('authorized'));
     }

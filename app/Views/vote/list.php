@@ -17,11 +17,11 @@
                 <tbody>
                     <?php foreach ($items as $item) : ?>
                     <tr>
-                        <td>
+                        <td style="width: 240px;">
                             <?php
                                 $found_key = array_search($item['assembly_voting_id'], array_column($relations, 'assembly_voting_id'));
 
-                                echo $relations[$found_key]['assembly_id'] . '-' . $relations[$found_key]['question'] . '-' . $relations[$found_key]['description'];
+                                echo $relations[$found_key]['assembly_voting_id'] . ' - ' . $relations[$found_key]['question'] . ' - ' . $relations[$found_key]['description'];
 
                                 ?>
                         </td>
@@ -29,7 +29,7 @@
                             <?php
                                 $found_key = array_search($item['condo_owner_id'], array_column($relations2, 'condo_owner_id'));
 
-                                echo $relations2[$found_key]['identity'] . '-' . $relations2[$found_key]['name'];
+                                echo $relations2[$found_key]['identity'] . ' - '  . $relations2[$found_key]['name'];
 
                                 ?>
                         </td>

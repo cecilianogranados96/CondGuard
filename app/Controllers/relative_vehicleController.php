@@ -93,6 +93,7 @@ class relative_vehicleController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'relative_id' => $this->request->getPostGet('relative_id'),
@@ -117,6 +118,18 @@ class relative_vehicleController extends BaseController
         }
         //Save
         $relative_vehicleModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('relative_vehicle_id')) {
+                $log['operation'] = 'Edición de vehículo - id: ' . $data['relative_vehicle_id'];
+            } else {
+                $log['operation'] = 'Creación de vehículo';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('relative_vehicle'));
     }
@@ -125,9 +138,17 @@ class relative_vehicleController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $relative_vehicleModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Edición de vehículo - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('relative_vehicle'));
     }

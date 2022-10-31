@@ -93,6 +93,7 @@ class voteController extends BaseController
         $db        = db_connect('default');
         $voteModel = model('voteModel', true, $db);
         $assembly_votingModel = model('assembly_votingModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
 
         $data = array(
@@ -101,9 +102,23 @@ class voteController extends BaseController
             'answer' => $this->request->getPostGet('answer')
         );
         //Update values of the voting
-        $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
-        $assembly_voting['total_votes'] = $assembly_voting['total_votes'] + 1;
-        ($this->request->getPostGet('answer') == 1) ?  $assembly_voting['up_votes'] = $assembly_voting['up_votes'] + 1 : $assembly_voting['down_votes'] = $assembly_voting['down_votes'] + 1;
+        if ($this->request->getPostGet('vote_id')) {
+            $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
+            $vote = $voteModel->find($this->request->getPostGet('vote_id'));
+            if ($vote['answer'] != $this->request->getPostGet('answer')) {
+                if ($this->request->getPostGet('answer') == 1) {
+                    $assembly_voting['up_votes'] = $assembly_voting['up_votes'] + 1;
+                    $assembly_voting['down_votes'] = $assembly_voting['down_votes'] - 1;
+                } else {
+                    $assembly_voting['down_votes'] = $assembly_voting['down_votes'] + 1;
+                    $assembly_voting['up_votes'] = $assembly_voting['up_votes'] - 1;
+                }
+            }
+        } else {
+            $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
+            $assembly_voting['total_votes'] = $assembly_voting['total_votes'] + 1;
+            ($this->request->getPostGet('answer') == 1) ?  $assembly_voting['up_votes'] = $assembly_voting['up_votes'] + 1 : $assembly_voting['down_votes'] = $assembly_voting['down_votes'] + 1;
+        }
 
         //Validate to edit or create and lookup for existing fields on the data base
         if ($this->request->getPostGet('vote_id')) {
@@ -112,6 +127,19 @@ class voteController extends BaseController
         //Save
         $voteModel->save($data);
         $assembly_votingModel->save($assembly_voting);
+
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('vote_id')) {
+                $log['operation'] = 'Edición de voto - id: ' . $data['vote_id'];
+            } else {
+                $log['operation'] = 'Creación de voto';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('vote'));
     }
@@ -120,9 +148,18 @@ class voteController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $voteModel = model('voteModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $voteModel->delete($id);
+
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de voto - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('vote'));
     }

@@ -150,6 +150,7 @@ class assembly_votingController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $assembly_votingModel = model('assembly_votingModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'assembly_id' => $this->request->getPostGet('assembly_id'),
@@ -166,6 +167,18 @@ class assembly_votingController extends BaseController
         }
         //Save
         $assembly_votingModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('assembly_voting_id')) {
+                $log['operation'] = 'Edición de votación - id: ' . $data['assembly_voting_id'];
+            } else {
+                $log['operation'] = 'Creación de votación';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('assembly_voting'));
     }
@@ -174,9 +187,17 @@ class assembly_votingController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $assembly_votingModel = model('assembly_votingModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $assembly_votingModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de votación - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('assembly_voting'));
     }

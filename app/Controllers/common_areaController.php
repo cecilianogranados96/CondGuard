@@ -88,6 +88,7 @@ class common_areaController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $common_areaModel = model('common_areaModel', true, $db);
+        $logModel = model('logModel', true, $db);
 
 
         //Get-fill data
@@ -150,6 +151,18 @@ class common_areaController extends BaseController
         }
         //Save
         $common_areaModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('common_area_id')) {
+                $log['operation'] = 'Edición de área común - id: ' . $data['common_area_id'];
+            } else {
+                $log['operation'] = 'Creación de área común';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('common_area'));
     }
@@ -158,9 +171,17 @@ class common_areaController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $common_areaModel = model('common_areaModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $common_areaModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de área común - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('common_area'));
     }

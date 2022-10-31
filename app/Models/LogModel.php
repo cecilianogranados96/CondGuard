@@ -14,7 +14,7 @@ class logModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'description', 'place', 'activity', 'status'];
+    protected $allowedFields    = ['administrator_id', 'operation'];
 
     // Dates
     protected $useTimestamps = true; //false;

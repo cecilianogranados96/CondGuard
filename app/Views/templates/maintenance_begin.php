@@ -3,7 +3,10 @@
         <div class="col">
             <div
                 class="card card-body text-white bg-secondary d-block flex-column justify-content-between flex-lg-row  p-4 p-md-3">
-                <h1 class="card-title">Mantenimientos</h1>
+                <a class="nav-link link-light" href="<?= base_url('maintenance') ?>">
+                    <h1 class="card-title">Mantenimientos</h1>
+                </a>
+
                 <ul class="nav nav-pills" style="font-size:18px;font-weight: bold;">
                     <li class="nav-item "><a
                             class="nav-link link-light <?= current_url(true)->getSegment(1) == 'relative' ? 'active' : '' ?>"

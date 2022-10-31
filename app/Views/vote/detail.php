@@ -15,7 +15,7 @@
                                                                                             if ($item['assembly_voting_id'] != null) {
                                                                                                 $found_key = array_search($item['assembly_voting_id'], array_column($relations, 'assembly_voting_id'));
 
-                                                                                                echo $relations[$found_key]['assembly_id'] . '-' . $relations[$found_key]['question'];
+                                                                                                echo $relations[$found_key]['assembly_voting_id'] . '-' . $relations[$found_key]['question'];
                                                                                             }
 
                                                                                             ?>" readonly />

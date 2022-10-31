@@ -112,6 +112,7 @@ class administratorController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $administratorModel = model('administratorModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
@@ -150,6 +151,18 @@ class administratorController extends BaseController
         }
         //Save
         $administratorModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('administrator_id')) {
+                $log['operation'] = 'Edición de administrador - id: ' . $data['administrator_id'];
+            } else {
+                $log['operation'] = 'Creación de administrador';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         if ($this->request->getPostGet('profile')) {
             return $this->response->redirect(base_url(''));
@@ -161,9 +174,17 @@ class administratorController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $administratorModel = model('administratorModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $administratorModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de administrador - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('administrator'));
     }

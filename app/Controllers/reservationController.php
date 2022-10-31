@@ -235,6 +235,7 @@ class reservationController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $reservationModel = model('reservationModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'common_area_id' => $this->request->getPostGet('common_area_id'),
@@ -254,6 +255,18 @@ class reservationController extends BaseController
         }
         //Save
         $reservationModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('reservation_id')) {
+                $log['operation'] = 'Edición de reserva - id: ' . $data['reservation_id'];
+            } else {
+                $log['operation'] = 'Creación de reserva';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('reservation'));
     }
@@ -262,9 +275,17 @@ class reservationController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $reservationModel = model('reservationModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $reservationModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de reserva - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('reservation'));
     }

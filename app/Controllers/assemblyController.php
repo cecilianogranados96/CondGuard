@@ -72,6 +72,7 @@ class assemblyController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $assemblyModel = model('assemblyModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'name' => $this->request->getPostGet('name'),
@@ -83,6 +84,18 @@ class assemblyController extends BaseController
         }
         //Save
         $assemblyModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('assembly_id')) {
+                $log['operation'] = 'Edición de asamblea - id: ' . $data['assembly_id'];
+            } else {
+                $log['operation'] = 'Creación de asamblea';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('assembly'));
     }
@@ -91,9 +104,17 @@ class assemblyController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $assemblyModel = model('assemblyModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $assemblyModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de asamblea - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('assembly'));
     }

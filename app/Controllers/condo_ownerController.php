@@ -113,6 +113,7 @@ class condo_ownerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
@@ -154,6 +155,18 @@ class condo_ownerController extends BaseController
         }
         //Save
         $condo_ownerModel->save($data);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('condo_owner_id')) {
+                $log['operation'] = 'Edición de codómino - id: ' . $data['condo_owner_id'];
+            } else {
+                $log['operation'] = 'Creación de codómino';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         if (session('type') == 'condo_owner') {
             return $this->response->redirect(base_url(''));
@@ -165,9 +178,17 @@ class condo_ownerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $condo_ownerModel = model('condo_ownerModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $condo_ownerModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de codómino - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('condo_owner'));
     }

@@ -106,12 +106,12 @@
 </section>
 <br><br>
 <?php
-$cont = 0;
+/*$cont = 0;
 while ($cont < 100) {
     $cont++;
     echo (time() + rand(1, 1000)) . '<br>';
 }
-/*$cont = 0;
+$cont = 0;
 $pines = null;
 while ($cont < 100) {
     $cont++;

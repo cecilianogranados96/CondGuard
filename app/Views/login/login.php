@@ -1,51 +1,92 @@
-<div class="container d-flex justify-content-center"
-    style="margin-top: 4%; margin-bottom: 4%; padding-bottom:60px;padding-top: 20px">
-    <div class="col-md-5 col-xl-3">
-        <div class="card mb-5 card-body d-flex flex-column align-items-center">
-            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg class="bi bi-person"
-                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                    <path
-                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
-                    </path>
-                </svg></div>
-            <form action="<?= base_url('login/signin') ?>" method="post"
-                class="row g-3 text-center form-floating needs-validation" novalidate>
-                <!-- title -->
-                <h2>
-                    Inicio de sesión
-                </h2>
-                <!-- input -->
-                <div class="form-floating">
-                    <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
-                        data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="Correo electrónico ej: nombre@mail.com"
-                        value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
-                    <label for="email">Correo electrónico </label>
-                    <div class="invalid-feedback">
-                        Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
-                    </div>
-                </div>
-                <!-- input -->
-                <div class="form-floating">
-                    <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
-                        data-bs-toggle="tooltip" data-bs-placement="right" title="Ingrese su contraseña."
-                        value="<?= isset($item) ? $item['password'] : ''; ?>" required="" />
-                    <label for="password">Contraseña </label>
-                    <div class="invalid-feedback">
-                        Invalido, debe ingresar su contraseña.
-                    </div>
-                </div>
-                <div class="required-feedback" role="alert">
-                    <?= session()->getFlashdata('error') ?>
-                </div>
-                <!-- submit -->
-                <div style="margin-top: 10%"><input class="btn btn-primary btn-lg bg-primary" style="width:100%"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>CondGuard</title>
+    <link rel="icon" type="image/x-icon" href="\assets\img/ico.png">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-primary">
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
+                                    </div>
+                                    <?php if(session()->getFlashdata('error') != ''){ ?>
+                                        <a href="#" class="btn btn-warning btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <span class="text"> <?= session()->getFlashdata('error') ?></span>
+                                        </a>
+                                    <?php } ?>
+                                    <br><br>
+
+                                    <form action="<?= base_url('login/signin') ?>" method="post" class="user" >
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
+                                            data-bs-toggle="tooltip" data-bs-placement="right"
+                                            title="Correo electrónico ej: nombre@mail.com"
+                                            value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
+                                  
+                                            <div class="invalid-feedback">
+                                            Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
+                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Ingrese su contraseña."
+                                                value="<?= isset($item) ? $item['password'] : ''; ?>" required="" />
+                                         
+                                                <div class="invalid-feedback">
+                                                Invalido, debe ingresar su contraseña.
+                                                </div>
+                                        </div>
+                                   
+                                        <input class="btn btn-primary btn-user btn-block" style="width:100%"
                         type="submit" value="Iniciar Sesión" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Iniciar Sesión" />
-                    <br><br>
-                    <a class="card-link" href="#">Olvido su contraseña?</a>
+                                      
+                                        <hr>
+                                       
+                                    </form>
+                                   
+                                    <div class="text-center">
+                                        <a class="small" href="#">¿Olvidaste la contraseña?</a>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="assets/js/sb-admin-2.min.js"></script>
+</body>
+</html>

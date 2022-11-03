@@ -20,9 +20,9 @@ class reservationController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
+            //view('templates/maintenance_begin') .
             view('reservation/list', $items) .
-            view('templates/maintenance_end') .
+           // view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function common_areas()

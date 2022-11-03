@@ -1,0 +1,21 @@
+CRITICAL - 2022-10-29 22:00:39 --> syntax error, unexpected token ")"
+in APPPATH/Views/home.php on line 114.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/Home.php(14): view()
+ 4 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\Home->Index()
+ 5 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-10-29 23:24:46 --> Undefined array key "total_votes"
+in APPPATH/Views/assembly_voting/panel.php on line 12.
+ 1 APPPATH/Views/assembly_voting/panel.php(12): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/assembly_voting/panel.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1142): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/assembly_votingController.php(54): view()
+ 6 APPPATH/Controllers/assembly_votingController.php(74): App\Controllers\assembly_votingController->panel()
+ 7 SYSTEMPATH/CodeIgniter.php(907): App\Controllers\assembly_votingController->vote()
+ 8 SYSTEMPATH/CodeIgniter.php(457): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(68): CodeIgniter\CodeIgniter->run()

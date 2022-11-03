@@ -85,8 +85,6 @@ class officerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $officerModel = model('officerModel', true, $db);
-        $logModel = model('logModel', true, $db);
-
         //Get-fill data
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
@@ -111,18 +109,6 @@ class officerController extends BaseController
         }
         //Save
         $officerModel->save($data);
-        //Log
-        if (session()->get('type') == 'administrator') {
-            $log['administrator_id'] = session()->get('administrator_id');
-
-            if ($this->request->getPostGet('officer_id')) {
-                $log['operation'] = 'Edición de oficial - id: ' . $data['officer_id'];
-            } else {
-                $log['operation'] = 'Creación de oficial';
-            }
-            //Save log
-            $logModel->save($log);
-        }
         //Redirect
         return $this->response->redirect(base_url('officer'));
     }
@@ -131,17 +117,9 @@ class officerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $officerModel = model('officerModel', true, $db);
-        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $officerModel->delete($id);
-        //Log
-        if (session()->get('type') == 'administrator') {
-            $log['administrator_id'] = session()->get('administrator_id');
-            $log['operation'] = 'Eliminación de oficial - id: ' . $id;
-            //Save log
-            $logModel->save($log);
-        }
         //Redirect
         return $this->response->redirect(base_url('officer'));
     }

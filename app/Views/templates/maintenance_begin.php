@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 4%; margin-bottom: 4%; padding-bottom:60px;padding-top: 20px">
+<!--<div class="container" style="margin-top: 4%; margin-bottom: 4%; padding-bottom:60px;padding-top: 20px">
     <div class="row">
         <div class="col">
             <div
@@ -61,4 +61,4 @@
         </div>
     </div>
     <hr />
-    <div class="row d-block d-lg-flex d-xl-flex d-xxl-flex">
+    <div class="row d-block d-lg-flex d-xl-flex d-xxl-flex"> -->

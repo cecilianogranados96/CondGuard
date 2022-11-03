@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Controllers;
-
-
 class loginController extends BaseController
 {
 
@@ -10,10 +7,10 @@ class loginController extends BaseController
 	{
 		//Views
 		return
-			view('templates/header') .
-			view('templates/navbar') .
-			view('login/login') .
-			view('templates/footer');
+			//view('templates/header') .
+			//view('templates/navbar') .
+			view('login/login');
+			//view('templates/footer');
 	}
 
 	public function signin()
@@ -28,7 +25,7 @@ class loginController extends BaseController
 				$data['isLoggedIn'] = true;
 				$data['type'] = "administrator";
 				session()->set($data);
-				return redirect()->to('/');
+				return redirect()->to('/home');
 			} else {
 				$this->seterror("Inicio de sesión incorrecto para usuario administrador.");
 				return redirect()->to('/login');
@@ -41,7 +38,7 @@ class loginController extends BaseController
 				$data['isLoggedIn'] = true;
 				$data['type'] = "relative";
 				session()->set($data);
-				return redirect()->to('/');
+				return redirect()->to('/home');
 			} else {
 				$this->seterror("Inicio de sesión incorrecto para usuario acreditado.");
 				return redirect()->to('/login');
@@ -54,7 +51,7 @@ class loginController extends BaseController
 				$data['isLoggedIn'] = true;
 				$data['type'] = "condo_owner";
 				session()->set($data);
-				return redirect()->to('/');
+				return redirect()->to('/home');
 			} else {
 				$this->seterror("Inicio de sesión incorrecto para usuario condomino.");
 				return redirect()->to('/login');

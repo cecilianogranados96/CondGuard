@@ -20,9 +20,7 @@ class maintenanceController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('maintenance', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
 }

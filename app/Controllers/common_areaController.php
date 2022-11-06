@@ -17,9 +17,7 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('common_area/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -34,9 +32,7 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('common_area/detail', $item) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($data = null)
@@ -51,9 +47,7 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('common_area/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($data = null)
@@ -77,9 +71,7 @@ class common_areaController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('common_area/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

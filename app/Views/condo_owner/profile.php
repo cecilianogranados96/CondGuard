@@ -2,12 +2,7 @@
     style="margin-top: 4%; margin-bottom: 4%; padding-bottom:60px;padding-top: 20px">
     <div class="col-md-6 col-xl-4">
         <div class="card mb-5 card-body d-flex flex-column align-items-center">
-            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg class="bi bi-person"
-                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                    <path
-                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
-                    </path>
-                </svg></div>
+
             <form action="<?= base_url('condo_owner/save') ?>" method="post"
                 class="row g-3 text-center form-floating needs-validation" novalidate>
                 <!-- title -->
@@ -82,8 +77,16 @@
                 </div>
                 <!-- Error -->
                 <?php if (isset($error)) { ?>
-                <div class="required-feedback"><?= $error ?></div>
+                <div class="form-floating required-feedback mt-3">
+                    <div class="alert alert-warning d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i>
+                        <div style="color: black;">
+                            <?= $error ?>
+                        </div>
+                    </div>
+                </div>
                 <?php } ?>
+                <br><br>
                 <!-- required message -->
                 <div class="required-feedback">Campos requeridos*.</div>
                 <!-- reenter password message -->
@@ -94,6 +97,8 @@
                 <!-- hidden input -->
                 <input name="condo_owner_id" type="hidden"
                     value=<?= isset($edit_enabled) ? $item['condo_owner_id'] : ''; ?>>
+                <!-- hidden input -->
+                <input name="profile" type="hidden" value="profile">
                 <!-- submit -->
                 <div style="margin-top: 10%"><input class="btn btn-primary btn-lg bg-primary" style="width:100%"
                         type="submit" value="Guardar" data-bs-toggle="tooltip" data-bs-placement="right"

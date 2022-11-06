@@ -17,9 +17,7 @@ class authorizedController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('authorized/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -36,9 +34,7 @@ class authorizedController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('authorized/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
@@ -55,9 +51,7 @@ class authorizedController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('authorized/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($error = null, $data = null)
@@ -83,9 +77,7 @@ class authorizedController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('authorized/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
 

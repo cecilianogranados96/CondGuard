@@ -14,7 +14,7 @@ class relative_vehicleModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true; //false;
     #protected $protectFields    = true;
-    protected $allowedFields    = ['relative_id', 'vehicle_plate', 'description'];
+    protected $allowedFields    = ['identity', 'vehicle_plate', 'name', 'land_number', 'phone', 'entry_at', 'out_at', 'created_at', 'updated_at', 'deleted_at'];
 
     // Dates
     protected $useTimestamps = true; //false;

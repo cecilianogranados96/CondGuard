@@ -11,7 +11,7 @@ class ReserveAccess implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
-        if (session('type') == 'administrator' || !session('isLoggedIn')) {
+        if (/*session('type') == 'administrator' ||*/!session('isLoggedIn')) {
             return redirect()->to(base_url('/'));
         }
     }

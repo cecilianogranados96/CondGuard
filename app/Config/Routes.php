@@ -43,7 +43,7 @@ $routes->post('login/signin', 'loginController::signin');
 $routes->get('login/ver_usuario', 'loginController::ver_usuario');
 $routes->get('login/signout', 'loginController::signout');
 
-//Maintenance
+//Maintenance (CONTROL DE CAMBIOS)
 $routes->get('maintenance', 'maintenanceController::index');
 
 //administrator
@@ -63,14 +63,14 @@ $routes->get('assembly/edit', 'assemblyController::edit');
 $routes->get('assembly/delete', 'assemblyController::delete');
 $routes->post('assembly/save', 'assemblyController::save');
 
-//relative
-$routes->get('relative', 'relativeController::index');
+//relative 
+/*$routes->get('relative', 'relativeController::index');
 $routes->get('relative/detail', 'relativeController::detail');
 $routes->get('relative/new', 'relativeController::new');
 $routes->get('relative/profile', 'relativeController::profile');
 $routes->get('relative/edit', 'relativeController::edit');
 $routes->get('relative/delete', 'relativeController::delete');
-$routes->post('relative/save', 'relativeController::save');
+$routes->post('relative/save', 'relativeController::save');*/
 
 //common_area
 $routes->get('common_area', 'common_areaController::index');

@@ -1,10 +1,5 @@
 <div class="container" style="margin-top: 4%;margin-bottom: 4%;">
     <h1>Votación</h1>
-
-    <img class="rounded" style="margin-top: 10px;margin-bottom: 10px;" src="/assets/img/condo_entrada.jpg"
-        width="100%" />
-
-
     <div class="text-center text-white-50 bg-primary border rounded border-0 p-3">
         <div class="row row-cols-2 row-cols-md-4">
             <div class="col">
@@ -65,7 +60,7 @@
                     <p><?= $item['question'] ?></p>
                     <hr>
                     <h5>Votar</h5>
-                    <h6 class="text-muted card-subtitle ">De su voto para esta votación:</h6>
+                    <h6 class="text-muted card-subtitle ">Participe en la votación:</h6>
                     <br>
                     <form action="<?= base_url('assembly_voting/vote') ?>" method="post"
                         class="g-3  form-floating needs-validation" novalidate>
@@ -91,20 +86,7 @@
                             </div>
                         </div>
                         <br>
-                        <!-- input -->
-                        <h5>Pin de seguridad <b class="required-feedback">*</b></h5>
-                        <div class="form-floating">
 
-                            <input class="form-control only-number " type="password" id="pin" name="pin"
-                                placeholder="Pin" data-bs-toggle="tooltip" data-bs-placement="right"
-                                title="Ingrese su pin de seguridad para realizar su voto, formato de 10 dígitos."
-                                required='' pattern="[0-9]{8,10}" />
-                            <label for="pin">Pin<b class="required-feedback">*</b></label>
-                            <div class="valid-feedback">Correcto.</div>
-                            <div class="invalid-feedback">
-                                Invalido, debe ingresar su pin de seguridad de 10 dígitos.
-                            </div>
-                        </div>
                         <!-- Error -->
                         <?php if (isset($error)) { ?>
                         <div class="required-feedback"><?= $error ?></div>

@@ -1,5 +1,5 @@
 <section class="py-5">
-    <div class="container py-5">
+    <div class="container">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
                 <h2 class="fw-bold">Áreas Comunes</h2>
@@ -11,7 +11,7 @@
         <div class="row  row-cols-md-3 mx-auto">
             <?php foreach ($items as $item) : ?>
 
-            <div class="col mb-4">
+            <div class="col mb-3">
                 <div class="card card-body">
                     <a href="#"><img class="rounded img-fluid shadow w-100 fit-cover"
                             src=<?= '/assets/img/common_areas/' . $item['image'] ?> style="height: 250px" /></a>

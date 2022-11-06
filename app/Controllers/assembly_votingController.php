@@ -17,9 +17,7 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly_voting/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function preview()
@@ -71,11 +69,13 @@ class assembly_votingController extends BaseController
             'answer' => $this->request->getPostGet('answer')
         );
 
-        //Verify secure pin
+        //Verify secure pin (DEPRECATED)
+        /*
         $pin_input = md5($this->request->getPostGet('pin'));
         if ($pin_input != session()->get('pin')) {
-            return $this->panel('Pin de seguridad incorrecto.', $data);
+            //return $this->panel('Pin de seguridad incorrecto.', $data);
         }
+        */
 
         //Update values of the voting
         $assembly_voting = $assembly_votingModel->find($this->request->getPostGet('assembly_voting_id'));
@@ -103,9 +103,7 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly_voting/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -119,9 +117,7 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly_voting/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -140,9 +136,7 @@ class assembly_votingController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly_voting/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

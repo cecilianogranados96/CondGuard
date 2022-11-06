@@ -1,92 +1,189 @@
-<div class="col-auto" style="width: 440px">
-    <div class="card card-body">
-        <form action="<?= base_url('relative_vehicle/save') ?>" method="post"
-            class="row g-3 form-floating needs-validation" novalidate>
-            <!-- timezone-->
-            <?php date_default_timezone_set('America/Costa_Rica');
-            ?>
+<div class="container-fluid my-auto" style="
+        display: flex;
+        align-items: center;
+        justify-content: center;">
+    <div class="col-auto" style="width: 440px">
+        <div class="card card-body">
+            <form action="<?= base_url('relative_vehicle/save') ?>" method="post"
+                class="row g-3 form-floating needs-validation" novalidate>
+                <!-- timezone-->
+                <?php date_default_timezone_set('America/Costa_Rica');
+                ?>
 
-            <!-- title -->
-            <h1>
-                <?= isset($edit_enabled) ? 'Editar' : 'Nueva'; ?>
-                Vehículo
-            </h1>
-            <!-- select -->
-            <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el acreditado que va reserva">
-                <select class="form-select single-select-clear-field" name="relative_id" id="relative_id"
-                    data-placeholder="Acreditado*" required="" style="font-size: 1px;">
-                    <option></option>
-                    <?php foreach ($relations as $relation) :
-                        $selected = '';
-                        if (isset($item)) {
-                            if ($relation['relative_id'] == $item['relative_id']) {
-                                $selected = 'selected';
+                <!-- title -->
+                <h1>
+                    <?= isset($edit_enabled) ? 'Editar' : 'Nuevo'; ?>
+                    Ingreso
+                </h1>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control only-alphanumeric" type="text" id="identity" name="identity"
+                        placeholder="Identificación" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Identificación nacional ej:101110111 o extranjero en el formato correspondiente, sin caracteres especiales o espacios."
+                        value="<?= isset($item) ? $item['identity'] : ''; ?>" required=""
+                        pattern="^[a-zA-Z0-9]{0,50}$" />
+                    <label for="identity">Identificación <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar identificación valida nacional ej:101110111, o extranjera en el formato
+                        correspondiente, sin caracteres especiales o espacios.
+                    </div>
+                </div>
+                <!-- Input -->
+                <div class="form-floating">
+                    <input class="form-control only-alphanumeric" type="text" id="vehicle_plate" name="vehicle_plate"
+                        placeholder="Placa de vehículo" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Placa de vehículo ej: AAA888" value="<?= isset($item) ? $item['vehicle_plate'] : ''; ?>"
+                        required="" pattern="^[a-zA-Z0-9]{6,9}$" />
+                    <label for="vehicle_plate">Placa de vehículo <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar placa válida 6 y 11 caracteres ej:AAA888.
+                    </div>
+                </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Nombre completo"
+                        data-bs-toggle="tooltip" data-bs-placement="right" title="Nombre completo"
+                        value="<?= isset($item) ? $item['name'] : ''; ?>" required
+                        pattern="^[\w\s'\-,.](?=.*[\s][\w])[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+                    <label for="name">Nombre completo <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar el nombre completo.
+                    </div>
+                </div>
+                <!-- select -->
+                <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione la filial">
+                    <select class="form-select single-select-clear-field" name="land_number" id="land_number"
+                        data-placeholder="Filial*" required="" style="font-size: 1px;">
+                        <option></option>
+                        <?php foreach ($relations as $relation) :
+                            $selected = '';
+                            if (isset($item)) {
+                                if ($relation['condo_owner_id'] == $item['condo_owner_id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                            }
+                        ?>
+                        <option <?= "$selected" ?> value="<?= $relation['land_number'] ?>">
+                            <?= $relation['name'] . ' - ' . $relation['land_number'] ?>
+                        </option>
+                        <?php endforeach ?>
+                    </select>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Debe seleccionar un condómino.
+                    </div>
+                </div>
+                <br />
+                <!-- Input -->
+                <div class="form-floating">
+                    <input class="form-control only-number" type="text" id="phone" name="phone"
+                        placeholder="Teléfono móvil" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Teléfono ej: 88888888" value="<?= isset($item) ? $item['phone'] : ''; ?>" required=""
+                        pattern="[0-9]{8,11}" />
+                    <label for="phone">Teléfono móvil <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
+                    </div>
+                </div>
+                <!-- Input -->
+                <div class="form-floating">
+                    <?php
+                    $date_entry = null;
+                    if (isset($item)) {
+                        if ($item['entry_at'] != null) {
+                            $time_input = strtotime($item['entry_at']);
+                            $date_input = getDate($time_input);
+                            if ($date_input['year'] != '-1') {
+                                $date_entry = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
                             } else {
-                                $selected = '';
+                                $date_entry = date('Y-m-d');
                             }
                         }
+                    }
                     ?>
-                    <option <?= "$selected" ?> value="<?= $relation['relative_id'] ?>">
-                        <?= $relation['identity'] . ' - ' . $relation['name'] ?>
-                    </option>
-                    <?php endforeach ?>
-                </select>
-                <div class="valid-feedback">Correcto.</div>
-                <div class="invalid-feedback">
-                    Debe seleccionar un acreditado.
+                    <input class="form-control" type="datetime-local" id="entry_at" name="entry_at"
+                        placeholder="Fecha de entrada" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Fecha de entrada ej: <?= date('Y-m-d H:i:s') ?>"
+                        value="<?= isset($item) ? $item['entry_at'] : ''; ?>"
+                        min="<?= isset($item) ? $date_entry : date('Y-m-d') ?>T00:00"
+                        max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" />
+
+                    <label for="entry_at">Fecha de entrada </label>
+                    <!--<div class="valid-feedback">Correcto.</div>-->
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar una fecha válida ej:<?= date('Y-m-d H:i:s') ?>.
+                    </div>
                 </div>
-            </div>
-            <br />
-            <!-- Input -->
-            <div class="form-floating">
-                <input class="form-control only-alphanumeric" type="text" id="vehicle_plate" name="vehicle_plate"
-                    placeholder="Placa de vehículo" data-bs-toggle="tooltip" data-bs-placement="right"
-                    title="Placa de vehículo ej: AAA888" value="<?= isset($item) ? $item['vehicle_plate'] : ''; ?>"
-                    required="" pattern="^[a-zA-Z0-9]{6,9}$" />
-                <label for="vehicle_plate">Placa de vehículo <b class="required-feedback">*</b></label>
-                <div class="valid-feedback">Correcto.</div>
-                <div class="invalid-feedback">
-                    Invalido, debe ingresar placa válida 6 y 11 caracteres ej:AAA888.
+                <!-- Input -->
+                <div class="form-floating">
+                    <?php
+                    $date_out = null;
+                    if (isset($item)) {
+                        if ($item['out_at'] != null) {
+                            $time_input = strtotime($item['out_at']);
+                            $date_input = getDate($time_input);
+                            if ($date_input['year'] != '-1') {
+                                $date_out = $date_input['year'] . $date_input['mon'] . $date_input['mday'];
+                            } else {
+                                $date_out = date('Y-m-d');
+                            }
+                        }
+                    }
+                    ?>
+                    <input class="form-control" type="datetime-local" id="out_at" name="out_at"
+                        placeholder="Fecha de salida" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Fecha de salida ej: <?= date('Y-m-d H:i:s') ?>"
+                        value="<?= isset($item) ? $item['out_at'] : ''; ?>"
+                        min="<?= isset($item) ? $date_out : date('Y-m-d') ?>T00:00"
+                        max="<?= date('Y-m-d', strtotime('+1 year')) ?>T00:00" />
+                    <label for="out_at">Fecha de salida </label>
+                    <!--<div class="valid-feedback">Correcto.</div>-->
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar una fecha válida ej:<?= date('Y-m-d H:i:s') ?>.
+                    </div>
                 </div>
-            </div>
-            <!-- input -->
-            <div class="form-floating">
-                <input class="form-control" type="text" id="description" name="description" placeholder="Motivo"
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="Descripción"
-                    value="<?= isset($item) ? $item['description'] : ''; ?>" required
-                    pattern="^[\w\s'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
-                <label for="description">Descripción <b class="required-feedback">*</b></label>
-                <div class="valid-feedback">Correcto.</div>
-                <div class="invalid-feedback">
-                    Invalido, debe ingresar una descripción adecuada.
+                <!-- Error -->
+                <?php if (isset($error)) { ?>
+                <div class="form-floating required-feedback mt-3">
+                    <div class="alert alert-warning d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i>
+                        <div style="color: black;">
+                            <?= $error ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- Error -->
-            <?php if (isset($error)) { ?>
-            <div class="required-feedback"><?= $error ?></div>
-            <?php } ?>
-            <!-- required message -->
-            <div class="required-feedback">Campos requeridos*.</div>
-            <!-- hidden input -->
-            <input name="relative_vehicle_id" type="hidden"
-                value=<?= isset($edit_enabled) ? $item['relative_vehicle_id'] : ''; ?>>
-            <!-- submit -->
-            <div style="margin-top: 20px">
-                <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
-                    href="<?= base_url('relative_vehicle') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
-                    title="Atrás">
-                    Atrás </a><input class="btn btn-primary btn-lg" style="width: 59%; margin-left: 2%" type="submit"
-                    value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" data-bs-toggle="tooltip"
-                    data-bs-placement="right" title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" />
-            </div>
-        </form>
+                <?php } ?>
+                <br><br>
+                <!-- required message -->
+                <div class="required-feedback">Campos requeridos*.</div>
+                <!-- hidden input -->
+                <input name="relative_vehicle_id" type="hidden"
+                    value=<?= isset($edit_enabled) ? $item['relative_vehicle_id'] : ''; ?>>
+                <!-- submit -->
+                <div style="margin-top: 20px">
+                    <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
+                        href="<?= base_url('relative_vehicle') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
+                        title="Atrás">
+                        Atrás </a><input class="btn btn-primary btn-lg" style="width: 59%; margin-left: 2%"
+                        type="submit" value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>"
+                        data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<div class="w-100 d-xl-none d-xxl-none" style="margin: 4%"></div>
-<div class="col visually-hidden">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Title</h4>
+    <div class="w-100 d-xl-none d-xxl-none" style="margin: 4%"></div>
+    <div class="col visually-hidden">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+            </div>
         </div>
     </div>
 </div>

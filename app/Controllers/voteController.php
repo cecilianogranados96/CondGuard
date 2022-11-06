@@ -19,9 +19,7 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('vote/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -41,9 +39,7 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('vote/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -59,9 +55,7 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('vote/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -82,9 +76,7 @@ class voteController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('vote/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

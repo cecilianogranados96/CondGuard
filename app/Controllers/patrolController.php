@@ -17,9 +17,7 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('patrol/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -36,9 +34,7 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('patrol/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -51,9 +47,7 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('patrol/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -72,9 +66,7 @@ class patrolController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('patrol/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

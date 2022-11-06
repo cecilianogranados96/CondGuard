@@ -15,9 +15,7 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('officer/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -32,9 +30,7 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('officer/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
@@ -50,9 +46,7 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('officer/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($error = null, $data = null)
@@ -75,9 +69,7 @@ class officerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('officer/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -85,11 +77,13 @@ class officerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $officerModel = model('officerModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
             'identity' => $this->request->getPostGet('identity'),
             'name' => $this->request->getPostGet('name'),
-            'phone' => $this->request->getPostGet('phone')
+            'phone' => $this->request->getPostGet('phone'),
+            'pin' => $this->request->getPostGet('pin')
         );
 
         //Query variable
@@ -107,6 +101,18 @@ class officerController extends BaseController
                 return $this->new('Identificación o teléfono  ya registrados.', $data);
             }
         }
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+
+            if ($this->request->getPostGet('officer_id')) {
+                $log['operation'] = 'Edición de oficial - id: ' . $data['officer_id'];
+            } else {
+                $log['operation'] = 'Creación de oficial';
+            }
+            //Save log
+            $logModel->save($log);
+        }
         //Save
         $officerModel->save($data);
         //Redirect
@@ -117,9 +123,17 @@ class officerController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $officerModel = model('officerModel', true, $db);
+        $logModel = model('logModel', true, $db);
         //Deactivate data
         $id = $this->request->getPostGet('id');
         $officerModel->delete($id);
+        //Log
+        if (session()->get('type') == 'administrator') {
+            $log['administrator_id'] = session()->get('administrator_id');
+            $log['operation'] = 'Eliminación de oficial - id: ' . $id;
+            //Save log
+            $logModel->save($log);
+        }
         //Redirect
         return $this->response->redirect(base_url('officer'));
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +10,12 @@
     <title>CondGuard</title>
     <link rel="icon" type="image/x-icon" href="\assets\img/ico.png">
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="assets/css/sb-admin-2.css" rel="stylesheet">
 </head>
+
 <body class="bg-gradient-primary">
     <div class="container">
 
@@ -30,49 +34,55 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                                     </div>
-                                    <?php if(session()->getFlashdata('error') != ''){ ?>
-                                        <a href="#" class="btn btn-warning btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-exclamation-triangle"></i>
-                                            </span>
-                                            <span class="text"> <?= session()->getFlashdata('error') ?></span>
-                                        </a>
-                                    <?php } ?>
-                                    <br><br>
 
-                                    <form action="<?= base_url('login/signin') ?>" method="post" class="user" >
+
+                                    <form action="<?= base_url('login/signin') ?>" method="post" class="user">
                                         <div class="form-group">
-                                            <input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"
-                                            data-bs-toggle="tooltip" data-bs-placement="right"
-                                            title="Correo electrónico ej: nombre@mail.com"
-                                            value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
-                                  
+                                            <input class="form-control" type="email" id="email" name="email"
+                                                placeholder="Correo electrónico" data-bs-toggle="tooltip"
+                                                data-bs-placement="right" title="Correo electrónico ej: nombre@mail.com"
+                                                value="<?= isset($item) ? $item['email'] : ''; ?>" required="" />
+
                                             <div class="invalid-feedback">
-                                            Invalido, debe ingresar un correo electrónico valido, ej:nombre@mail.com.
+                                                Invalido, debe ingresar un correo electrónico valido,
+                                                ej:nombre@mail.com.
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"
-                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Ingrese su contraseña."
+                                            <input class="form-control" type="password" id="password" name="password"
+                                                placeholder="Contraseña" data-bs-toggle="tooltip"
+                                                data-bs-placement="right" title="Ingrese su contraseña."
                                                 value="<?= isset($item) ? $item['password'] : ''; ?>" required="" />
-                                         
-                                                <div class="invalid-feedback">
+
+                                            <div class="invalid-feedback">
                                                 Invalido, debe ingresar su contraseña.
-                                                </div>
+                                            </div>
                                         </div>
-                                   
+
                                         <input class="btn btn-primary btn-user btn-block" style="width:100%"
-                        type="submit" value="Iniciar Sesión" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="Iniciar Sesión" />
-                                      
+                                            type="submit" value="Iniciar Sesión" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="Iniciar Sesión" />
+
                                         <hr>
-                                       
+
                                     </form>
-                                   
+                                    <!-- Error -->
+                                    <?php if (session()->getFlashdata('error') != '') { ?>
+                                    <div class="form-floating required-feedback mt-3">
+                                        <div class="alert alert-warning d-flex align-items-center">
+                                            <i class="fas fa-exclamation-triangle mr-3"></i>
+                                            <div style="color: black;">
+                                                <?= session()->getFlashdata('error') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                    <br><br>
+
                                     <div class="text-center">
                                         <a class="small" href="#">¿Olvidaste la contraseña?</a>
                                     </div>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -89,4 +99,5 @@
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
 </body>
+
 </html>

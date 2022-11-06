@@ -38,7 +38,8 @@
 
                         <!-- input -->
                         <div class="form-floating">
-                            <?php if (session()->get('type') == 'condo_owner') {
+                            <?php $valueland = '';
+                            if (session()->get('type') == 'condo_owner') {
                                 $valueland = session()->get('land_number');
                             } else {
                                 foreach ($relations2 as $condo_owner) {
@@ -46,7 +47,12 @@
                                         $valueland = $condo_owner['land_number'];
                                     }
                                 }
-                            } ?>
+                            }
+
+                            if ($valueland == "") {
+                                $valueland = 'P09';
+                            }
+                            ?>
                             <input class="form-control" type="text" id="land_number" name="land_number"
                                 placeholder="Filial" data-bs-toggle="tooltip" data-bs-placement="right" title="Filial."
                                 value="<?= $valueland ?>" readonly />

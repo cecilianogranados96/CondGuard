@@ -8,17 +8,15 @@ class relative_vehicleController extends BaseController
     {
         //Connect / models
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
-        $relativeModel = model('relativeModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
         //Get-fill data 
         $items['items'] = $relative_vehicleModel->findAll();
-        $items['relations'] =  $relativeModel->findAll();
+        $items['relations'] =  $condo_ownerModel->findAll();
         //Views
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative_vehicle/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -26,26 +24,22 @@ class relative_vehicleController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
-        $relativeModel = model('relativeModel', true, $db);
         //Get-fill data
         $id = $this->request->getPostGet('id');
         $items['item'] = $relative_vehicleModel->find($id);
-        $items['relations'] =  $relativeModel->findAll();
         //Views
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative_vehicle/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
     {
         //Connect / models
-        $relativeModel = model('relativeModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
         //Get-fill data 
-        $items['relations'] =  $relativeModel->findAll();
+        $items['relations'] =  $condo_ownerModel->findAll();
         if ($data != null) {
             $items['error'] =  $error;
             $items['item'] = $data;
@@ -54,9 +48,7 @@ class relative_vehicleController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative_vehicle/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($error = null, $data = null)
@@ -65,7 +57,7 @@ class relative_vehicleController extends BaseController
         //Connect / models
         $db        = db_connect('default');
         $relative_vehicleModel = model('relative_vehicleModel', true, $db);
-        $relativeModel = model('relativeModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
         //Get-fill data 
         if ($data == null) {
             $id = $this->request->getPostGet('id');
@@ -75,16 +67,14 @@ class relative_vehicleController extends BaseController
             $items['item'] = $data;
             $items['error'] =  $error;
         }
-        $items['relations'] =  $relativeModel->findAll();
+        $items['relations'] =  $condo_ownerModel->findAll();
         //Enable edit
         $items['edit_enabled'] = true;
         //Views
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative_vehicle/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
 
@@ -96,9 +86,13 @@ class relative_vehicleController extends BaseController
         $logModel = model('logModel', true, $db);
         //Get-fill data
         $data = array(
-            'relative_id' => $this->request->getPostGet('relative_id'),
+            'identity' => $this->request->getPostGet('identity'),
             'vehicle_plate' => $this->request->getPostGet('vehicle_plate'),
-            'description' => $this->request->getPostGet('description')
+            'name' => $this->request->getPostGet('name'),
+            'land_number' => $this->request->getPostGet('land_number'),
+            'phone' => $this->request->getPostGet('phone'),
+            'entry_at' => $this->request->getPostGet('entry_at'),
+            'out_at' => $this->request->getPostGet('out_at'),
         );
 
         //Query variable
@@ -123,9 +117,9 @@ class relative_vehicleController extends BaseController
             $log['administrator_id'] = session()->get('administrator_id');
 
             if ($this->request->getPostGet('relative_vehicle_id')) {
-                $log['operation'] = 'Edición de vehículo - id: ' . $data['relative_vehicle_id'];
+                $log['operation'] = 'Edición de ingreso - id: ' . $data['relative_vehicle_id'];
             } else {
-                $log['operation'] = 'Creación de vehículo';
+                $log['operation'] = 'Creación de ingreso';
             }
             //Save log
             $logModel->save($log);
@@ -145,7 +139,7 @@ class relative_vehicleController extends BaseController
         //Log
         if (session()->get('type') == 'administrator') {
             $log['administrator_id'] = session()->get('administrator_id');
-            $log['operation'] = 'Edición de vehículo - id: ' . $id;
+            $log['operation'] = 'Eliminación de ingreso - id: ' . $id;
             //Save log
             $logModel->save($log);
         }

@@ -14,9 +14,7 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function detail()
@@ -30,9 +28,7 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new()
@@ -43,9 +39,7 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit()
@@ -62,9 +56,7 @@ class assemblyController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('assembly/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

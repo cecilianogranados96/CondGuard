@@ -17,9 +17,7 @@ class relativeController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function profile($error = null, $data = null)
@@ -63,9 +61,7 @@ class relativeController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
@@ -82,9 +78,7 @@ class relativeController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($error = null, $data = null)
@@ -111,9 +105,7 @@ class relativeController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('relative/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()

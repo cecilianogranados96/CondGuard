@@ -61,4 +61,8 @@
         </div>
     </div>
     <hr />
-    <div class="row d-block d-lg-flex d-xl-flex d-xxl-flex"> -->
+<div class="row d-block d-lg-flex d-xl-flex d-xxl-flex">
+<div class="container my-5" style="
+        display: flex;
+        align-items: center;
+        justify-content: center;">-->

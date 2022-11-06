@@ -10,14 +10,12 @@ class condo_ownerController extends BaseController
         $db        = db_connect('default');
         $condo_ownerModel = model('condo_ownerModel', true, $db);
         //Get-fill data
-        $items['items'] = $condo_ownerModel->findAll();
+        $items['items'] = $condo_ownerModel->orderBy('land_number', 'DESC')->findAll();
         //Views
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('condo_owner/list', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function profile($error = null, $data = null)
@@ -57,9 +55,7 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('condo_owner/detail', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
@@ -75,9 +71,7 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('condo_owner/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function edit($error = null, $data = null)
@@ -103,9 +97,7 @@ class condo_ownerController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            view('templates/maintenance_begin') .
             view('condo_owner/form', $items) .
-            view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -124,9 +116,12 @@ class condo_ownerController extends BaseController
             'land_number' => $this->request->getPostGet('land_number'),
             'payment' => '0'
         );
-        //Generate and set random unique pin
+
+        //Generate and set random unique pin (DEPRECATED)
+        /*
         $rand_num = time() + rand(1, 1000);
         $data['pin'] = md5($rand_num);
+        */
 
         //Save password only if we are inserting or if user type new one 
         if ($this->request->getPostGet('condo_owner_id')) {

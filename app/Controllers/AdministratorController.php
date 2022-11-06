@@ -15,9 +15,7 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            //view('templates/maintenance_begin') .
             view('administrator/list', $items) .
-            //view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function profile($error = null, $data = null)
@@ -40,12 +38,10 @@ class administratorController extends BaseController
         $items['edit_enabled'] = true;
         //Views
         return
-        view('templates/header') .
-        view('templates/navbar') .
-        view('administrator/profile', $items) .
-        view('templates/footer');
-
-   
+            view('templates/header') .
+            view('templates/navbar') .
+            view('administrator/profile', $items) .
+            view('templates/footer');
     }
     public function detail()
     {
@@ -59,9 +55,7 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            //view('templates/maintenance_begin') .
             view('administrator/detail', $item) .
-            //view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function new($error = null, $data = null)
@@ -76,9 +70,7 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            //view('templates/maintenance_begin') .
             view('administrator/form', $items) .
-           // view('templates/maintenance_end') .
             view('templates/footer');
     }
 
@@ -104,9 +96,7 @@ class administratorController extends BaseController
         return
             view('templates/header') .
             view('templates/navbar') .
-            //view('templates/maintenance_begin') .
             view('administrator/form', $items) .
-           // view('templates/maintenance_end') .
             view('templates/footer');
     }
     public function save()
@@ -139,7 +129,7 @@ class administratorController extends BaseController
             $data['administrator_id'] = $this->request->getPostGet('administrator_id');
             $query = $db->Query("SELECT * FROM `administrator` WHERE (`identity` LIKE '" . $data['identity'] . "' OR `email` LIKE '" . $data['email'] . "' OR `phone` LIKE '" . $data['phone'] . "') AND `administrator_id` NOT LIKE '" . $data['administrator_id'] . "'");
             if ($query->resultID->num_rows != 0) {
-                if (session('type') == 'administrator') {
+                if ($this->request->getPostGet('profile')) {
                     return $this->profile('Identificación,teléfono o correo electrónico ya registrado.', $data);
                 }
                 return $this->edit('Identificación,teléfono o correo electrónico ya registrado.', $data);

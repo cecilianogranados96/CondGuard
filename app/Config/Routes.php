@@ -43,6 +43,14 @@ $routes->post('login/signin', 'loginController::signin');
 $routes->get('login/ver_usuario', 'loginController::ver_usuario');
 $routes->get('login/signout', 'loginController::signout');
 
+//Security (Mobile app)
+$routes->get('contacts', 'securityController::contacts');
+$routes->get('entries', 'securityController::entries');
+$routes->post('entries/save', 'securityController::save');
+$routes->get('exits', 'securityController::exits');
+$routes->get('quit', 'securityController::quit');
+$routes->get('patrolform', 'securityController::patrolform');
+
 //Maintenance (CONTROL DE CAMBIOS)
 $routes->get('maintenance', 'maintenanceController::index');
 

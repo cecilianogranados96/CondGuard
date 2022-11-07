@@ -5,6 +5,7 @@
         </div>
     </div>
 </footer>
+<button onclick="swal()">HOLA</button>
 </div>
 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
@@ -23,11 +24,26 @@
 </script>
 <!--SELECT2 with BOOTSTRAP 5-->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--Language for select2-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/es.js"></script>
+
+<!--Sweetalert2-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!--CUSTOM-->
 <script type="text/javascript" src="<?= base_url('assets/js/bs-init.js') ?>"></script>
 
 
 <script>
+function swal() {
+    Swal.fire({
+        timer: 1000,
+        icon: 'success',
+        title: 'Good job!',
+        showConfirmButton: false,
+    })
+}
+
+
 //Enable BS5 popovers
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))

@@ -107,7 +107,9 @@ class Filters extends BaseConfig
                 'patrol',
                 'patrol/*',
                 'relative_vehicle',
-                'relative_vehicle/*'
+                'relative_vehicle/new',
+                'relative_vehicle/edit',
+                'relative_vehicle/detail',
             ]
         ],
         'useraccess' => [

@@ -91,8 +91,8 @@ class relative_vehicleController extends BaseController
             'name' => $this->request->getPostGet('name'),
             'land_number' => $this->request->getPostGet('land_number'),
             'phone' => $this->request->getPostGet('phone'),
-            'entry_at' => $this->request->getPostGet('entry_at'),
-            'out_at' => $this->request->getPostGet('out_at'),
+            'entry_at' => ($this->request->getPostGet('entry_at')) ? $this->request->getPostGet('entry_at') : date('Y-m-d H:i:s'),
+            'out_at' => ($this->request->getPostGet('out_at')) ? $this->request->getPostGet('out_at') : null,
         );
 
         //Query variable

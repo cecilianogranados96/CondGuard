@@ -1,5 +1,4 @@
-<div class="container-fluid my-auto" style="
-        display: flex;
+<div class="container-fluid my-auto mx-auto" style="
         align-items: center;
         justify-content: center;">
     <form action="<?= base_url('common_area/save') ?>" method="post" class="row form-floating needs-validation"

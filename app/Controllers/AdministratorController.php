@@ -144,7 +144,7 @@ class administratorController extends BaseController
         $administratorModel->save($data);
         //Redirect
         if ($this->request->getPostGet('profile')) {
-            return $this->response->redirect(base_url(''));
+            return $this->response->redirect(base_url('administrator/profile?id=' . $data['administrator_id']));
         }
         return $this->response->redirect(base_url('administrator'));
     }

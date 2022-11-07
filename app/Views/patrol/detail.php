@@ -1,78 +1,70 @@
-<div class="container-fluid my-auto" style="
-        display: flex;
-        align-items: center;
-        justify-content: center;">
-    <div class="col-auto" style="width: 440px">
-        <div class="card">
-            <div class="card-body">
-                <form class="form-floating">
-                    <!-- title -->
-                    <h1>Detalle Patrulla</h1>
-                    <!-- input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="text" id="patrol_id" value="<?= $item['patrol_id'] ?>"
-                            readonly />
-                        <label for="patrol_id">Código</label>
-                    </div>
-                    <!-- input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="text" id="officer_id" value="<?php
-                                                                                        if ($item['officer_id'] != null) {
-                                                                                            $found_key = array_search($item['officer_id'], array_column($relations, 'officer_id'));
-
-                                                                                            echo $relations[$found_key]['identity'] . '-' . $relations[$found_key]['name'];
-                                                                                        }
-
-                                                                                        ?>" readonly />
-                        <label for="officer_id">Oficial</label>
-                    </div>
-                    <!-- input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="text" id="longitude" value="<?= $item['longitude'] ?>"
-                            readonly>
-                        <label for="longitude">Longitud</label>
-                    </div>
-                    <!-- input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="text" id="latitude" value="<?= $item['latitude'] ?>" readonly>
-                        <label for="latitude">Latitud</label>
-                    </div>
-                    <!-- input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="text" id="code" value="<?= $item['code'] ?>" readonly />
-                        <label for="name">Código QR</label>
-                    </div>
-                    <!-- Input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="datetime-local" id="created_at"
-                            value="<?= $item['created_at'] ?>" readonly />
-                        <label for="created_at">Fecha de creación</label>
-                    </div>
-                    <!-- Input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="datetime-local" id="updated_at"
-                            value="<?= $item['updated_at'] ?>" readonly />
-                        <label for="updated_at">Fecha de actualización</label>
-                    </div>
-                    <!-- Input -->
-                    <div class="form-floating mb-1">
-                        <input class="form-control" type="datetime-local" id="deleted_at"
-                            value="<?= $item['deleted_at'] ?>" readonly />
-                        <label for="deleted_at">Fecha de elimincación</label>
-                    </div>
-                </form>
-                <!-- option -->
-                <div style="margin-top: 20px;">
-                    <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"
-                        href="<?= base_url('patrol') ?>" data-bs-toggle="tooltip" data-bs-placement="left"
-                        title="Atrás">
-                        Atrás
-                    </a><a class="btn btn-warning btn-lg" role="button" style="width: 59%; margin-left: 2%"
-                        href="<?php echo base_url('patrol/edit?id=' . $item['patrol_id']) ?>" data-bs-toggle="tooltip"
-                        data-bs-placement="right" title="Editar">
-                        Editar <i class="far fa-edit"></i>
-                    </a>
+<div class="w3-center w3-display-container m-auto" style=" max-width:400px;">
+    <div class="col-auto">
+        <div class="card card-body">
+            <form class="form-floating row g-3">
+                <!-- title -->
+                <h1>Detalle Patrulla</h1>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="patrol_id" value="<?= $item['patrol_id'] ?>" readonly />
+                    <label for="patrol_id">Código</label>
                 </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="officer_id" value="<?php
+                                                                                    if ($item['officer_id'] != null) {
+                                                                                        $found_key = array_search($item['officer_id'], array_column($relations, 'officer_id'));
+
+                                                                                        echo $relations[$found_key]['identity'] . '-' . $relations[$found_key]['name'];
+                                                                                    }
+
+                                                                                    ?>" readonly />
+                    <label for="officer_id">Oficial</label>
+                </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="longitude" value="<?= $item['longitude'] ?>" readonly>
+                    <label for="longitude">Longitud</label>
+                </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="latitude" value="<?= $item['latitude'] ?>" readonly>
+                    <label for="latitude">Latitud</label>
+                </div>
+                <!-- input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="text" id="code" value="<?= $item['code'] ?>" readonly />
+                    <label for="name">Código QR</label>
+                </div>
+                <!-- Input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="datetime-local" id="created_at" value="<?= $item['created_at'] ?>"
+                        readonly />
+                    <label for="created_at">Fecha de creación</label>
+                </div>
+                <!-- Input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="datetime-local" id="updated_at" value="<?= $item['updated_at'] ?>"
+                        readonly />
+                    <label for="updated_at">Fecha de actualización</label>
+                </div>
+                <!-- Input -->
+                <div class="form-floating mb-1">
+                    <input class="form-control" type="datetime-local" id="deleted_at" value="<?= $item['deleted_at'] ?>"
+                        readonly />
+                    <label for="deleted_at">Fecha de elimincación</label>
+                </div>
+            </form>
+            <!-- option -->
+            <div style="margin-top: 20px;">
+                <a class="btn btn-secondary btn-lg" role="button" style="width: 39%" href="<?= base_url('patrol') ?>"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="Atrás">
+                    Atrás
+                </a><a class="btn btn-warning btn-lg" role="button" style="width: 59%; margin-left: 2%"
+                    href="<?php echo base_url('patrol/edit?id=' . $item['patrol_id']) ?>" data-bs-toggle="tooltip"
+                    data-bs-placement="right" title="Editar">
+                    Editar <i class="far fa-edit"></i>
+                </a>
             </div>
         </div>
     </div>

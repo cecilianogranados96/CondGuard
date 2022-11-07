@@ -50,7 +50,7 @@
                             }
 
                             if ($valueland == "") {
-                                $valueland = 'P09';
+                                $valueland = 'Admin';
                             }
                             ?>
                             <input class="form-control" type="text" id="land_number" name="land_number"

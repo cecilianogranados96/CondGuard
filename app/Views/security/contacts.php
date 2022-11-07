@@ -29,7 +29,7 @@
                     <td>
                         <a href="" class="btn btn-success " role="button" data-bs-toggle="tooltip"
                             title="Marcar Entrada">
-                            Marcar Entrada <i class="fas fa-eraser"></i></a>
+                            Marcar Entrada <i class="fas fa-check"></i></a>
                     </td>
                 </tr>
                 <?php foreach ($items as $item) : ?>

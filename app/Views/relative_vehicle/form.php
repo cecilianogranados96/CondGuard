@@ -1,8 +1,5 @@
-<div class="container-fluid my-auto" style="
-        display: flex;
-        align-items: center;
-        justify-content: center;">
-    <div class="col-auto" style="width: 440px">
+<div class="w3-center w3-display-container m-auto" style=" max-width:400px;">
+    <div class="col-auto">
         <div class="card card-body">
             <form action="<?= base_url('relative_vehicle/save') ?>" method="post"
                 class="row g-3 form-floating needs-validation" novalidate>
@@ -25,7 +22,8 @@
                     <label for="identity">Identificación <b class="required-feedback">*</b></label>
                     <div class="valid-feedback">Correcto.</div>
                     <div class="invalid-feedback">
-                        Invalido, debe ingresar identificación valida nacional ej:101110111, o extranjera en el formato
+                        Invalido, debe ingresar identificación valida nacional ej:101110111, o extranjera en el
+                        formato
                         correspondiente, sin caracteres especiales o espacios.
                     </div>
                 </div>
@@ -61,7 +59,7 @@
                         <?php foreach ($relations as $relation) :
                             $selected = '';
                             if (isset($item)) {
-                                if ($relation['condo_owner_id'] == $item['condo_owner_id']) {
+                                if ($relation['land_number'] == $item['land_number']) {
                                     $selected = 'selected';
                                 } else {
                                     $selected = '';

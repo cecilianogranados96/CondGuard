@@ -49,7 +49,7 @@ $routes->get('entries', 'securityController::entries');
 $routes->post('entries/save', 'securityController::save');
 $routes->get('exits', 'securityController::exits');
 $routes->get('quit', 'securityController::quit');
-$routes->get('patrolform', 'securityController::patrolform');
+$routes->get('officerlog', 'securityController::officerlog');
 
 //Maintenance (CONTROL DE CAMBIOS)
 $routes->get('maintenance', 'maintenanceController::index');

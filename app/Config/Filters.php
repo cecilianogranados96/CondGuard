@@ -26,7 +26,8 @@ class Filters extends BaseConfig
         'adminaccess' => \App\Filters\AdminAccess::class,
         'useraccess' => \App\Filters\UserAccess::class,
         'reserveaccess' => \App\Filters\ReserveAccess::class,
-        'votingaccess' => \App\Filters\VotingAccess::class
+        'votingaccess' => \App\Filters\VotingAccess::class,
+        'homeaccess' => \App\Filters\HomeAccess::class
     ];
 
     /**
@@ -80,7 +81,9 @@ class Filters extends BaseConfig
                 'relative/detail',
                 'relative/delete',
                 'administrator',
-                'administrator/*',
+                'administrator/new',
+                'administrator/detail',
+                'administrator/delete',
                 'condo_owner',
                 'condo_owner/new',
                 'condo_owner/detail',
@@ -117,6 +120,7 @@ class Filters extends BaseConfig
                 'relative/profile',
                 'relative/save',
                 'administrator/profile',
+                'administrator/save',
                 'condo_owner/profile',
                 'condo_owner/save',
             ]
@@ -131,6 +135,11 @@ class Filters extends BaseConfig
         'votingaccess' => [
             'before' => [
                 'assembly_voting/preview',
+            ]
+        ],
+        'homeaccess' => [
+            'before' => [
+                '/home',
             ]
         ]
     ];

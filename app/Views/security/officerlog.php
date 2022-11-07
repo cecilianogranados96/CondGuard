@@ -6,13 +6,13 @@
                     class="row g-3 form-floating needs-validation" novalidate>
                     <!-- title -->
                     <h1 class="text-center my-4">
-                        Patrulla
+                        Log de oficiales
                     </h1>
                     <!-- input -->
                     <div class="form-floating">
                         <input class="form-control " type="text" id="officer_id" name="officer_id" placeholder="Latitud"
                             data-bs-toggle="tooltip" data-bs-placement="right" title="Identidad oficial."
-                            value="<?= isset($_GET["id"]) ? $_GET["id"] : '' ?>" required />
+                            value="<?= isset($_GET["officer_id"]) ? $_GET["officer_id"] : '' ?>" required />
                         <label for="officer_id">Oficial<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -23,8 +23,9 @@
                     <!-- input -->
                     <div class="form-floating">
                         <input class="form-control only-number" type="text" id="latitude" name="latitude"
-                            placeholder="Latitud" data-bs-toggle="tooltip" data-bs-placement="right"
-                            title="Latitud válida ej: 40.000." required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
+                            value="<?= isset($_GET["latitude"]) ? $_GET["latitude"] : '' ?>" placeholder="Latitud"
+                            data-bs-toggle="tooltip" data-bs-placement="right" title="Latitud válida ej: 40.000."
+                            required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
                         <label for="latitude">Latitud<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -34,8 +35,9 @@
                     <!-- input -->
                     <div class="form-floating">
                         <input class="form-control only-number" type="text" id="longitude" name="longitude"
-                            placeholder="Longitud" data-bs-toggle="tooltip" data-bs-placement="right"
-                            title="Longitud válida ej: 40.000." required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
+                            value="<?= isset($_GET["longitude"]) ? $_GET["longitude"] : '' ?>" placeholder="Longitud"
+                            data-bs-toggle="tooltip" data-bs-placement="right" title="Longitud válida ej: 40.000."
+                            required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
                         <label for="longitude">Longitud<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -45,7 +47,8 @@
                     <!-- input -->
                     <div class="form-floating">
                         <input class="form-control" type="text" id="code" name="code" placeholder="Código QR"
-                            data-bs-toggle="tooltip" data-bs-placement="right" title="Código QR." required />
+                            value="<?= isset($_GET["code"]) ? $_GET["code"] : '' ?>" data-bs-toggle=" tooltip"
+                            data-bs-placement="right" title="Código QR." required />
                         <label for="code">Código QR<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">

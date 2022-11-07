@@ -94,12 +94,12 @@ class securityController extends BaseController
         return $this->response->redirect(base_url('/exits'));
     }
     //Patrulla
-    public function patrolform()
+    public function officerlog()
     {
         //Views
         return
             view('templates/header') .
-            view('security/patrolform') .
+            view('security/officerlog') .
             view('templates/footer');
     }
 }

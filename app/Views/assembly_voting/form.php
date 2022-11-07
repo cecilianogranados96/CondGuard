@@ -1,8 +1,5 @@
-<div class="container-fluid my-auto" style="
-        display: flex;
-        align-items: center;
-        justify-content: center;">
-    <div class="col-auto" style="width: 440px">
+<div class="w3-center w3-display-container m-auto" style=" max-width:400px;">
+    <div class="col-auto">
         <div class="card card-body">
             <!-- form -->
             <form action="<?= base_url('assembly_voting/save') ?>" method="post"

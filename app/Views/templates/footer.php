@@ -5,7 +5,7 @@
         </div>
     </div>
 </footer>
-<button onclick="swal()">HOLA</button>
+<button class="visually-hidden" onclick="swal('success','hola')">HOLA</button>
 </div>
 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
@@ -34,11 +34,11 @@
 
 
 <script>
-function swal() {
+function swal(icon, title) {
     Swal.fire({
-        timer: 1000,
-        icon: 'success',
-        title: 'Good job!',
+        timer: 800,
+        icon: icon,
+        title: title,
         showConfirmButton: false,
     })
 }

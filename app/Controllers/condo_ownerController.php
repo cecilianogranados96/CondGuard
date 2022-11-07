@@ -164,7 +164,7 @@ class condo_ownerController extends BaseController
         }
         //Redirect
         if (session('type') == 'condo_owner') {
-            return $this->response->redirect(base_url(''));
+            return $this->response->redirect(base_url('condo_owner/profile?id=' . $data['condo_owner_id']));
         }
         return $this->response->redirect(base_url('condo_owner'));
     }

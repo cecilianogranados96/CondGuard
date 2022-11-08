@@ -171,6 +171,10 @@ class relativeController extends BaseController
             $logModel->save($log);
         }
 
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
+
 
         //Redirect
         if (session('type') == 'relative') {

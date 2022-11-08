@@ -142,6 +142,11 @@ class administratorController extends BaseController
         }
         //Save
         $administratorModel->save($data);
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
+
         //Redirect
         if ($this->request->getPostGet('profile')) {
             return $this->response->redirect(base_url('administrator/profile?id=' . $data['administrator_id']));

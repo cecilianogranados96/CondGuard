@@ -162,6 +162,11 @@ class condo_ownerController extends BaseController
             //Save log
             $logModel->save($log);
         }
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
+
         //Redirect
         if (session('type') == 'condo_owner') {
             return $this->response->redirect(base_url('condo_owner/profile?id=' . $data['condo_owner_id']));

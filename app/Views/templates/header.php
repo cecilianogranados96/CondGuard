@@ -25,10 +25,11 @@
     <!--ICON-->
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/ico.png'); ?>">
 
-
-
     <!--NAV-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
+
+    <!--TEMPLATE-->
+    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
 
     <!--GOOGE FONTS-->
     <link
@@ -38,12 +39,17 @@
     <!--FONTSAWESOME-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 
-    <!--CUSTOM-->
-    <link rel="stylesheet" href="<?= base_url('assets/css/styles.css'); ?>">
-
     <!--DATATABLE-->
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/sb-1.3.4/datatables.min.css" />
+
+    <!--LOGIN-->
+    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+
+    <!--CUSTOM-->
+    <link rel="stylesheet" href="<?= base_url('assets/css/styles.css'); ?>">
+
+
 
 
     <!--load voting img-->

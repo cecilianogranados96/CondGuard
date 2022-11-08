@@ -75,6 +75,19 @@
                         Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
                     </div>
                 </div>
+                <!-- input -->
+                <div class="form-floating">
+                    <input class="form-control only-alphanumeric" type="text" id="land_number" name="land_number"
+                        placeholder="Filial" data-bs-toggle="tooltip" data-bs-placement="right" title="Filial."
+                        value="<?= isset($item) ? $item['land_number'] : ''; ?>" readonly
+                        pattern="^[a-zA-Z0-9]{0,50}$" />
+                    <label for="land_number">Filial <b class="required-feedback">*</b></label>
+                    <div class="valid-feedback">Correcto.</div>
+                    <div class="invalid-feedback">
+                        Invalido, debe ingresar filial con solo numeros y letras, no se admite espacios ni caracteres
+                        especiales.
+                    </div>
+                </div>
                 <!-- Error -->
                 <?php if (isset($error)) { ?>
                 <div class="form-floating required-feedback mt-3">

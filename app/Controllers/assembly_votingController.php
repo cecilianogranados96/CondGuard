@@ -86,6 +86,10 @@ class assembly_votingController extends BaseController
         $voteModel->save($data);
         $assembly_votingModel->save($assembly_voting);
 
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
+
         //Redirect
         return $this->response->redirect(base_url('assembly_voting/panel?id=' . $this->request->getPostGet('assembly_voting_id')));
     }

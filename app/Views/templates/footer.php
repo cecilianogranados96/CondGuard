@@ -5,43 +5,56 @@
         </div>
     </div>
 </footer>
-<button class="visually-hidden" onclick="swal('success','hola')">HOLA</button>
+
 </div>
 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
+
 <!--NAV-->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/sb-admin-2.min.js'); ?>"></script>
+
 <!--BOOTSTRAP 5-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <!--DATATABLE-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript"
     src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/sb-1.3.4/datatables.min.js">
 </script>
+
 <!--SELECT2 with BOOTSTRAP 5-->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!--Language for select2-->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/es.js"></script>
 
 <!--Sweetalert2-->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!--CUSTOM-->
 <script type="text/javascript" src="<?= base_url('assets/js/bs-init.js') ?>"></script>
 
 
+
 <script>
-function swal(icon, title) {
+//Sweetalert2 
+$(function() {
+    <?php if (session()->has("message_icon")) { ?>
     Swal.fire({
-        timer: 800,
-        icon: icon,
-        title: title,
-        showConfirmButton: false,
+        timer: 950,
+        icon: '<?= session("message_icon") ?>',
+        title: '<?= session("message") ?>',
+        showConfirmButton: false
     })
-}
+    <?php } ?>
+});
+
+
+
 
 
 //Enable BS5 popovers
@@ -77,6 +90,7 @@ $('.only-number').on('change keyup', function() {
     // Update value
     $(this).val(sanitized);
 });
+
 //only alpha-numberic typing on certain inputs
 $('.only-alphanumeric').on('change keyup', function() {
     // Remove invalid characters
@@ -112,6 +126,7 @@ $('.only-alphanumeric').on('change keyup', function() {
         );
     });
 })();
+
 //Enable Select2 with bootstrap 5 
 $('.single-select-clear-field').select2({
     theme: "bootstrap-5",

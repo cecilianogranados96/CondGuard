@@ -88,6 +88,11 @@ class assemblyController extends BaseController
             //Save log
             $logModel->save($log);
         }
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
+        
         //Redirect
         return $this->response->redirect(base_url('assembly'));
     }

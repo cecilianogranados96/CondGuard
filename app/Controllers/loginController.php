@@ -15,6 +15,16 @@ class loginController extends BaseController
 			view('templates/footer');
 	}
 
+	public function login_officer()
+	{
+		//Views
+		return
+			view('templates/header') .
+			//view('templates/navbar') .
+			view('login/login_officer') .
+			view('templates/footer');
+	}
+
 	public function signin()
 	{
 		$db        = db_connect('default');
@@ -76,6 +86,28 @@ class loginController extends BaseController
 		}
 		$this->seterror("El correo electróncio digitado no se encuentra registrado.");
 		return redirect()->to('/login');
+	}
+
+	public function signin_officer()
+	{
+		$db        = db_connect('default');
+		$pin = $this->request->getPostGet('pin');
+		echo $pin;
+
+		$officerModel = model('officerModel', true, $db);
+		if ($data = $officerModel->where('pin', $pin)->first()) {
+			$data['isLoggedIn'] = true;
+			$data['type'] = "officer";
+			session()->set($data);
+
+			//Sweetalert flash params
+			session()->setFlashdata("message_icon", "success");
+			session()->setFlashdata("message", "Bienvenido");
+
+			return redirect()->to('/home');
+		}
+		$this->seterror("Inicio de sesión incorrecto para usuario condomino");
+		return redirect()->to('/login_officer');
 	}
 
 	private function seterror($error = null)

@@ -43,6 +43,10 @@ $routes->post('login/signin', 'loginController::signin');
 $routes->get('login/ver_usuario', 'loginController::ver_usuario');
 $routes->get('login/signout', 'loginController::signout');
 
+//Login (officer)
+$routes->get('login_officer', 'loginController::login_officer');
+$routes->post('login/signin_officer', 'loginController::signin_officer');
+
 //Security (Mobile app)
 $routes->get('contacts', 'securityController::contacts');
 $routes->get('entries', 'securityController::entries');
@@ -119,6 +123,7 @@ $routes->post('assembly_voting/save', 'assembly_votingController::save');
 //officer
 $routes->get('officer', 'officerController::index');
 $routes->get('officer/detail', 'officerController::detail');
+$routes->get('officer/profile', 'officerController::profile');
 $routes->get('officer/new', 'officerController::new');
 $routes->get('officer/edit', 'officerController::edit');
 $routes->get('officer/delete', 'officerController::delete');
@@ -148,12 +153,16 @@ $routes->get('vote/edit', 'voteController::edit');
 $routes->get('vote/delete', 'voteController::delete');
 $routes->post('vote/save', 'voteController::save');
 
-//reservation
-$routes->get('reservation', 'reservationController::index');
+//reservation (user)
 $routes->get('reservation/common_areas', 'reservationController::common_areas');
 $routes->get('reservation/request', 'reservationController::request');
+$routes->get('reservation/myreservations', 'reservationController::myreservations');
 $routes->post('reservation/ajaxschedule', 'reservationController::ajaxschedule');
 $routes->post('reservation/reserve', 'reservationController::reserve');
+$routes->get('reservation/cancel', 'reservationController::cancel');
+
+//reservation 
+$routes->get('reservation', 'reservationController::index');
 $routes->get('reservation/detail', 'reservationController::detail');
 $routes->get('reservation/new', 'reservationController::new');
 $routes->get('reservation/edit', 'reservationController::edit');

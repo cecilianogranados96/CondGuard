@@ -18,6 +18,31 @@ class officerController extends BaseController
             view('officer/list', $items) .
             view('templates/footer');
     }
+    public function profile($error = null, $data = null)
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $officerModel = model('officerModel', true, $db);
+        //Get-fill data 
+        //if ($data == null) {
+        $id = $this->request->getPostGet('id');
+        $items['item'] = $officerModel->find($id);
+        //$items['item']['password'] = '';
+        //$items['error'] =  $error;
+        /*} else {
+            $items['item'] = $data;
+            $items['item']['password'] = '';
+            $items['error'] =  $error;
+        }*/
+        //Enable edit
+        //$items['edit_enabled'] = true;
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('officer/profile', $items) .
+            view('templates/footer');
+    }
     public function detail()
     {
         //Connect / models
@@ -119,7 +144,7 @@ class officerController extends BaseController
         //Sweetalert flash params
         session()->setFlashdata("message_icon", "success");
         session()->setFlashdata("message", "Cambios realizados");
-        
+
         //Redirect
         return $this->response->redirect(base_url('officer'));
     }

@@ -88,7 +88,7 @@ class assembly_votingController extends BaseController
 
         //Sweetalert flash params
         session()->setFlashdata("message_icon", "success");
-        session()->setFlashdata("message", "Cambios realizados");
+        session()->setFlashdata("message", "Voto recibido");
 
         //Redirect
         return $this->response->redirect(base_url('assembly_voting/panel?id=' . $this->request->getPostGet('assembly_voting_id')));
@@ -177,6 +177,10 @@ class assembly_votingController extends BaseController
             //Save log
             $logModel->save($log);
         }
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Cambios realizados");
         //Redirect
         return $this->response->redirect(base_url('assembly_voting'));
     }

@@ -14,36 +14,24 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido al sistema!</h1>
                                     </div>
 
 
-                                    <form action="<?= base_url('login/signin') ?>" method="post"
+                                    <form action="<?= base_url('login/signin_officer') ?>" method="post"
                                         class="user row g-2 needs-validation" novalidate>
+
 
                                         <!-- input -->
                                         <div class="form-floating">
-                                            <input class="form-control" type="email" id="email" name="email"
-                                                placeholder="Correo electrónico" data-bs-toggle="tooltip"
-                                                data-bs-placement="right" title="Correo electrónico ej: nombre@mail.com"
-                                                value="<?= isset($item) ? $item['email'] : ''; ?>" required=""
+                                            <input class="form-control" type="password" id="pin" name="pin"
+                                                placeholder="Pin" data-bs-toggle="tooltip" data-bs-placement="right"
+                                                title="Ingrese su contraseña."
+                                                value="<?= isset($item) ? $item['pin'] : ''; ?>" required=""
                                                 style="border-radius: 100px;" />
-                                            <label for="email">Correo electrónico </label>
+                                            <label for="pin">Pin de acceso </label>
                                             <div class="invalid-feedback">
-                                                Invalido, debe ingresar un correo electrónico valido,
-                                                ej:nombre@mail.com.
-                                            </div>
-                                        </div>
-                                        <!-- input -->
-                                        <div class="form-floating">
-                                            <input class="form-control" type="password" id="password" name="password"
-                                                placeholder="Contraseña" data-bs-toggle="tooltip"
-                                                data-bs-placement="right" title="Ingrese su contraseña."
-                                                value="<?= isset($item) ? $item['password'] : ''; ?>" required=""
-                                                style="border-radius: 100px;" />
-                                            <label for="password">Contraseña </label>
-                                            <div class="invalid-feedback">
-                                                Invalido, debe ingresar su contraseña.
+                                                Invalido, debe ingresar su pin de acceso.
                                             </div>
                                         </div>
 
@@ -54,7 +42,7 @@
                                                 data-bs-placement="right" title="Iniciar Sesión" />
                                         </div>
                                         <div class="text-center">
-                                            <a href="<?= base_url('login_officer') ?>">¿Eres un guarda?</a>
+                                            <a href="<?= base_url('') ?>">¿Eres un condómino?</a>
                                         </div>
                                     </form>
 

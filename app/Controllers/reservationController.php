@@ -23,6 +23,28 @@ class reservationController extends BaseController
             view('reservation/list', $items) .
             view('templates/footer');
     }
+    public function myreservations()
+    {
+        //Connect / models
+        $reservationModel = model('reservationModel', true, $db);
+        $condo_ownerModel = model('common_areaModel', true, $db);
+        $common_areaModel = model('common_areaModel', true, $db);
+
+        //Get-fill data
+        if (session()->get('type') == 'condo_owner') {
+            $items['items'] = $reservationModel->where('condo_owner_id', session()->get('condo_owner_id'))->findAll();
+        } else {
+            $items['items'] = $reservationModel->findAll();
+        }
+        $items['relations'] =  $condo_ownerModel->findAll();
+        $items['relations2'] =  $common_areaModel->findAll();
+        //Views
+        return
+            view('templates/header') .
+            view('templates/navbar') .
+            view('reservation/myreservations', $items) .
+            view('templates/footer');
+    }
     public function common_areas()
     {
         //Connect / models
@@ -64,6 +86,32 @@ class reservationController extends BaseController
             view('reservation/request', $items) .
             view('templates/footer');
     }
+    public function cancel()
+    {
+        //Connect / models
+        $reservationModel = model('reservationModel', true, $db);
+        $common_areaModel = model('common_areaModel', true, $db);
+        //Get-fill data 
+        $id = $this->request->getPostGet('id');
+        //Delete and redirect
+        if ($this->request->getPostGet('renew')) {
+            //save reservation data for reuse before delete it and 
+            $reserve = $reservationModel->find($id);
+            $data['common_area_id'] = $reserve['common_area_id'];
+            $data['error'] = "Realice una nueva reservación.";
+            //delete of reservation
+            $reservationModel->where('reservation_id', $id)->delete();
+            $reservationModel->purgeDeleted();
+            //redirect to view for reserve with filled inputs
+            return $this->request($data);
+        } else {
+            //delete of reservation
+            $reservationModel->where('reservation_id', $id)->delete();
+            $reservationModel->purgeDeleted();
+            //redirect to myreservations
+            return redirect()->to('reservation/myreservations');
+        }
+    }
     public function ajaxschedule()
     {
         //Connect / models
@@ -73,6 +121,7 @@ class reservationController extends BaseController
         $id = $_POST['id'];
         $date = $_POST['date'];
         $reservations =  $reservationModel->findAll();
+
         //Convert date
         $time_input = strtotime($date);
         $date_input = getDate($time_input);
@@ -140,6 +189,7 @@ class reservationController extends BaseController
                 return $this->request($data);
             }
         }
+
         //Email to client
         $to = 'juanjo20-1998@outlook.com'; //session()->get('email');
         $subject = "This is subject";
@@ -158,6 +208,11 @@ class reservationController extends BaseController
 
         //Save
         $reservationModel->save($data);
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Reserva exitosa");
+
         //Redirect
         return redirect()->to('/reservation/common_areas');
     }

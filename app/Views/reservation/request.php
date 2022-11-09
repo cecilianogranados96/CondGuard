@@ -94,10 +94,10 @@
                         <br>
                         <!-- submit -->
                         <div style="margin-top: 20px">
-                            <a class="btn btn-secondary btn-lg" role="button" style="width: 29%"
+                            <a class="btn btn-secondary btn-lg" role="button" style="width: 31%"
                                 href="<?= base_url('reservation/common_areas') ?>" data-bs-toggle="tooltip"
                                 data-bs-placement="left" title="Atrás">
-                                Atrás </a><button class="btn btn-primary btn-lg" style="width: 69%; margin-left: 2%"
+                                Atrás </a><button class="btn btn-primary btn-lg" style="width: 67%; margin-left: 2%"
                                 type="submit" data-bs-toggle="tooltip" data-bs-placement="right"
                                 title="Reservar">Reservar <i class="fas fa-check fs-4"></i></button>
                         </div>

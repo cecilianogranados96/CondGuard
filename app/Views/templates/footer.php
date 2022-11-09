@@ -39,7 +39,6 @@
 <script type="text/javascript" src="<?= base_url('assets/js/bs-init.js') ?>"></script>
 
 
-
 <script>
 //Sweetalert2 
 $(function() {

@@ -27,7 +27,8 @@ class Filters extends BaseConfig
         'useraccess' => \App\Filters\UserAccess::class,
         'reserveaccess' => \App\Filters\ReserveAccess::class,
         'votingaccess' => \App\Filters\VotingAccess::class,
-        'homeaccess' => \App\Filters\HomeAccess::class
+        'homeaccess' => \App\Filters\HomeAccess::class,
+        'officeraccess' => \App\Filters\OfficerAccess::class
     ];
 
     /**
@@ -91,7 +92,9 @@ class Filters extends BaseConfig
                 'vote',
                 'vote/*',
                 'officer',
-                'officer/*',
+                'officer/new',
+                'officer/detail',
+                'officer/delete',
                 'authorized',
                 'authorized/*',
                 'assembly',
@@ -123,6 +126,8 @@ class Filters extends BaseConfig
                 'administrator/save',
                 'condo_owner/profile',
                 'condo_owner/save',
+                'officer/profile',
+                'officer/save',
             ]
         ],
         'reserveaccess' => [

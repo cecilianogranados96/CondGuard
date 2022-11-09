@@ -9,25 +9,31 @@
         <hr class="sidebar-divider my-0">
         <li class="nav-item">
             <a class="nav-link" href="/home/">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Inicio</span></a>
+                <i class="fas fa-fw fa-tachometer-alt fs-5"></i>
+                <span class="fs-5">Inicio</span></a>
         </li>
+
+        <?php if (session()->get('type') == 'condo_owner') { ?>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
             Reservas
         </div>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('reservation/common_areas') ?>"> <i
-                    class="fas fa-fw fa-chart-area"></i> <span>Reservar</span></a>
+                    class="fas fa-ticket-alt fs-6"></i>
+                <span class="fs-6">Reservar</span></a>
+            <a class="nav-link" href="<?= base_url('reservation/myreservations') ?>"> <i class="fas fa-list fs-6"></i>
+                <span class="fs-6">Mis reservas</span></a>
         </li>
+        <?php } ?>
         <?php if (session()->get('type') == 'condo_owner') { ?>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
             Votaciones
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('assembly_voting/preview') ?>"> <i
-                    class="fas fa-fw fa-chart-area"></i> <span>Votación</span></a>
+            <a class="nav-link" href="<?= base_url('assembly_voting/preview') ?>"> <i class="fas fa-vote-yea fs-6"></i>
+                <span class="fs-6">Votación</span></a>
         </li>
         <?php } ?>
         <?php if (session()->get('type') == 'administrator') { ?>
@@ -38,10 +44,10 @@
         <li class="nav-item active">
             <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
                 aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Mantenimientos </span>
+                <i class="fas fa-fw fa-cog fs-6"></i>
+                <span class="fs-6">Mantenimientos </span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Control:</h6>
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'maintenance' ? 'active' : '' ?>"
@@ -56,9 +62,9 @@
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'authorized' ? 'active' : '' ?>"
                         href="<?= base_url('authorized') ?>">Autorizados</a>
 
-
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'condo_owner' ? 'active' : '' ?>"
                         href="<?= base_url('condo_owner') ?>">Condóminos</a>
+
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'reservation' ? 'active' : '' ?>"
                         href="<?= base_url('reservation') ?>">Reservaciones</a>
 
@@ -96,15 +102,21 @@
         <li class="nav-item">
             <a class="nav-link"
                 href="<?= base_url() . '/' . session()->get('type') . '/profile?id=' . session()->get(session()->get('type') . '_id') ?>">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Perfil</span></a>
+                <i class="fas fa-fw fa-user fs-6"></i>
+                <span class="fs-6">Perfil</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href=" <?= base_url('assets/help/Manual_de_usuario.pdf'); ?>"
+                download="Manual_de_usuario">
+                <i class="fas fa-info fs-6"></i>
+                <span class="fs-6">Manual de usuario</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('login/signout') ?>">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Cerrar Sesión</span></a>
+                <i class="fas fa-sign-out-alt fs-6"></i>
+                <span class="fs-6">Cerrar Sesión</span></a>
         </li>
-        <div class="text-center  d-md-inline">
+        <div class="text-center  d-md-inline py-3">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </ul>

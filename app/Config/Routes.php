@@ -48,6 +48,7 @@ $routes->get('login_officer', 'loginController::login_officer');
 $routes->post('login/signin_officer', 'loginController::signin_officer');
 
 //Security (Mobile app)
+$routes->get('authorized_entries', 'securityController::authorized_entries');
 $routes->get('contacts', 'securityController::contacts');
 $routes->get('entries', 'securityController::entries');
 $routes->post('security/verify', 'securityController::verify');

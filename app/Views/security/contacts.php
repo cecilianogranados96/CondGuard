@@ -42,7 +42,7 @@
         <iframe id="inlineFrameExample" class="rounded border-info "
             title="Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la entrada el recuadro se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual."
             width="100%" data-bs-toggle="tooltip" title="Marcar Entrada" height="110" scrolling="no"
-            src="https://api.synappcr.com/condoguard/alert/?tel=50683500664">
+            src="https://api.synappcr.com/condoguard/alert/?tel=506">
         </iframe>
 
         <h2 class="Contactos">Contactos <a name="" id="" class="" onclick="info()" href="#" role="button"><i
@@ -74,8 +74,9 @@
                     <td><?= $item['reason'] ?></td>
                     <td>
                         <?php if ($item['phone'] != '') { ?>
-                        <a onclick="permission(<?= $item['phone'] ?>)" data-bs-toggle="tooltip" title="Contactar"
-                            class="btn btn-success"><?= $item['phone'] ?> <i class="fas fa-phone-alt"></i></a>
+                        <a onclick="permission(<?= str_replace('-', '', $item['phone']) ?>)" data-bs-toggle="tooltip"
+                            title="Contactar" class="btn btn-success"><?= $item['phone'] ?> <i
+                                class="fas fa-phone-alt"></i></a>
                         <?php } ?>
                     </td>
                 </tr>
@@ -84,22 +85,33 @@
         </table>
     </div>
 </div>
-<?php $phone = '8350-0664';
+<?php
+$phone = '8350-0664';
 $phone = str_replace('-', '', $phone);
-echo $phone;
 ?>
 
 
 <a onclick="permission2(<?= $phone ?>)" data-bs-toggle="tooltip" title="Llamar"
-    class="btn btn-success w-25"><?= $item['phone'] ?> <i class="fas fa-phone-alt"></i></a>
+    class="btn btn-success w-25 visually-hidden">Test <i class="fas fa-phone-alt"></i></a>
 <script>
+//send whatsapp notification 
 function permission(phone) {
+    loadIframe('inlineFrameExample', 'https://api.synappcr.com/condoguard/alert/?tel=506' + phone);
     $.post(
         "https://api.synappcr.com/condoguard/send/?telefono=506" + phone +
         "&nombre=<?= $_GET["name"] ?><?= $_GET["reason"] == ', por motivo de' ? '' : $_GET["reason"]; ?>&identificacion=<?= $_GET["identity"] ?>&lang=es_ES", {}
     )
 }
-
+//Change iframe src
+function loadIframe(iframeName, url) {
+    var $iframe = $('#' + iframeName);
+    if ($iframe.length) {
+        $iframe.attr('src', url);
+        return false;
+    }
+    return true;
+}
+//Sweetalert with instructions
 function info() {
     Swal.fire({
         timer: 1250,
@@ -111,7 +123,9 @@ function info() {
     })
 }
 
+
 function permission2(phone) {
+    loadIframe('inlineFrameExample', 'https://api.synappcr.com/condoguard/alert/?tel=506' + phone);
     $.post(
         "https://api.synappcr.com/condoguard/send/?telefono=506" + phone +
         "&nombre=<?= $_GET["name"] ?><?= $_GET["reason"] == ', por motivo de' ? '' : $_GET["reason"]; ?>&identificacion=<?= $_GET["identity"] ?>&lang=es_ES", {}

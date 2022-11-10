@@ -20,6 +20,22 @@ class securityController extends BaseController
             view('security/contacts', $items) .
             view('templates/footer');
     }
+    //Autorizados
+    public function authorized_entries()
+    {
+        //Connect / models
+        $db        = db_connect('default');
+        $authorizedModel = model('authorizedModel', true, $db);
+        $condo_ownerModel = model('condo_ownerModel', true, $db);
+        //Get-fill data
+        $items['items'] = $authorizedModel->findAll();
+        $items['relations'] =  $condo_ownerModel->findAll();
+        //Views
+        return
+            view('templates/header') .
+            view('security/authorized_entries', $items) .
+            view('templates/footer');
+    }
     //formulario de ingreso
     public function entries()
     {

@@ -9,7 +9,23 @@
     <div class="table-responsive inline-block">
         <div class="row mb-3">
             <div class="col">
-                <form action="<?= base_url('security/save') ?>">
+                <form action="<?= base_url('security/save') ?>" method="post">
+                    <!-- hidden input -->
+                    <input name="identity" type="hidden"
+                        value="<?= isset($_GET["identity"]) ? $_GET["identity"] : '' ?>">
+                    <!-- hidden input -->
+                    <input name="name" type="hidden" value="<?= isset($_GET["name"]) ? $_GET["name"] : '' ?>">
+                    <!-- hidden input -->
+                    <input name="vehicle_plate" type="hidden"
+                        value="<?= isset($_GET["vehicle_plate"]) ? $_GET["vehicle_plate"] : '' ?>">
+                    <!-- hidden input -->
+                    <input name="vehicle_plate" type="hidden"
+                        value="<?= isset($_GET["vehicle_plate"]) ? $_GET["vehicle_plate"] : '' ?>">
+                    <!-- hidden input -->
+                    <input name="land_number" type="hidden"
+                        value="<?= isset($_GET["land_number"]) ? $_GET["land_number"] : '' ?>">
+                    <!-- hidden input -->
+                    <input name="phone" type="hidden" value="<?= isset($_GET["phone"]) ? $_GET["phone"] : '' ?>">
                     <button type="submit" class="btn btn-success w-100" role="button" data-bs-toggle="tooltip"
                         title="Marcar Entrada" style="height: 45px;">Permitir entrada</button>
                 </form>
@@ -31,8 +47,7 @@
 
         <h2 class="Contactos">Contactos <a name="" id="" class="" onclick="info()" href="#" role="button"><i
                     class="fas fa-info-circle"></i></a></h2>
-        <table id="datatable" class="table " style="width: 100%">
-
+        <table id="datatable" class="table" style="width: 100%">
             <thead>
                 <tr>
                     <th>Identificación</th>
@@ -43,7 +58,6 @@
             </thead>
             <tbody>
                 <tr>
-
                     <td><?= $condo_owner['identity'] ?></td>
                     <td><?= $condo_owner['name'] ?></td>
                     <td>PROPIETARIO(A)</td>

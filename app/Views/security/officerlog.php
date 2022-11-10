@@ -79,10 +79,9 @@
                     <input name="officerlog" type="hidden" value="officerlog">
                     <!-- submit -->
                     <div class="text-center" style="margin-top: 20px;">
-                        <input class="btn btn-primary btn-lg" style="width: 100%; height:70px;border-radius: 15px;"
-                            type="submit" value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>"
-                            data-bs-toggle="tooltip" data-bs-placement="right"
-                            title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>">
+                        <input class="btn btn-primary btn-lg fs-4" style="width: 100%; height:70px;border-radius: 15px;"
+                            type="submit" value="Guardar" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="Guardar">
                     </div>
                 </form>
             </div>

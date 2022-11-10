@@ -35,7 +35,7 @@
                         <input class="form-control only-alphanumeric fs-5" type="text" id="vehicle_plate"
                             name="vehicle_plate" placeholder="Placa de vehículo" data-bs-toggle="tooltip"
                             data-bs-placement="right" title="Placa de vehículo ej: AAA888"
-                            value="<?= isset($_GET["vehicle_plate"]) ? $_GET["vehicle_plate"] : '' ?>" required=""
+                            value="<?= isset($_GET["vehicle_plate"]) ? $_GET["vehicle_plate"] : '' ?>"
                             pattern="^[a-zA-Z0-9]{6,9}$" />
                         <label for="vehicle_plate">Placa de vehículo <b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
@@ -142,8 +142,9 @@
                     <input name="entries" type="hidden" value="entries">
                     <!-- submit -->
                     <div class="text-center" style="margin-top: 30px">
-                        <input class="btn btn-primary btn-lg  w-100" type="submit" value="Verificar Ingreso"
-                            data-bs-toggle="tooltip" data-bs-placement="right" title="Verificar Ingreso" />
+                        <input class="btn btn-primary btn-lg fs-4" style="width: 100%; height:70px;border-radius: 15px;"
+                            type="submit" value="Verificar Ingreso" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="Verificar Ingreso">
                     </div>
                 </form>
             </div>

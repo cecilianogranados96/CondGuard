@@ -63,6 +63,7 @@ class securityController extends BaseController
             'phone' => $this->request->getPostGet('phone'),
             'entry_at' => date('Y-m-d H:i:s')
         );
+
         //Save
         $relative_vehicleModel->save($data);
 
@@ -106,6 +107,9 @@ class securityController extends BaseController
 
         //Save
         $relative_vehicleModel->save($data);
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Proceso exitoso");
         //Redirect
         return $this->response->redirect(base_url('/exits'));
     }

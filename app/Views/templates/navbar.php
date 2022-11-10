@@ -74,7 +74,7 @@
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'officer' ? 'active' : '' ?>"
                         href="<?= base_url('officer') ?>">Oficiales</a>
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'patrol' ? 'active' : '' ?>"
-                        href="<?= base_url('patrol') ?>">Log de Guardias</a>
+                        href="<?= base_url('patrol') ?>">Bitácora de seguridad</a>
                     <a class="collapse-item <?= current_url(true)->getSegment(1) == 'relative_vehicle' ? 'active' : '' ?>"
                         href="<?= base_url('relative_vehicle') ?>">Ingresos y Vehículos</a>
 

@@ -2,7 +2,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-6 col-xl-6">
             <div class="card-body d-flex flex-column align-items-center">
-                <form action="<?= base_url('entries/save') ?>" method="post"
+                <form action="<?= base_url('security/verify') ?>" method="post"
                     class="row g-3 form-floating needs-validation" novalidate>
                     <!-- timezone-->
                     <?php date_default_timezone_set('America/Costa_Rica');
@@ -109,6 +109,18 @@
                             Invalido, debe ingresar un teléfono móvil de entre 8 y 11 dígitos ej:80008000.
                         </div>
                     </div>
+                    <!-- Input -->
+                    <div class="form-floating">
+                        <textarea class="form-control" name="reason" placeholder="Motivo" data-bs-toggle="tooltip"
+                            data-bs-placement="right" title="Motivo"
+                            value="<?= isset($_GET["reason"]) ? $_GET["reason"] : '' ?>"
+                            aria-label="With textarea"></textarea>
+                        <label for="reason">Motivo <b class="required-feedback">*</b></label>
+                        <div class="valid-feedback">Correcto.</div>
+                        <div class="invalid-feedback">
+                            Invalido.
+                        </div>
+                    </div>
                     <!-- Error -->
                     <?php if (isset($error)) { ?>
                     <div class="form-floating required-feedback mt-3">
@@ -130,10 +142,9 @@
                     <input name="entries" type="hidden" value="entries">
                     <!-- submit -->
                     <div class="text-center" style="margin-top: 30px">
-                        <input class="btn btn-primary btn-lg  w-50" type="submit" value="Registrar"
-                            data-bs-toggle="tooltip" data-bs-placement="right" title="Registrar" />
+                        <input class="btn btn-primary btn-lg  w-100" type="submit" value="Verificar Ingreso"
+                            data-bs-toggle="tooltip" data-bs-placement="right" title="Verificar Ingreso" />
                     </div>
-
                 </form>
             </div>
         </div>
@@ -148,8 +159,5 @@ window.addEventListener('load', (event) => {
         placeholder: $(this).data('placeholder'),
         maximumSelectionLength: 1,
     });
-
-
-
 });
 </script>

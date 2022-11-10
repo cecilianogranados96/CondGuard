@@ -50,7 +50,8 @@ $routes->post('login/signin_officer', 'loginController::signin_officer');
 //Security (Mobile app)
 $routes->get('contacts', 'securityController::contacts');
 $routes->get('entries', 'securityController::entries');
-$routes->post('entries/save', 'securityController::save');
+$routes->post('security/verify', 'securityController::verify');
+$routes->post('security/save', 'securityController::save');
 $routes->get('exits', 'securityController::exits');
 $routes->get('quit', 'securityController::quit');
 $routes->get('officerlog', 'securityController::officerlog');

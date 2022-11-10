@@ -6,17 +6,32 @@
                     class="row g-3 form-floating needs-validation" novalidate>
                     <!-- title -->
                     <h1 class="text-center my-4">
-                        Log de oficiales
+                        Bitácora de seguridad
                     </h1>
-                    <!-- input -->
-                    <div class="form-floating">
-                        <input class="form-control " type="text" id="officer_id" name="officer_id" placeholder="Latitud"
-                            data-bs-toggle="tooltip" data-bs-placement="right" title="Identidad oficial."
-                            value="<?= isset($_GET["officer_id"]) ? $_GET["officer_id"] : '' ?>" required />
-                        <label for="officer_id">Oficial<b class="required-feedback">*</b></label>
+
+                    <!-- select -->
+                    <div data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione el oficial.">
+                        <select class="form-select single-select-clear-field" name="officer_id" id="officer_id"
+                            data-placeholder="Oficial*" required="" style="font-size: 1px;">
+                            <option></option>
+                            <?php foreach ($relations as $relation) :
+                                $selected = '';
+                                if (isset($item)) {
+                                    if ($relation['officer_id'] == $item['officer_id']) {
+                                        $selected = 'selected';
+                                    } else {
+                                        $selected = '';
+                                    }
+                                }
+                            ?>
+                            <option <?= "$selected" ?> value="<?= $relation['officer_id'] ?>">
+                                <?= $relation['identity'] . ' - ' . $relation['name'] ?>
+                            </option>
+                            <?php endforeach ?>
+                        </select>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
-                            Invalido, debe ingresar una identificación oficial.
+                            Debe seleccionar un oficial.
                         </div>
                     </div>
                     <br />
@@ -25,7 +40,7 @@
                         <input class="form-control only-number" type="text" id="latitude" name="latitude"
                             value="<?= isset($_GET["latitude"]) ? $_GET["latitude"] : '' ?>" placeholder="Latitud"
                             data-bs-toggle="tooltip" data-bs-placement="right" title="Latitud válida ej: 40.000."
-                            required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
+                            readonly required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
                         <label for="latitude">Latitud<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -37,7 +52,7 @@
                         <input class="form-control only-number" type="text" id="longitude" name="longitude"
                             value="<?= isset($_GET["longitude"]) ? $_GET["longitude"] : '' ?>" placeholder="Longitud"
                             data-bs-toggle="tooltip" data-bs-placement="right" title="Longitud válida ej: 40.000."
-                            required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
+                            readonly required pattern="([-+]?(([1-8]?\d(\.\d+))+|90))" />
                         <label for="longitude">Longitud<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -48,7 +63,7 @@
                     <div class="form-floating">
                         <input class="form-control" type="text" id="code" name="code" placeholder="Código QR"
                             value="<?= isset($_GET["code"]) ? $_GET["code"] : '' ?>" data-bs-toggle=" tooltip"
-                            data-bs-placement="right" title="Código QR." required />
+                            data-bs-placement="right" title="Código QR." required readonly />
                         <label for="code">Código QR<b class="required-feedback">*</b></label>
                         <div class="valid-feedback">Correcto.</div>
                         <div class="invalid-feedback">
@@ -60,11 +75,14 @@
                     <!-- hidden input -->
                     <input name="assembly_id" type="hidden"
                         value=<?= isset($edit_enabled) ? $item['patrol_id'] : ''; ?>>
+                    <!-- hidden input -->
+                    <input name="officerlog" type="hidden" value="officerlog">
                     <!-- submit -->
                     <div class="text-center" style="margin-top: 20px;">
-                        <input class="btn btn-primary btn-lg" style="width: 59%; margin-left: 2%" type="submit"
-                            value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>" data-bs-toggle="tooltip"
-                            data-bs-placement="right" title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>">
+                        <input class="btn btn-primary btn-lg" style="width: 100%; height:70px;border-radius: 15px;"
+                            type="submit" value="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>"
+                            data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="<?= isset($edit_enabled) ? 'Editar' : 'Guardar'; ?>">
                     </div>
                 </form>
             </div>

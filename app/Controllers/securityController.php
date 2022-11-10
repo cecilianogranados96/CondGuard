@@ -34,6 +34,20 @@ class securityController extends BaseController
             view('security/entries', $items) .
             view('templates/footer');
     }
+    //verificar ingreso
+    public function verify()
+    {
+        //Views
+        return redirect()->to(
+            '/contacts?'
+                . 'identity=' . $this->request->getPostGet('identity')
+                . '&vehicle_plate=' . $this->request->getPostGet('vehicle_plate')
+                . '&name=' . $this->request->getPostGet('name')
+                . '&land_number=' . $this->request->getPostGet('land_number')
+                . '&phone=' . $this->request->getPostGet('phone')
+                . '&reason=, por motivo de ' . $this->request->getPostGet('reason')
+        );
+    }
     //Registrar ingreso
     public function save()
     {
@@ -46,14 +60,16 @@ class securityController extends BaseController
             'vehicle_plate' => $this->request->getPostGet('vehicle_plate'),
             'name' => $this->request->getPostGet('name'),
             'land_number' => $this->request->getPostGet('land_number'),
-            'phone' => $this->request->getPostGet('phone')
+            'phone' => $this->request->getPostGet('phone'),
+            'entry_at' => date('Y-m-d H:i:s')
         );
-
-        if ($this->request->getPostGet('entries')) {
-            $data['entry_at'] = date('Y-m-d H:i:s');
-        }
         //Save
         $relative_vehicleModel->save($data);
+
+        //Sweetalert flash params
+        session()->setFlashdata("message_icon", "success");
+        session()->setFlashdata("message", "Proceso exitoso");
+
         //Redirect
         return $this->response->redirect(base_url('entries'));
     }
@@ -96,10 +112,14 @@ class securityController extends BaseController
     //Patrulla
     public function officerlog()
     {
+        //Connect / models
+        $officerModel = model('officerModel', true, $db);
+        //Get-fill data 
+        $items['relations'] =  $officerModel->findAll();
         //Views
         return
             view('templates/header') .
-            view('security/officerlog') .
+            view('security/officerlog', $items) .
             view('templates/footer');
     }
 }

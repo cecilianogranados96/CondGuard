@@ -1,10 +1,36 @@
 <div class="container my-auto">
     <!-- title -->
-    <h1 class="text-center my-5">
-        Contactos de filial <?= $_GET["land_number"] ?>
+    <h1 class="text-center pt-3">
+        Ingreso a filial <?= $_GET["land_number"] ?> <a name="" id="" class="" onclick="info()" href="#"
+            role="button"><i class="fas fa-info-circle"></i></a>
     </h1>
+    <hr>
     <!--DATA TABLE-->
-    <div class="table-responsive">
+    <div class="table-responsive inline-block">
+        <div class="row mb-3">
+            <div class="col">
+                <form action="<?= base_url('security/save') ?>">
+                    <button type="submit" class="btn btn-success w-100" role="button" data-bs-toggle="tooltip"
+                        title="Marcar Entrada" style="height: 45px;">Permitir entrada</button>
+                </form>
+            </div>
+            <div class="col">
+                <a href="<?= base_url('entries') ?>" class=" btn btn-danger w-100" role="button"
+                    data-bs-toggle="tooltip" title="Rechazar entrada" style="height: 45px;">
+                    Rechazar entrada <i class="fas fa-times-circle"></i></a>
+            </div>
+        </div>
+        <p> Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la
+            entrada el recuadro abajo se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede
+            llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual.</p>
+        <iframe id="inlineFrameExample" class="rounded border-info "
+            title="Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la entrada el recuadro se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual."
+            width="100%" data-bs-toggle="tooltip" title="Marcar Entrada" height="110" scrolling="no"
+            src="https://api.synappcr.com/condoguard/alert/?tel=50683500664">
+        </iframe>
+
+        <h2 class="Contactos">Contactos <a name="" id="" class="" onclick="info()" href="#" role="button"><i
+                    class="fas fa-info-circle"></i></a></h2>
         <table id="datatable" class="table " style="width: 100%">
 
             <thead>
@@ -12,8 +38,7 @@
                     <th>Identificación</th>
                     <th>Nombre</th>
                     <th>Razón</th>
-                    <th>Contacto</th>
-                    <th>Marcar entrada</th>
+                    <th>Contacto Whatsapp</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,13 +48,8 @@
                     <td><?= $condo_owner['name'] ?></td>
                     <td>PROPIETARIO(A)</td>
                     <td>
-                        <a href="tel:<?= $condo_owner['phone'] ?>" data-bs-toggle="tooltip" title="Llamar"
+                        <a href="tel:<?= $condo_owner['phone'] ?>" data-bs-toggle="tooltip" title="Contactar"
                             class="btn btn-success"><?= $condo_owner['phone'] ?> <i class="fas fa-phone-alt"></i></a>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success " role="button" data-bs-toggle="tooltip"
-                            title="Marcar Entrada">
-                            Marcar Entrada <i class="fas fa-check"></i></a>
                     </td>
                 </tr>
                 <?php foreach ($items as $item) : ?>
@@ -39,13 +59,10 @@
                     <td><?= $item['name'] ?></td>
                     <td><?= $item['reason'] ?></td>
                     <td>
-                        <a href="tel:<?= $item['phone'] ?>" data-bs-toggle="tooltip" title="Llamar"
+                        <?php if ($item['phone'] != '') { ?>
+                        <a onclick="permission(<?= $item['phone'] ?>)" data-bs-toggle="tooltip" title="Contactar"
                             class="btn btn-success"><?= $item['phone'] ?> <i class="fas fa-phone-alt"></i></a>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success " role="button" data-bs-toggle="tooltip"
-                            title="Marcar Entrada">
-                            Marcar Entrada <i class="fas fa-check"></i></a>
+                        <?php } ?>
                     </td>
                 </tr>
                 <?php endforeach ?>
@@ -53,3 +70,37 @@
         </table>
     </div>
 </div>
+<?php $phone = '8350-0664';
+$phone = str_replace('-', '', $phone);
+echo $phone;
+?>
+
+
+<a onclick="permission2(<?= $phone ?>)" data-bs-toggle="tooltip" title="Llamar"
+    class="btn btn-success w-25"><?= $item['phone'] ?> <i class="fas fa-phone-alt"></i></a>
+<script>
+function permission(phone) {
+    $.post(
+        "https://api.synappcr.com/condoguard/send/?telefono=506" + phone +
+        "&nombre=<?= $_GET["name"] ?><?= $_GET["reason"] == ', por motivo de' ? '' : $_GET["reason"]; ?>&identificacion=<?= $_GET["identity"] ?>&lang=es_ES", {}
+    )
+}
+
+function info() {
+    Swal.fire({
+        timer: 1250,
+        icon: 'info',
+        title: 'Ayuda',
+        text: 'Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la entrada el recuadro se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual.',
+        showCloseButton: true,
+        showConfirmButton: false
+    })
+}
+
+function permission2(phone) {
+    $.post(
+        "https://api.synappcr.com/condoguard/send/?telefono=506" + phone +
+        "&nombre=<?= $_GET["name"] ?><?= $_GET["reason"] == ', por motivo de' ? '' : $_GET["reason"]; ?>&identificacion=<?= $_GET["identity"] ?>&lang=es_ES", {}
+    )
+}
+</script>

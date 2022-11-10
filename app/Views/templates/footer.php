@@ -55,7 +55,6 @@ $(function() {
 
 
 
-
 //Enable BS5 popovers
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))

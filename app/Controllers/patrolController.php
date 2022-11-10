@@ -107,7 +107,9 @@ class patrolController extends BaseController
         //Sweetalert flash params
         session()->setFlashdata("message_icon", "success");
         session()->setFlashdata("message", "Cambios realizados");
-
+        if ($this->request->getPostGet('officerlog')) {
+            return $this->response->redirect(base_url('officerlog'));
+        }
         //Redirect
         return $this->response->redirect(base_url('patrol'));
     }

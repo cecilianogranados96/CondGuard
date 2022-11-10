@@ -53,7 +53,8 @@
                                                 value="Iniciar Sesión" data-bs-toggle="tooltip"
                                                 data-bs-placement="right" title="Iniciar Sesión" />
                                         </div>
-                                        <div class="text-center">
+                                        <!--login officer link-->
+                                        <div class="text-center visually-hidden">
                                             <a href="<?= base_url('login_officer') ?>">¿Eres un guarda?</a>
                                         </div>
                                     </form>

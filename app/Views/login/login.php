@@ -1,4 +1,7 @@
-<div class="bg-gradient-primary" style="height:100vh; ">
+<!--NAV - LOGIN TEMPLATE-->
+<link href="<?= base_url('assets/css/sb-admin-2.css'); ?>" rel="stylesheet">
+
+<div class="" style="height:100vh; background-color: #00212d;">
     <div class="container">
 
         <!-- Outer Row -->
@@ -6,15 +9,15 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0 ">
+                <div class="o-hidden border-0 my-5">
+                    <div class="p-0 ">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 bg-white" style="border-radius: 20px;">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
+                                        <h1 class="h3 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                                     </div>
 
 

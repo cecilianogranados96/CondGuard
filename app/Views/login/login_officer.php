@@ -1,3 +1,6 @@
+<!--NAV - LOGIN TEMPLATE-->
+<link href="<?= base_url('assets/css/sb-admin-2.css'); ?>" rel="stylesheet">
+
 <div class="bg-gradient-primary" style="height:100vh; ">
     <div class="container">
 

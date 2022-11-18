@@ -11,6 +11,7 @@ class assemblyController extends BaseController
         $assemblyModel = model('assemblyModel', true, $db);
         //Get-fill data
         $items['items'] = $assemblyModel->findAll();
+        $items['usuarios'] = $assemblyModel->findAll();
         return
             view('templates/header') .
             view('templates/navbar') .

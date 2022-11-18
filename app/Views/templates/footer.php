@@ -1,14 +1,13 @@
-<footer class="sticky-footer bg-white mt-auto">
+</div>
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div>
+<footer class="sticky-footer bg-white mt-auto w-100">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <span>Copyright © <?= date("Y"); ?> CondGuard</span>
         </div>
     </div>
 </footer>
-
-</div>
-<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-</div>
 
 <!--NAV-->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
@@ -35,11 +34,35 @@
 <!--Sweetalert2-->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- jQuery Custom Scroller CDN -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js">
+</script>
+
 <!--CUSTOM-->
 <script type="text/javascript" src="<?= base_url('assets/js/bs-init.js') ?>"></script>
 
 
 <script>
+//Sidebar
+$(document).ready(function() {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#dismiss, .overlay').on('click', function() {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').addClass('active');
+        $('.overlay').addClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
+
 //Sweetalert2 
 $(function() {
     <?php if (session()->has("message_icon")) { ?>
@@ -194,6 +217,14 @@ $(document).ready(function() {
 
 });
 </script>
+
+
+
+<script type="text/javascript">
+
+</script>
+
+
 </body>
 
 </html>

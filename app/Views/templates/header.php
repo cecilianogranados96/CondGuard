@@ -25,11 +25,14 @@
     <!--ICON-->
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/ico.png'); ?>">
 
-    <!--NAV-->
-    <link href="<?= base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
 
-    <!--TEMPLATE-->
-    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+    <!--Bootstrapious sidebar-->
+    <link href="<?= base_url('assets/css/bootstrapious_sidebar.css'); ?>" rel="stylesheet">
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
 
     <!--GOOGE FONTS-->
     <link
@@ -43,12 +46,9 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/sb-1.3.4/datatables.min.css" />
 
-    <!--LOGIN-->
-    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
 
     <!--CUSTOM-->
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.css'); ?>">
-
 
 
 

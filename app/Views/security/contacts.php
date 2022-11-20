@@ -36,9 +36,7 @@
                     Rechazar entrada <i class="fas fa-times-circle"></i></a>
             </div>
         </div>
-        <p> Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la
-            entrada el recuadro abajo se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede
-            llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual.</p>
+
         <iframe id="inlineFrameExample" class="rounded border-info "
             title="Instrucción: envíe una notificación de confirmación a los miembros en la lista mas abajo, al confirmarse la entrada el recuadro se mostrara en verde de lo contrario se mostrara en rojo, según lo requiera puede llamar a los miembros en la lista mas abajo para confirmar la entrada de forma manual."
             width="100%" data-bs-toggle="tooltip" title="Marcar Entrada" height="110" scrolling="no"

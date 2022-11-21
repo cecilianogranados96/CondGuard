@@ -1,6 +1,6 @@
 <section class="text-center py-5 ">
     <div class="container">
-        <h1 class="masthead-heading mb-0">¿Qué ofrece condguard?</h1>
+        <h1 class="masthead-heading mb-0">¿Qué ofrece CondGuard?</h1>
     </div>
 </section>
 <section>

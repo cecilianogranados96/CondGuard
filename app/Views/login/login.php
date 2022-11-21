@@ -57,7 +57,7 @@
                                                 data-bs-placement="right" title="Iniciar Sesión" />
                                         </div>
                                         <!--login officer link-->
-                                        <div class="text-center visually-hidden">
+                                        <div class="text-center">
                                             <a href="<?= base_url('login_officer') ?>">¿Eres un guarda?</a>
                                         </div>
                                     </form>

@@ -46,6 +46,9 @@ class assembly_votingController extends BaseController
             $items['item'] = $assembly_votingModel->find($data['assembly_voting_id']);
         } else {
             $id = $this->request->getPostGet('id');
+            if ($this->request->getPostGet('voted')) {
+                $items['voted'] = 'true';
+            }
             $items['item'] = $assembly_votingModel->find($id);
         }
         //Views
@@ -91,7 +94,7 @@ class assembly_votingController extends BaseController
         session()->setFlashdata("message", "Voto recibido");
 
         //Redirect
-        return $this->response->redirect(base_url('assembly_voting/panel?id=' . $this->request->getPostGet('assembly_voting_id')));
+        return $this->response->redirect(base_url('assembly_voting/panel?id=' . $this->request->getPostGet('assembly_voting_id') . '&voted=true'));
     }
     public function detail()
     {

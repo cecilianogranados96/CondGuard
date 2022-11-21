@@ -71,4 +71,5 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100" id="page-top">
+<body class="d-flex flex-column min-vh-100" id="page-top"
+    style="background: url('/assets/img/5570863.jpg') center / cover;">

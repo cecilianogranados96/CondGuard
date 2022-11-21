@@ -41,7 +41,7 @@ if (isset($_FILES["fileToUploadcedula"]["name"])) {
 
         $file = realpath($URL);
         $cFile = curl_file_create($file);
-        $data = array('apikey' => 'K83568227388957', 'file' => $cFile, 'language' => 'spa', 'detectOrientation' => 'true', 'OCREngine' => '5');
+        $data = array('apikey' => 'K83568227388957', 'file' => $cFile, 'language' => 'spa', 'detectOrientation' => 'true', 'OCREngine' => '1');
         $ch = curl_init('https://api.ocr.space/parse/image');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);

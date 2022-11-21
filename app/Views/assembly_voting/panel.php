@@ -62,7 +62,7 @@
                     <h5>Votar</h5>
                     <h6 class="text-muted card-subtitle ">Participe en la votación:</h6>
                     <br>
-                    <form action="<?= base_url('assembly_voting/vote') ?>" method="post"
+                    <form id="myForm" action="<?= base_url('assembly_voting/vote') ?>" method="post"
                         class="g-3  form-floating needs-validation" novalidate>
                         <!-- input -->
                         <div class="form-floating">
@@ -92,14 +92,16 @@
                         <div class="required-feedback"><?= $error ?></div>
                         <?php } ?>
                         <!-- required message -->
-                        <div class="required-feedback">Campos requeridos*.</div>
+                        <div class="required-feedback">
+                            <?= isset($voted) ? 'Voto realizado.' : 'Campos requeridos*' ?></div>
                         <!-- hidden input -->
                         <input name="assembly_voting_id" type="hidden" value=<?= $item['assembly_voting_id'] ?>>
                         <!-- hidden input -->
                         <input name="condo_owner_id" type="hidden" value=<?= session()->get('condo_owner_id') ?>>
                         <br>
                         <input class="btn btn-primary btn-lg" type="submit" value="Votar" data-bs-toggle="tooltip"
-                            data-bs-placement="right" title="Votar">
+                            <?= isset($voted) ? 'disabled' : '' ?> data-bs-placement="right" title="Votar">
+
                     </form>
                 </div>
             </div>
@@ -108,3 +110,10 @@
         </div>
     </div>
 </div>
+<script>
+window.addEventListener('load', (event) => {
+    $('form#myForm').submit(function(e) {
+        $(this).children('input[type=submit]').attr('disabled', 'disabled');
+    });
+});
+</script>

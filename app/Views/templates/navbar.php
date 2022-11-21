@@ -124,6 +124,14 @@
                     <i class="far fa-question-circle"></i>
                     <span class="fs-6">Manual de usuario</span></a>
             </li>
+            <?php if (session()->get('type') == 'officer') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('assets/security/CondGuard_Seguridad.apk'); ?>"
+                    download="CondGuard Seguridad">
+                    <i class="far fa-question-circle"></i>
+                    <span class="fs-6">App de seguridad</span></a>
+            </li>
+            <?php } ?>
         </ul>
 
         <ul class="list-unstyled CTAs">

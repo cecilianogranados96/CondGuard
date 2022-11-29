@@ -70,7 +70,7 @@
                 <!-- required message -->
                 <div class="required-feedback">Campos requeridos*.</div>
                 <!-- hidden input -->
-                <input name="assembly_id" type="hidden" value=<?= isset($edit_enabled) ? $item['patrol_id'] : ''; ?>>
+                <input name="patrol_id" type="hidden" value=<?= isset($edit_enabled) ? $item['patrol_id'] : ''; ?>>
                 <!-- submit -->
                 <div style="margin-top: 20px;">
                     <a class="btn btn-secondary btn-lg" role="button" style="width: 39%"

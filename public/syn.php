@@ -21,7 +21,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     if ($row["facturas"] >= 4) {
-      $payment = 0;
+      $payment = 1;
     } else {
       $payment = 1;
     }

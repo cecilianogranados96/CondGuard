@@ -18,10 +18,10 @@
                                                 data-bs-content="Descripción: <?= $item['description'] ?>"
                                                 class="fas fa-info"></i>
                                         </div>
-                                        <a class="text-white"
+                                        <a class="text-white fw-bold"
                                             href="<?= base_url('assembly_voting/panel?id=' . $item['assembly_voting_id']) ?>">Votar
                                             <i class="far fa-hand-point-right"></i></a>
-                                        <p class="text-white-50 small m-0">
+                                        <p class="text-white small m-0 fw-semibold">
                                             Pregunta: <?= $item['question'] ?></p>
 
                                     </div>
